@@ -12,7 +12,7 @@ EOF'
 docker rm -f test1
 ## 运行容器
 docker run -d \
--e RUN_BEFORE_SHELL=${RUN_BEFORE_SHELL}  \
+-e "RUN_BEFORE_SHELL=$RUN_BEFORE_SHELL"  \
 --name=test1 staneee/nginx:1.19.6
 ## 进入查看
 docker exec -it test1 /bin/bash
