@@ -18,4 +18,5 @@ powershell 的扩展镜像
 
 ### 镜像列表：
 - staneee/powershell:lts-debian-10-dotnet-5
+- staneee/powershell:lts-debian-10-dotnet-6
 
