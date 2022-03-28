@@ -14,9 +14,19 @@ powershell 的扩展镜像
 
 ## dotnet sdk
 
-支持 docker 和 docker-compose 的 powershell 镜像
+支持 dotnet sdk 的 powershell 镜像
 
 ### 镜像列表：
 - staneee/powershell:lts-debian-10-dotnet-5
 - staneee/powershell:lts-debian-10-dotnet-6
+
+---
+
+## nodejs
+
+支持 nodejs  的 powershell 镜像
+
+### 镜像列表：
+- staneee/powershell:lts-debian-10-node-14
+- staneee/powershell:lts-debian-10-node-16
 
