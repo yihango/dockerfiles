@@ -11,6 +11,7 @@ RUN apt-get update \
     && curl -L "https://dot.net/v1/dotnet-install.sh" -o /dotnet-install.sh \
     && chmod +x /dotnet-install.sh \
     && apt-get clean \
-    && /dotnet-install.sh -c 6.0
+    && /dotnet-install.sh -c 6.0 --install-dir /usr/share/dotnet \
+    && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
 ENTRYPOINT /bin/bash
