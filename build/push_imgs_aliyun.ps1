@@ -1,6 +1,6 @@
 
 $imgNamespace = "staneee"
-$imgNamespaceAliyun = "registry.cn-shanghai.aliyuncs.com/staneee"
+$imgNamespaceAliyun = ($env:ALIYUN_DOCKERHUB + $imgNamespace)
 $dockerFiles = Get-ChildItem -r "./src" | Where-Object {
     $_ -is [System.IO.FileInfo] -and $_.FullName.EndsWith('Dockerfile')
 } | Select-Object -ExpandProperty FullName
