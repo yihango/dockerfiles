@@ -1,9 +1,9 @@
 FROM mcr.microsoft.com/powershell:lts-debian-10
 
 # change source
-RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
-    && sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
-    && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
+# RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
+#     && sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
+#     && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
 
 # docker&docker-compose
 RUN apt-get update \
