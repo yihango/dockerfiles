@@ -6,7 +6,6 @@ $dockerFiles = Get-ChildItem -r "./src" | Where-Object {
 } | Select-Object -ExpandProperty FullName
 
 
-$currentPath = (Get-Location).Path
 $directorySeparatorChar = [System.IO.Path]::DirectorySeparatorChar
 foreach ($path in $dockerFiles) {
 
@@ -34,7 +33,4 @@ foreach ($path in $dockerFiles) {
     docker push $imgFullNameAliyun
 
     Write-Host "============= stop aliyun $imgFullNameAliyun ============="
-
-    # 回到当前目录
-    Set-Location $currentPath
 }
