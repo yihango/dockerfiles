@@ -35,4 +35,4 @@ foreach ($path in $dockerFiles) {
     Write-Host "============= stop aliyun $imgFullNameAliyun ============="
 }
 
-exit 0
+exit (($Error.Count -eq 0)?0:1)
