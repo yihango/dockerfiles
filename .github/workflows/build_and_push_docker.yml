@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  ALIYUN_DOCKERHUB: ${{ secrets.ALIYUN_DOCKERHUB }}
+  ALIYUN_DOCKERHUB_USERNAME: ${{ secrets.ALIYUN_DOCKERHUB_USERNAME }}
+  ALIYUN_DOCKERHUB_TOKEN: ${{ secrets.ALIYUN_DOCKERHUB_TOKEN }}
+
 jobs:
   # push to docker hub
   build-and-push-docker-hub:
@@ -21,8 +28,8 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_TOKEN
 
       # build and push all images
       - name: build and push images
@@ -35,7 +42,7 @@ jobs:
 
     # set os
     runs-on: ubuntu-latest
-    needs: [build-and-push-docker-hub]
+    needs: [ build-and-push-docker-hub ]
     steps:
       # checkout source code
       - uses: actions/checkout@v2
@@ -44,15 +51,15 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          registry: ${{ secrets.ALIYUN_DOCKERHUB }}
-          username: ${{ secrets.ALIYUN_DOCKERHUB_USERNAME }}
-          password: ${{ secrets.ALIYUN_DOCKERHUB_TOKEN }}
+          registry: $ALIYUN_DOCKERHUB
+          username: $ALIYUN_DOCKERHUB_USERNAME
+          password: $ALIYUN_DOCKERHUB_TOKEN
 
       # build and push all images
       - name: build and push images
         run: ./build/push_imgs_aliyun.ps1
         shell: pwsh
-        working-directory: ./        
+        working-directory: ./
 
   # test job
   test:
@@ -63,8 +70,16 @@ jobs:
       # checkout source code
       - uses: actions/checkout@v2
 
+      # login docker hub
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          registry: $ALIYUN_DOCKERHUB
+          username: $ALIYUN_DOCKERHUB_USERNAME
+          password: $ALIYUN_DOCKERHUB_TOKEN
+
       # run test
       - name: run test
         run: ./build/test.ps1
         shell: pwsh
-        working-directory: ./           
+        working-directory: ./
