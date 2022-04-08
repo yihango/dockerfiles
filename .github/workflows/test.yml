@@ -1,14 +1,13 @@
-name: "build and push all images"
+name: "test"
 
 on:
   push:
     branches: [ master ]
     paths:
-      - 'src/**'
+      - '.github/workflows/**'
+      - 'build/**'
   pull_request:
     branches: [ master ]
-    paths:
-      - 'src/**'
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -18,29 +17,6 @@ env:
   ALIYUN_DOCKERHUB_TOKEN: ${{ secrets.ALIYUN_DOCKERHUB_TOKEN }}
 
 jobs:
-  # push to docker hub
-  build-and-push-docker-hub:
-
-    # set os
-    runs-on: ubuntu-latest
-
-    steps:
-      # checkout source code
-      - uses: actions/checkout@v2
-
-      # login docker hub
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{env.DOCKERHUB_USERNAME}}
-          password: ${{env.DOCKERHUB_TOKEN}}
-
-      # build and push all images
-      - name: build and push images
-        run: ./build/build_and_push_imgs.ps1
-        shell: pwsh
-        working-directory: ./
-
   # push to aliyun
   push-aliyu:
 
@@ -50,6 +26,12 @@ jobs:
     steps:
       # checkout source code
       - uses: actions/checkout@v2
+
+      # run test
+      - name: run test
+        run: ./build/test.ps1
+        shell: pwsh
+        working-directory: ./
 
       # login docker hub
       - name: Login to DockerHub
