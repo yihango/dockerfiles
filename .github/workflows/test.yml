@@ -22,7 +22,6 @@ jobs:
 
     # set os
     runs-on: ubuntu-latest
-    needs: [ build-and-push-docker-hub ]
     steps:
       # checkout source code
       - uses: actions/checkout@v2
