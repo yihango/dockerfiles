@@ -4,7 +4,7 @@
 
 ## 目录
 
-- [asp.net core](./src/aspnet/README.md)
+- [asp.net](./src/aspnet/README.md)
 - [frpc](./src/frpc/README.md)
 - [nginx](./src/nginx/README.md)
 - [powershell](./src/powershell/README.md)
