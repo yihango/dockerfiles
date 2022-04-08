@@ -34,3 +34,5 @@ foreach ($path in $dockerFiles) {
 
     Write-Host "============= stop aliyun $imgFullNameAliyun ============="
 }
+
+exit 0

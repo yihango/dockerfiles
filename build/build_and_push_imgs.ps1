@@ -40,3 +40,4 @@ foreach ($path in $dockerFiles) {
     # 回到当前目录
     Set-Location $currentPath
 }
+exit 0
