@@ -1,0 +1,29 @@
+name: "build and push all images"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    # set os
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        name: checkout source code
+        run: echo "checkout source code success"
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: build and push images
+        run: ./build/build_and_push_imgs.ps1
+        shell: pwsh
+        working-directory: ./
