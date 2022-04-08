@@ -1,4 +1,6 @@
-$imgNamespace = "staneee";
+Write-Host $secrets.ALIYUN_DOCKERHUB+"1232"
+
+$imgNamespace = "staneee"
 $dockerFiles = Get-ChildItem -r "./src" | Where-Object {
     $_ -is [System.IO.FileInfo] -and $_.FullName.EndsWith('Dockerfile')
 } | Select-Object -ExpandProperty FullName
@@ -19,7 +21,7 @@ foreach ($path in $dockerFiles) {
     # 镜像全名称
     $imgFullName = $imgNamespace + '/' + $imgName + ':' + $imgTag
 
-    Write-Host "\r\n\r\n============= start $imgFullName =============\r\n\r\n"
+    Write-Host "============= start $imgFullName ============="
 
     # 拉取
     docker pull $imgFullName
@@ -33,7 +35,7 @@ foreach ($path in $dockerFiles) {
     # 推送镜像
     docker push $imgFullName
 
-    Write-Host "\r\n\r\n============= stop $imgFullName =============\r\n\r\n"
+    Write-Host "============= stop $imgFullName ============="
 
     # 回到当前目录
     Set-Location $currentPath

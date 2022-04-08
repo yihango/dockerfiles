@@ -1,7 +1,6 @@
 
-
 $imgNamespace = "staneee"
-$imgNamespaceAliyun = "registry.cn-shanghai.aliyuncs.com/staeee"
+$imgNamespaceAliyun = "registry.cn-shanghai.aliyuncs.com/staneee"
 $dockerFiles = Get-ChildItem -r "./src" | Where-Object {
     $_ -is [System.IO.FileInfo] -and $_.FullName.EndsWith('Dockerfile')
 } | Select-Object -ExpandProperty FullName
@@ -23,7 +22,7 @@ foreach ($path in $dockerFiles) {
     $imgFullName = $imgNamespace + '/' + $imgName + ':' + $imgTag
     $imgFullNameAliyun = $imgNamespaceAliyun + '/' + $imgName + ':' + $imgTag
 
-    Write-Host "\r\n\r\n============= start $imgFullName =============\r\n\r\n"
+    Write-Host "============= start $imgFullName ============="
 
     # 拉取
     docker pull $imgFullName
@@ -34,7 +33,7 @@ foreach ($path in $dockerFiles) {
     # 推送镜像
     docker push $imgFullNameAliyun
 
-    Write-Host "\r\n\r\n============= stop $imgFullName =============\r\n\r\n"
+    Write-Host "============= stop $imgFullName ============="
 
     # 回到当前目录
     Set-Location $currentPath
