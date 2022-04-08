@@ -22,7 +22,7 @@ foreach ($path in $dockerFiles) {
     $imgFullName = $imgNamespace + '/' + $imgName + ':' + $imgTag
     $imgFullNameAliyun = $imgNamespaceAliyun + '/' + $imgName + ':' + $imgTag
 
-    Write-Host "============= start $imgFullNameAliyun ============="
+    Write-Host "============= start aliyun $imgFullNameAliyun ============="
 
     # 拉取
     docker pull $imgFullName
@@ -33,7 +33,7 @@ foreach ($path in $dockerFiles) {
     # 推送镜像
     docker push $imgFullNameAliyun
 
-    Write-Host "============= stop $imgFullNameAliyun ============="
+    Write-Host "============= stop aliyun $imgFullNameAliyun ============="
 
     # 回到当前目录
     Set-Location $currentPath
