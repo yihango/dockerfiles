@@ -1,5 +1,5 @@
 # 说明
-powershell 的扩展镜像
+powershell(pwsh) 的扩展镜像
 
 ---
 

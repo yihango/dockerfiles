@@ -1,5 +1,5 @@
 # 说明
-asp.net core runtime的扩展包源
+asp.net core runtime的扩展镜像
 
 
 ---
