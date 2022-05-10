@@ -2,18 +2,13 @@ FROM python:3.7.13-buster
 
 
 # install deps + add Chrome Stable + purge all the things
+ARG CHROME_VERSION="75.0.3770.90-1"
 RUN apt-get update \
     && apt-get install -y \
 	apt-transport-https \
 	ca-certificates \
 	curl \
 	gnupg \
-	--no-install-recommends \
-	&& curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
-	&& echo "deb https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
-	&& apt-get update \
-	&& apt-get install -y \
-	google-chrome-stable=75.0.3770.90-1 \
 	fontconfig \
 	fonts-ipafont-gothic \
 	fonts-wqy-zenhei \
@@ -24,7 +19,11 @@ RUN apt-get update \
 	fonts-freefont-ttf \
 	--no-install-recommends \
 	&& apt-get purge --auto-remove -y curl gnupg \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& wget --no-verbose -O /tmp/chrome.deb https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}_amd64.deb \
+  	&& apt install -y /tmp/chrome.deb \
+  	&& rm /tmp/chrome.deb	
+
 
 # set env
 ENV PUPPETEER_EXECUTABLE_PATH "/usr/bin/google-chrome"
