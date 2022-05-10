@@ -1,11 +1,5 @@
 FROM python:3.7.13-buster
 
-# install 
-WORKDIR /app
-COPY ./requirements.txt ./
-RUN pip3 install -r ./requirements.txt
-
-
 
 # install deps + add Chrome Stable + purge all the things
 RUN apt-get update \
@@ -19,7 +13,7 @@ RUN apt-get update \
 	&& echo "deb https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
 	&& apt-get update \
 	&& apt-get install -y \
-	google-chrome-stable \
+	google-chrome-stable=75.0.3770.90-1 \
 	fontconfig \
 	fonts-ipafont-gothic \
 	fonts-wqy-zenhei \
@@ -34,3 +28,8 @@ RUN apt-get update \
 
 # set env
 ENV PUPPETEER_EXECUTABLE_PATH "/usr/bin/google-chrome"
+
+# install 
+WORKDIR /app
+COPY ./requirements.txt ./
+RUN pip3 install -r ./requirements.txt
