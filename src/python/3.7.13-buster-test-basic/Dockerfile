@@ -19,11 +19,11 @@ RUN apt-get update \
 	fonts-noto \
 	fonts-freefont-ttf \
 	--no-install-recommends \
-	&& apt-get purge --auto-remove -y curl gnupg \
-	&& rm -rf /var/lib/apt/lists/* \
 	&& wget --no-verbose -O /tmp/chrome.deb https://www.slimjet.com/chrome/download-chrome.php?file=files%2F${CHROME_VERSION}%2Fgoogle-chrome-stable_current_amd64.deb \
   	&& apt install -y /tmp/chrome.deb \
-  	&& rm /tmp/chrome.deb	
+  	&& rm /tmp/chrome.deb \
+	&& apt-get purge --auto-remove -y curl gnupg \
+	&& rm -rf /var/lib/apt/lists/*	
 
 
 # set env
