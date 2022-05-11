@@ -1,0 +1,2 @@
+- python:3.7.13-buster-test-basic
+- python:3.8-centos7-test-basic
