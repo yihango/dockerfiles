@@ -2,7 +2,7 @@ name: "build and push all images"
 
 on:
   push:
-    branches: [ backup ]
+    branches: [ build ]
     paths:
       - 'src/**'
   pull_request:
