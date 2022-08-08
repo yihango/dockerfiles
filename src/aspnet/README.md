@@ -10,3 +10,4 @@ asp.net core runtime的扩展镜像
 
 ### 镜像列表：
 - staneee/aspnet:5-gdi-fontconfig
+- staneee/aspnet:6-gdi-fontconfig
