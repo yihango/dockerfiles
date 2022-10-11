@@ -64,3 +64,12 @@ docker run -rm \
 ### 镜像列表：
 - staneee/nginx:1.7.10-wait-for-it
 - staneee/nginx:1.9.6-wait-for-it
+
+### 例子
+```shell
+docker run --rm \
+-p 9999:80 \
+-e NGINX_WAITHOST=192.168.1.2 \
+-e NGINX_WAITPORT=22 \
+staneee/nginx:1.7.10-wait-for-it
+```
