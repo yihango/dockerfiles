@@ -49,3 +49,18 @@ docker run -rm \
 -e "APPCONFIG=$APPCONFIG"  \
 --name=test1 staneee/nginx:1.19.6-appconfig-prod
 ```
+
+---
+## wait-for-it.sh
+
+支持 wait-for-it.sh 的镜像，通过传入环境变量进行控制
+
+环境变量：
+- NGINX_WAITHOST
+  - 等待的服务地址,默认为 localhost
+- NGINX_WAITPORT
+  - 等待的服务端口，默认为 80
+
+### 镜像列表：
+- staneee/nginx:1.7.10-wait-for-it
+- staneee/nginx:1.9.6-wait-for-it
