@@ -5,8 +5,8 @@ WORKDIR /node_modules/mongo-express
 
 COPY ./wait-for-it.sh  .
 
-ENV WAITHOST=mongo WAITPORT=27017
+ENV ME_WAITHOST=mongo ME_WAITPORT=27017
 RUN chmod +x wait-for-it.sh
 
-ENTRYPOINT ./wait-for-it.sh $WAITHOST:$WAITPORT --timeout=0 \
+ENTRYPOINT ./wait-for-it.sh $ME_WAITHOST:$ME_WAITPORT --timeout=0 \
     && /sbin/tini -- /docker-entrypoint.sh mongo-express
