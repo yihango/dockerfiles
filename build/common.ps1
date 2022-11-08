@@ -1,6 +1,7 @@
 # 需要打包的
 $needBuild = (
-    "staneee/powershell:lts-debian-10-docker-20-10-21-arm64"
+    ""
+    # "staneee/powershell:lts-debian-10-docker-20-10-21-arm64"
     # "staneee/aspnet:5-gdi-fontconfig-arm64v8",
     # "staneee/aspnet:6-gdi-fontconfig"
 )
