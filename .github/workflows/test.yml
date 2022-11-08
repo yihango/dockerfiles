@@ -2,12 +2,12 @@ name: "test"
 
 on:
   push:
-    branches: [ master ]
+    branches: [ a ]
     paths:
       - '.github/workflows/**'
       - 'build/**'
   pull_request:
-    branches: [ master ]
+    branches: [ a ]
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
