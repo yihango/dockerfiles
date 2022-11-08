@@ -42,11 +42,11 @@ foreach ($path in $dockerFiles) {
     # 编译并推送镜像
     if ($buildX -contains $imgFullName) {
         # 多平台
-        docker buildx build --load -t $imgFullName --builder=mybuilder --platform linux/arm64, linux/amd64 -f ./Dockerfile --push .
+        docker buildx build . --platform "linux/arm64,linux/amd64" -t $imgFullName  -f ./Dockerfile --push
     }
     else {
         # 单平台
-        docker build . --force-rm -t $imgFullName  -f ./Dockerfile
+        docker build . -t $imgFullName  -f ./Dockerfile
         docker push $imgFullName
     }
 
