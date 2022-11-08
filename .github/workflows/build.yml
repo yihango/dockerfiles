@@ -1,4 +1,4 @@
-name: "build and push all images"
+name: "build"
 
 on:
   push:
