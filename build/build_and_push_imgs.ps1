@@ -4,7 +4,7 @@
 Write-Host $secrets.ALIYUN_DOCKERHUB+"1232"
 
 $imgNamespace = "staneee"
-$dockerFiles = Get-ChildItem -r "./src" | Where-Object {
+$dockerFiles = Get-ChildItem -r "../src" | Where-Object {
     $_ -is [System.IO.FileInfo] -and $_.FullName.EndsWith('Dockerfile')
 } | Select-Object -ExpandProperty FullName
 

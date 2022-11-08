@@ -37,9 +37,9 @@ jobs:
 
       # build and push all images
       - name: build and push images
-        run: ./build/build_and_push_imgs.ps1
+        run: ./build_and_push_imgs.ps1
         shell: pwsh
-        working-directory: ./
+        working-directory: ./build
 
   # # push to aliyun
   # push-aliyu:
