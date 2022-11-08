@@ -5,10 +5,12 @@ on:
     branches: [ master ]
     paths:
       - 'src/**'
+      - 'build/**'
   pull_request:
     branches: [ master ]
     paths:
       - 'src/**'
+      - 'build/**'      
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
