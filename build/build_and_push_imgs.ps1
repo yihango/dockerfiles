@@ -39,14 +39,16 @@ foreach ($path in $dockerFiles) {
     # 切换到Dockerfile所在目录
     Set-Location $imgTagDir
     
-    # 编译并推送镜像
-    if ($buildX -contains $imgFullName) {
-        # 多平台
+    # ========== 编译并推送镜像 ==========
+
+
+    if ($buildXArm64 -contains $imgFullName) {
+        # ========== arm64 ==========
         # docker buildx build . --platform "linux/arm64,linux/amd64" -t $imgFullName  -f ./Dockerfile --push
         docker buildx build . --platform "linux/arm64" -t $imgFullName  -f ./Dockerfile --push
     }
     else {
-        # 单平台
+        # ========== 默认平台 ==========
         docker build . -t $imgFullName  -f ./Dockerfile
         docker push $imgFullName
     }
