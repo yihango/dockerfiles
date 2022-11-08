@@ -3,9 +3,9 @@ FROM debian:buster-slim
 
 
 # change source
-RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
-  && sed -i "s@http://deb.debian.org@http://repo.huaweicloud.com@g" /etc/apt/sources.list \
-  && sed -i "s@http://deb.debian.org@http://repo.huaweicloud.com@g" /etc/apt/sources.list
+# RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
+#   && sed -i "s@http://deb.debian.org@http://repo.huaweicloud.com@g" /etc/apt/sources.list \
+#   && sed -i "s@http://deb.debian.org@http://repo.huaweicloud.com@g" /etc/apt/sources.list
 
 # install baisc depends
 RUN apt-get update\
