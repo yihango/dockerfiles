@@ -11,3 +11,5 @@ $buildX = (
     "staneee/aspnet:6-gdi-fontconfig"
 )
 
+# 创建编译器
+docker buildx create --name mybuilder --driver docker-container --bootstrap
