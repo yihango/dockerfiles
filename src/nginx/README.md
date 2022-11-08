@@ -36,6 +36,7 @@ docker run -rm \
 
 ### 镜像列表：
 - staneee/nginx:1.19.6-appconfig-prod
+- staneee/nginx:1.9.6-wait-for-it-arm64v8
 
 ### 例子
 ```shell
@@ -64,6 +65,7 @@ docker run -rm \
 ### 镜像列表：
 - staneee/nginx:1.7.10-wait-for-it
 - staneee/nginx:1.9.6-wait-for-it
+- staneee/nginx:1.9.6-wait-for-it-arm64v8
 
 ### 例子
 ```shell
