@@ -35,7 +35,7 @@ jobs:
           password: ${{env.DOCKERHUB_TOKEN}}
 
       # arm64    
-      - uses: uraimo/run-on-arch-action@v2
+      - uses: uraimo/run-on-arch-action@v2.3.0
         name: Run commands
         id: runcmd
         with:
