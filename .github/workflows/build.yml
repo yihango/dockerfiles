@@ -41,7 +41,7 @@ jobs:
         with:
           arch: aarch64 # cpu架构
           distro: ubuntu18.04 # linux发行版
-          shell: pwsh # 执行的shell
+          shell: /bin/bash # 执行的shell
           githubToken: ${{ github.token }} # Not required, but speeds up builds by storing container images in a GitHub package registry.
           # Set an output parameter `uname` for use in subsequent steps
           run: |
@@ -53,7 +53,7 @@ jobs:
         run: ./build_arm64.ps1
         shell: pwsh
         working-directory: ./build
-        
+
   # # push to docker hub
   # build-and-push-docker-hub:
 
