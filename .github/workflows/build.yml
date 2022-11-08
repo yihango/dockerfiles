@@ -10,7 +10,7 @@ on:
     branches: [ master ]
     paths:
       - 'src/**'
-      - 'build/**'      
+      - 'build/**'
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -36,7 +36,7 @@ jobs:
 
       # arm64    
       - uses: uraimo/run-on-arch-action@v2.3.0
-        name: Run commands
+        name: use arm64
         id: runcmd
         with:
           arch: aarch64 # cpu架构
@@ -45,10 +45,15 @@ jobs:
           githubToken: ${{ github.token }} # Not required, but speeds up builds by storing container images in a GitHub package registry.
           # Set an output parameter `uname` for use in subsequent steps
           run: |
-            ls
-            cd ./build
-            ./build_arm64.ps1
-
+            uname -a
+            echo ::set-output name=uname::$(uname -a)
+      
+      # build
+      - name: build
+        run: ./build_arm64.ps1
+        shell: pwsh
+        working-directory: ./build
+        
   # # push to docker hub
   # build-and-push-docker-hub:
 
