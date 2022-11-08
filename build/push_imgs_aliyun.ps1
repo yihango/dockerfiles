@@ -1,3 +1,5 @@
+# 执行公用脚本
+. ".\common.ps1"
 
 $imgNamespace = "staneee"
 $imgNamespaceAliyun = ($env:ALIYUN_DOCKERHUB + $imgNamespace)
@@ -35,4 +37,9 @@ foreach ($path in $dockerFiles) {
     Write-Host "============= stop aliyun $imgFullNameAliyun ============="
 }
 
-exit (($Error.Count -eq 0)?0:1)
+if ($Error.Count -eq 0) {
+    exit 0
+}
+else {
+    exit 1
+}

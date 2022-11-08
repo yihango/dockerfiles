@@ -1,3 +1,6 @@
+# 执行公用脚本
+. ".\common.ps1"
+
 Write-Host $secrets.ALIYUN_DOCKERHUB+"1232"
 
 $imgNamespace = "staneee"
@@ -20,24 +23,42 @@ foreach ($path in $dockerFiles) {
 
     # 镜像全名称
     $imgFullName = $imgNamespace + '/' + $imgName + ':' + $imgTag
+    # 是否需要打包
+    if (($needBuild -contains $imgFullName) -eq $False) {
+        # 不需要打包，跳过
+        Write-Host "============= skip $imgFullName ============="
+        continue
+    }
+
 
     Write-Host "============= start $imgFullName ============="
 
-    # 拉取
+    # 拉取现有镜像
     docker pull $imgFullName
     
     # 切换到Dockerfile所在目录
     Set-Location $imgTagDir
     
-    # 编译镜像
-    docker build . --force-rm -t $imgFullName  -f ./Dockerfile
-
-    # 推送镜像
-    docker push $imgFullName
+    # 编译并推送镜像
+    if ($buildX -contains $imgFullName) {
+        # 多平台
+        docker buildx build . --force-rm --platform linux/arm64, linux/amd64 -t $imgFullName  -f ./Dockerfile --push
+    }
+    else {
+        # 单平台
+        docker build . --force-rm -t $imgFullName  -f ./Dockerfile
+        docker push $imgFullName
+    }
 
     Write-Host "============= stop $imgFullName ============="
 
     # 回到当前目录
     Set-Location $currentPath
 }
-exit (($Error.Count -eq 0)?0:1)
+
+if ($Error.Count -eq 0) {
+    exit 0
+}
+else {
+    exit 1
+}
