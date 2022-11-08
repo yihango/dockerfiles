@@ -9,6 +9,7 @@ powershell(pwsh) 的扩展镜像
 
 ### 镜像列表：
 - staneee/powershell:lts-debian-10-componse-1-29-2
+- staneee/powershell:lts-debian-10-docker-20-10-21-arm64
 
 ---
 
