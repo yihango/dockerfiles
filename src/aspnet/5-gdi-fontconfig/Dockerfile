@@ -1,4 +1,4 @@
-FROM registry.cn-hangzhou.aliyuncs.com/yoyosoft/dotnet_aspnet:5.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-focal AS base
 
 
 # change source
