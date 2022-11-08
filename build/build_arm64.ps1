@@ -49,7 +49,7 @@ foreach ($path in $dockerFiles) {
     Set-Location $imgTagDir
     
     # 编译并推送镜像
-    docker build . -t $imgFullName  -f ./Dockerfile
+    docker buildx build --platform linux/arm64 -t $imgFullName -f ./Dockerfile .
     docker push $imgFullName
     Write-Host "============= stop $imgFullName ============="
 
