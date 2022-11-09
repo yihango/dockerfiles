@@ -1,6 +1,10 @@
 #FROM --platform=$TARGETPLATFORM debian:buster-slim
 FROM --platform=$BUILDPLATFORM debian:buster-slim
 
+# buildx args
+ARG BUILDARCH
+ARG TARGETARCH
+
 # pwsh version and download url
 ARG PS_VERSION=7.2.7
 
@@ -29,16 +33,15 @@ RUN apt-get update\
   openssh-client \
   # locale.gen
   && sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
-  && locale-gen && update-locale  
+  && locale-gen && update-locale  \
+  # clear apt
+  && apt-get dist-upgrade -y \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*  
 
 # install powershell
 COPY ./pwsh-install-${BUILDARCH}.sh /root/pwsh-install.sh
 RUN chmod +x /root/pwsh-install.sh \
   && /root/pwsh-install.sh "${PS_VERSION}"
-
-# clear apt
-RUN apt-get dist-upgrade -y \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*  
 
 ENTRYPOINT /bin/bash
