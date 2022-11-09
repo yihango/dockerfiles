@@ -23,7 +23,10 @@ foreach ($path in $dockerFiles) {
 
     # 镜像全名称
     $imgFullName = $imgNamespace + '/' + $imgName + ':' + $imgTag
-    
+    # 目标仓库名称
+    $imgTargetFullName = $imgFullName
+
+
     # 是否需要打包
     if (($needBuild -contains $imgFullName) -eq $False) {
         # 不需要打包，跳过
@@ -41,12 +44,12 @@ foreach ($path in $dockerFiles) {
     Set-Location $imgTagDir
     if ($buildX -contains $imgFullName) {
         # buildx
-        docker buildx build --platform 'linux/arm64,linux/amd64' -t $imgFullName -f ./Dockerfile . --push
+        docker buildx build --platform 'linux/arm64,linux/amd64' -t $imgTargetFullName -f ./Dockerfile . --push
     }
     else {
         # build
-        docker build . -t $imgFullName  -f ./Dockerfile
-        docker push $imgFullName
+        docker build . -t $imgTargetFullName  -f ./Dockerfile
+        docker push $imgTargetFullName
     }
     Write-Host "============= stop $imgFullName ============="
 

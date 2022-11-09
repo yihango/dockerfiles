@@ -20,9 +20,9 @@ env:
   ALIYUN_DOCKERHUB_TOKEN: ${{ secrets.ALIYUN_DOCKERHUB_TOKEN }}
 
 jobs:
-  arm64:
+  build-hub:
     runs-on: ubuntu-18.04
-    name: Build image on AMD64 and ARM64
+    name: Build image to hub
     steps:
       # checkout source code
       - uses: actions/checkout@v2
@@ -47,56 +47,46 @@ jobs:
           run: |
             uname -a
             echo ::set-output name=uname::$(uname -a)
-      
+
       # build
       - name: build
-        run: ./build.ps1
         shell: pwsh
         working-directory: ./build
+        run: ./build.ps1
 
-  # # push to docker hub
-  # build-and-push-docker-hub:
 
-  #   # set os
-  #   runs-on: ubuntu-latest
+  build-aliyun:
+    runs-on: ubuntu-18.04
+    name: Build image to aliyun
+    steps:
+      # checkout source code
+      - uses: actions/checkout@v2
 
-  #   steps:
-  #     # checkout source code
-  #     - uses: actions/checkout@v2
+      # login docker hub
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          registry: ${{env.ALIYUN_DOCKERHUB}}
+          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
+          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
 
-  #     # login docker hub
-  #     - name: Login to DockerHub
-  #       uses: docker/login-action@v1
-  #       with:
-  #         username: ${{env.DOCKERHUB_USERNAME}}
-  #         password: ${{env.DOCKERHUB_TOKEN}}
+      # arm64    
+      - uses: uraimo/run-on-arch-action@v2.3.0
+        name: use arm64
+        id: runcmd
+        with:
+          arch: aarch64 # cpu架构
+          distro: ubuntu18.04 # linux发行版
+          shell: /bin/bash # 执行的shell
+          githubToken: ${{ github.token }} # Not required, but speeds up builds by storing container images in a GitHub package registry.
+          # Set an output parameter `uname` for use in subsequent steps
+          run: |
+            uname -a
+            echo ::set-output name=uname::$(uname -a)
 
-  #     # build and push all images
-  #     - name: build and push images
-  #       run: ./build_and_push_imgs.ps1
-  #       shell: pwsh
-  #       working-directory: ./build
+      # build
+      - name: build
+        shell: pwsh
+        working-directory: ./build
+        run: ./build_aliyun.ps1
 
-  # # push to aliyun
-  # push-aliyu:
-
-  #   # set os
-  #   runs-on: ubuntu-latest
-  #   needs: [ build-and-push-docker-hub ]
-  #   steps:
-  #     # checkout source code
-  #     - uses: actions/checkout@v2
-
-  #     # login docker hub
-  #     - name: Login to DockerHub
-  #       uses: docker/login-action@v1
-  #       with:
-  #         registry: ${{env.ALIYUN_DOCKERHUB}}
-  #         username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
-  #         password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
-
-  #     # build and push all images
-  #     - name: build and push images
-  #       run: ./build/push_imgs_aliyun.ps1
-  #       shell: pwsh
-  #       working-directory: ./

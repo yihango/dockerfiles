@@ -4,6 +4,7 @@
 Write-Host $secrets.ALIYUN_DOCKERHUB+"1232"
 
 $imgNamespace = "staneee"
+$imgNamespaceAliyun = ($env:ALIYUN_DOCKERHUB + $imgNamespace)
 $dockerFiles = Get-ChildItem -r "../src" | Where-Object {
     $_ -is [System.IO.FileInfo] -and $_.FullName.EndsWith('Dockerfile')
 } | Select-Object -ExpandProperty FullName
@@ -23,7 +24,10 @@ foreach ($path in $dockerFiles) {
 
     # 镜像全名称
     $imgFullName = $imgNamespace + '/' + $imgName + ':' + $imgTag
-    
+    # 目标仓库名称
+    $imgTargetFullName = $imgNamespaceAliyun + '/' + $imgName + ':' + $imgTag
+
+
     # 是否需要打包
     if (($needBuild -contains $imgFullName) -eq $False) {
         # 不需要打包，跳过
@@ -31,27 +35,26 @@ foreach ($path in $dockerFiles) {
         continue
     }
 
-    # 是否是arm64的
-    if (($imgFullName.Contains('arm64')) -eq $True) {
-        # 不需要打包，跳过
-        Write-Host "============= skip $imgFullName ============="
-        continue
-    }
-
     # ========== 编译并推送镜像 ==========
-    
     Write-Host "============= start $imgFullName ============="
-
     # 拉取现有镜像
     docker pull $imgFullName
-    
-    # 切换到Dockerfile所在目录
+
+
+    # 切换到Dockerfile所在目录+编译推送
     Set-Location $imgTagDir
-    
-    # 编译并推送镜像
-    docker build . -t $imgFullName  -f ./Dockerfile
-    docker push $imgFullName
+    if ($buildX -contains $imgFullName) {
+        # buildx
+        docker buildx build --platform 'linux/arm64,linux/amd64' -t $imgTargetFullName -f ./Dockerfile . --push
+    }
+    else {
+        # build
+        docker build . -t $imgTargetFullName  -f ./Dockerfile
+        docker push $imgTargetFullName
+    }
     Write-Host "============= stop $imgFullName ============="
+
+    
 
    
 
