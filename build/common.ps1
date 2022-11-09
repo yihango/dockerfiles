@@ -12,7 +12,7 @@ $buildX = (
 )
 
 # 创建编译器
-# docker buildx create --name mybuilder --driver docker-container --bootstrap
-# docker buildx use mybuilder
-# docker buildx inspect
+docker buildx create --name mybuilder --driver docker-container --bootstrap
+docker buildx use mybuilder
+docker buildx inspect
 
