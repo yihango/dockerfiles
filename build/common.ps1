@@ -5,6 +5,8 @@ $currentPath = (Get-Location).Path
 $buildX = (
     # "staneee/aspnet:5-focal-gdi-fontconfig",
     # "staneee/aspnet:6-focal-gdi-fontconfig",
+    "staneee/aspnet:5-focal-puppeteer",
+    "staneee/aspnet:6-focal-puppeteer",
     # "staneee/dotnet:5-focal",
     # "staneee/dotnet:6-focal",
     # "staneee/nginx:1.19.6-basic",
@@ -18,7 +20,8 @@ $buildX = (
     # "staneee/powershell:lts-debian-10-focal-dotnet-6",
     # "staneee/powershell:lts-debian-10-focal-node-14",
     # "staneee/powershell:lts-debian-10-focal-node-16"
-    "staneee/frpc:0.34.3-env"
+    # "staneee/frpc:0.34.3-env",
+    ""
 )
 
 # 普通编译
