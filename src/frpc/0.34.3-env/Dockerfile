@@ -1,4 +1,4 @@
-FROM snowdreamtech/frpc:0.34.3
+FROM --platform=$TARGETPLATFORM snowdreamtech/frpc:0.34.3
 
 # before shell content
 ENV FRPC_INI=''
