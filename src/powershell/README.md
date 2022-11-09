@@ -4,7 +4,7 @@ powershell(pwsh) 的扩展镜像
 ---
 
 ## 基础镜像
-支持arm64和amd64的镜像
+支持arm64和amd64的基础镜像
 
 ### 镜像列表：
 - staneee/powershell:lts-debian-10-focal

@@ -7,7 +7,7 @@ nginx的扩展镜像
 
 ## 基础镜像
 
-基础镜像，包含以下脚本文件
+支持arm64和amd64的基础镜像，包含以下脚本文件
 - wait-for-it.sh
 - before_shell_runner.sh
 - before_shell_appconfig_prod.sh
