@@ -5,6 +5,17 @@ nginx的扩展镜像
 
 ---
 
+## 基础镜像
+
+基础镜像，包含以下脚本文件
+- wait-for-it.sh
+- before_shell_runner.sh
+- before_shell_appconfig_prod.sh
+
+### 镜像列表：
+- staneee/nginx:1.19.6-basic
+
+
 ## 支持 before_shell_runner.sh
 运行nginx之前，读取环境变量 `RUN_BEFORE_SHELL` 中的内容生成shell脚本执行
 
@@ -63,9 +74,7 @@ docker run -rm \
   - 等待的服务端口，默认为 80
 
 ### 镜像列表：
-- staneee/nginx:1.7.10-wait-for-it
 - staneee/nginx:1.19.6-wait-for-it
-- staneee/nginx:1.19.6-wait-for-it-arm64v8
 
 ### 例子
 ```shell
@@ -73,5 +82,5 @@ docker run --rm \
 -p 9999:80 \
 -e NGINX_WAITHOST=192.168.1.2 \
 -e NGINX_WAITPORT=22 \
-staneee/nginx:1.7.10-wait-for-it
+staneee/nginx:1.19.6-wait-for-it
 ```
