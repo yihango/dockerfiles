@@ -32,14 +32,16 @@ RUN apt-get update\
   && locale-gen && update-locale  
 
 # install powershell
-# RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/powershell-7.2.7-linux-arm64.tar.gz \
-RUN export PS_PACKAGE_URL="https://github.com/PowerShell/PowerShell/releases/download/v${PS_VERSION}/powershell-${PS_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz" \
-  && curl -L -o /tmp/powershell.tar.gz ${PS_PACKAGE_URL} \
-  && mkdir -p /opt/microsoft/powershell/7 \
-  && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7 \
-  && rm -rf /tmp/powershell.tar.gz \
-  && chmod +x /opt/microsoft/powershell/7/pwsh \
-  && ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+COPY ./pwsh-install.sh .
+RUN ./pwsh-install.sh
+# # RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/powershell-7.2.7-linux-arm64.tar.gz \
+# RUN export PS_PACKAGE_URL="https://github.com/PowerShell/PowerShell/releases/download/v${PS_VERSION}/powershell-${PS_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz" \
+#   && curl -L -o /tmp/powershell.tar.gz ${PS_PACKAGE_URL} \
+#   && mkdir -p /opt/microsoft/powershell/7 \
+#   && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7 \
+#   && rm -rf /tmp/powershell.tar.gz \
+#   && chmod +x /opt/microsoft/powershell/7/pwsh \
+#   && ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
 
 # clear apt
 RUN apt-get dist-upgrade -y \
