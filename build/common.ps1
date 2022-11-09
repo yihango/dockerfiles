@@ -2,7 +2,8 @@
 $buildX = (
     "staneee/aspnet:5-focal-gdi-fontconfig",
     "staneee/dotnet:5-focal",
-    "staneee/dotnet:6-focal"
+    "staneee/dotnet:6-focal",
+    "staneee/powershell:lts-debian-10-focal"
 )
 
 # 普通编译
