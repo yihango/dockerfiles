@@ -50,7 +50,7 @@ jobs:
       
       # build
       - name: build
-        run: ./build_arm64.ps1
+        run: ./build.ps1
         shell: pwsh
         working-directory: ./build
 
