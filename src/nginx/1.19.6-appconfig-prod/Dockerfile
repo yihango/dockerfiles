@@ -1,14 +1,9 @@
-FROM nginx:1.19.6
-
+FROM --platform=$TARGETPLATFORM staneee/nginx:1.19.6-basic
 
 # appconfig.prod.json content
 ENV APPCONFIG=''
 
-# copy before shell runner
-WORKDIR /
-COPY ./before_shell_runner.sh .
-RUN chmod +x ./before_shell_runner.sh
 
 # entrypoint
-ENTRYPOINT /before_shell_runner.sh \
+ENTRYPOINT /before_shell_appconfig_prod.sh \
     && nginx -g "daemon off;"
