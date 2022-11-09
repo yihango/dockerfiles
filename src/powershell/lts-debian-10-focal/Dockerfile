@@ -34,7 +34,7 @@ RUN apt-get update\
 # install powershell
 COPY ./pwsh-install.sh /root/pwsh-install.sh
 RUN chmod +x /root/pwsh-install.sh \
-  && /root/pwsh-install.sh
+  && /root/pwsh-install.sh "${TARGETARCH}" "${PS_VERSION}"
 
 # clear apt
 RUN apt-get dist-upgrade -y \

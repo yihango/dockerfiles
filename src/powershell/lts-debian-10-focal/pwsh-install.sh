@@ -1,27 +1,27 @@
 #!/bin/bash
 
+build_arch=$1
+ps_version=$2
+
 # package name
-packageName=''
-case $TARGETARCH in
+ps_package=''
+case $build_arch in
 "amd64")
-    $packageName='linux-x64.tar.gz'
+    $ps_package='linux-x64.tar.gz'
     ;;
 "arm64")
-    $packageName='linux-arm64.tar.gz'
+    $ps_package='linux-arm64.tar.gz'
     ;;
 esac
 
-# version
-version=$PS_VERSION
-
 # download url
 #    https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell-7.3.0-linux-arm64.tar.gz
-url="https://github.com/PowerShell/PowerShell/releases/download/v${version}/powershell-${version}-${packageName}"
+ps_package_url="https://github.com/PowerShell/PowerShell/releases/download/v${ps_version}/powershell-${ps_version}-${ps_package}"
 
-echo $url
+echo $ps_package_url
 
 # install
-curl -L -o /tmp/powershell.tar.gz $url &&
+curl -L -o /tmp/powershell.tar.gz "${ps_package_url}" &&
     mkdir -p /opt/microsoft/powershell/7 &&
     tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7 &&
     rm -rf /tmp/powershell.tar.gz &&
