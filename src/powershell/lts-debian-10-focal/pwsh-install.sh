@@ -18,8 +18,10 @@ version=$PS_VERSION
 #    https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell-7.3.0-linux-arm64.tar.gz
 url="https://github.com/PowerShell/PowerShell/releases/download/v${version}/powershell-${version}-${packageName}"
 
+echo $url
+
 # install
-curl -L -o /tmp/powershell.tar.gz ${PS_PACKAGE_URL} &&
+curl -L -o /tmp/powershell.tar.gz $url &&
     mkdir -p /opt/microsoft/powershell/7 &&
     tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7 &&
     rm -rf /tmp/powershell.tar.gz &&
