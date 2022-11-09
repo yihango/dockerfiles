@@ -2,6 +2,16 @@
 
 ps_version=$1
 build_arch=$(arch)
+echo 'build infos:'
+echo $build_arch
+echo $TARGETPLATFORM
+echo $TARGETOS
+echo $TARGETARCH
+echo $TARGETVARIANT
+echo $BUILDPLATFORM
+echo $BUILDOS
+echo $BUILDARCH
+echo $BUILDVARIANT
 
 # cpu
 ps_package=''
