@@ -1,8 +1,7 @@
 #FROM --platform=$TARGETPLATFORM debian:buster-slim
-FROM --platform=$BUILDPLATFORM debian:buster-slim
+FROM --platform=$TARGETPLATFORM debian:buster-slim
 
 # buildx args
-ARG BUILDARCH
 ARG TARGETARCH
 
 # pwsh version and download url
@@ -40,7 +39,7 @@ RUN apt-get update\
   && rm -rf /var/lib/apt/lists/*  
 
 # install powershell
-COPY ./pwsh-install-${BUILDARCH}.sh /root/pwsh-install.sh
+COPY ./pwsh-install-${TARGETARCH}.sh /root/pwsh-install.sh
 RUN chmod +x /root/pwsh-install.sh \
   && /root/pwsh-install.sh "${PS_VERSION}"
 
