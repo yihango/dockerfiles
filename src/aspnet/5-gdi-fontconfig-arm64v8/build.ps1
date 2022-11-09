@@ -1,1 +1,0 @@
-docker buildx build . --platform "linux/arm64" -t staneee/aspnet:5-gdi-fontconfig-arm64v8  -f ./Dockerfile --push
