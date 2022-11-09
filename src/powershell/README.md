@@ -3,13 +3,19 @@ powershell(pwsh) 的扩展镜像
 
 ---
 
+## arm64 & amd64
+支持arm64和amd64的镜像
+
+### 镜像列表：
+- staneee/powershell:lts-debian-10-focal
+
 ## docker-compose
 
 支持 docker 和 docker-compose 的 powershell 镜像
 
 ### 镜像列表：
 - staneee/powershell:lts-debian-10-componse-1-29-2
-- staneee/powershell:lts-debian-10-docker-20-10-21-arm64
+- staneee/powershell:lts-debian-10-focal-docker-20-10-21 (arm64)
 
 ---
 

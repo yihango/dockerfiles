@@ -1,10 +1,11 @@
 # 需要多平台编译
 $buildX = (
-    "staneee/aspnet:5-focal-gdi-fontconfig",
-    "staneee/aspnet:6-focal-gdi-fontconfig",
-    "staneee/dotnet:5-focal",
-    "staneee/dotnet:6-focal",
-    "staneee/powershell:lts-debian-10-focal"
+    # "staneee/aspnet:5-focal-gdi-fontconfig",
+    # "staneee/aspnet:6-focal-gdi-fontconfig",
+    # "staneee/dotnet:5-focal",
+    # "staneee/dotnet:6-focal",
+    # "staneee/powershell:lts-debian-10-focal"
+    "staneee/powershell:lts-debian-10-focal-docker-20-10-21"
 )
 
 # 普通编译
