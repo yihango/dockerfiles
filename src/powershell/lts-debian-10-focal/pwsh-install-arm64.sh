@@ -1,20 +1,11 @@
 #!/bin/bash
 
+
 ps_version=$1
-build_arch=$(arch)
+ps_package='linux-arm64.tar.gz'
 
 
 
-# cpu
-ps_package=''
-case $build_arch in
-"x86_64")
-    ps_package='linux-x64.tar.gz'
-    ;;
-"aarch64")
-    ps_package='linux-arm64.tar.gz'
-    ;;
-esac
 
 # download url
 #    https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell-7.3.0-linux-arm64.tar.gz
@@ -22,7 +13,6 @@ ps_package_url="https://github.com/PowerShell/PowerShell/releases/download/v${ps
 
 
 echo 'build infos:'
-echo $build_arch
 echo $ps_version
 echo $ps_package
 echo $ps_package_url

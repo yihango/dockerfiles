@@ -22,7 +22,7 @@ env:
 jobs:
   arm64:
     runs-on: ubuntu-18.04
-    name: Build on ubuntu-18.04 arm64
+    name: Build image on AMD64 and ARM64
     steps:
       # checkout source code
       - uses: actions/checkout@v2
