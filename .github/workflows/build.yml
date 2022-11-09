@@ -54,7 +54,6 @@ jobs:
         working-directory: ./build
         run: ./build.ps1
 
-
   build-aliyun:
     runs-on: ubuntu-18.04
     name: Build image to aliyun
@@ -88,5 +87,4 @@ jobs:
       - name: build
         shell: pwsh
         working-directory: ./build
-        run: ./build_aliyun.ps1
-
+        run: ./build.ps1 $True

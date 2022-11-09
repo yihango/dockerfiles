@@ -1,9 +1,14 @@
 # 执行公用脚本
 . ".\common.ps1"
 
-Write-Host $secrets.ALIYUN_DOCKERHUB+"1232"
 
-$imgNamespace = "staneee"
+# 输入参数，目标是否存储到阿里云
+$isAliyun = $args[0]
+
+# 命名空间
+$imgNamespace = "staneee" # docker hub 
+$imgNamespaceAliyun = ($env:ALIYUN_DOCKERHUB + $imgNamespace) # aliyun
+
 $dockerFiles = Get-ChildItem -r "../src" | Where-Object {
     $_ -is [System.IO.FileInfo] -and $_.FullName.EndsWith('Dockerfile')
 } | Select-Object -ExpandProperty FullName
@@ -25,7 +30,10 @@ foreach ($path in $dockerFiles) {
     $imgFullName = $imgNamespace + '/' + $imgName + ':' + $imgTag
     # 目标仓库名称
     $imgTargetFullName = $imgFullName
-
+    # 如果启用了阿里云，使用阿里云做目标仓库
+    if ($isAliyun -eq $True) {
+        $imgTargetFullName = $imgNamespaceAliyun + '/' + $imgName + ':' + $imgTag
+    }
 
     # 是否需要打包
     if (($needBuild -contains $imgFullName) -eq $False) {
