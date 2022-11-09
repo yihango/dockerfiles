@@ -32,9 +32,9 @@ RUN apt-get update\
   && locale-gen && update-locale  
 
 # install powershell
-COPY ./pwsh-install.sh .
-RUN chmod+x ./pwsh-install.sh \
-  && /bin/bash ./pwsh-install.sh
+COPY ./pwsh-install.sh /root/pwsh-install.sh
+RUN chmod +x /root/pwsh-install.sh \
+  && /root/pwsh-install.sh
 
 # clear apt
 RUN apt-get dist-upgrade -y \
