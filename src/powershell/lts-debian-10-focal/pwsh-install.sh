@@ -3,6 +3,10 @@
 build_arch=$1
 ps_version=$2
 
+
+echo $build_arch
+
+
 # package name
 ps_package=''
 case $build_arch in
