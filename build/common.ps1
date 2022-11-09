@@ -1,15 +1,24 @@
-# 需要打包的
-$needBuild = (
-    "staneee/aspnet:6-focal-gdi-fontconfig"
-    # "staneee/powershell:lts-debian-10-docker-20-10-21-arm64"
-    # "staneee/aspnet:5-gdi-fontconfig-arm64v8",
-    # "staneee/aspnet:6-gdi-fontconfig"
+# 需要多平台编译
+$buildX = (
+    "staneee/aspnet:6-focal-gdi-fontconfig",
+    "staneee/dotnet:6-focal",
+    "staneee/dotnet:5-focal"
 )
 
-# 多平台编译
-$buildX = (
-    "staneee/aspnet:6-focal-gdi-fontconfig"
+# 普通编译
+$build = (
+    ""
 )
+
+# 需要打包的
+$needBuild = [System.Collections.ArrayList]::new()
+$needBuildCount = 0
+foreach ($item in $buildX) {
+    $needBuildCount = $needBuild.Add($item)
+}
+foreach ($item in $build) {
+    $needBuildCount = $needBuild.Add($item)
+}
 
 # 创建编译器
 docker buildx create --name mybuilder --driver docker-container --bootstrap
