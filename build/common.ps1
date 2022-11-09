@@ -5,7 +5,8 @@ $buildX = (
     # "staneee/dotnet:5-focal",
     # "staneee/dotnet:6-focal",
     # "staneee/powershell:lts-debian-10-focal"
-    "staneee/powershell:lts-debian-10-focal-docker-20-10-21"
+    # "staneee/powershell:lts-debian-10-focal-docker-20-10-21"
+    "staneee/nginx:1.19.6-basic"
 )
 
 # 普通编译
