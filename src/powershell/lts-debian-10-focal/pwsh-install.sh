@@ -1,19 +1,15 @@
 #!/bin/bash
 
-build_arch=$1
-ps_version=$2
+ps_version=$1
+build_arch=$(arch)
 
-
-echo $build_arch
-
-
-# package name
+# cpu
 ps_package=''
 case $build_arch in
-"amd64")
+"x86_64")
     $ps_package='linux-x64.tar.gz'
     ;;
-"arm64")
+"aarch64")
     $ps_package='linux-arm64.tar.gz'
     ;;
 esac
