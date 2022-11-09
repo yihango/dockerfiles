@@ -1,3 +1,6 @@
+# 当前所在目录
+$currentPath = (Get-Location).Path
+
 # 需要多平台编译
 $buildX = (
     "staneee/aspnet:5-focal-gdi-fontconfig",
@@ -17,15 +20,6 @@ $build = (
     ""
 )
 
-# 需要打包的
-$needBuild = [System.Collections.ArrayList]::new()
-$needBuildCount = 0
-foreach ($item in $buildX) {
-    $needBuildCount = $needBuild.Add($item)
-}
-foreach ($item in $build) {
-    $needBuildCount = $needBuild.Add($item)
-}
 
 # 创建编译器
 docker buildx create --name mybuilder --driver docker-container --bootstrap

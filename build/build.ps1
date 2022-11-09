@@ -7,19 +7,27 @@ $isAliyun = $args[0]
 
 # 命名空间
 $imgNamespace = "staneee" # docker hub 
-$imgNamespaceAliyun = ($env:ALIYUN_DOCKERHUB + $imgNamespace) # aliyun
+$hubAliyun = $env:ALIYUN_DOCKERHUB # 阿里云
 
+
+# 打包的配置与路径信息
+$imgInfoDict = New-Object System.Collections.Generic.Dictionary"[String,String]"
+
+
+
+# 所有Dockerfile路径
 $dockerFiles = Get-ChildItem -r "../src" | Where-Object {
     $_ -is [System.IO.FileInfo] -and $_.FullName.EndsWith('Dockerfile')
 } | Select-Object -ExpandProperty FullName
 
 
-$currentPath = (Get-Location).Path
+
+# 遍历存储镜像信息： 镜像名称:编译路径
 $directorySeparatorChar = [System.IO.Path]::DirectorySeparatorChar
 foreach ($path in $dockerFiles) {
 
     # 路径
-    $imgTagDir = Split-Path -Parent $path
+    $imgTagDir = Split-Path -Parent $path # Dockerfile 所在路径
     $imgNameDir = Split-Path -Parent $imgTagDir
 
     # 镜像tag和镜像名称
@@ -28,46 +36,76 @@ foreach ($path in $dockerFiles) {
 
     # 镜像全名称
     $imgFullName = $imgNamespace + '/' + $imgName + ':' + $imgTag
+
+    # 将镜像信息存储到字典中
+    $imgInfoDict.Add($imgFullName, $imgTagDir)
+}
+
+# 遍历打包 buildx
+foreach ($imgFullName in $buildX) {
+    if ($imgFullName -eq "") {
+        continue;
+    }
+
+    # 打包路径信息
+    $imgTagDir = $imgInfoDict[$imgFullName]
+
     # 目标仓库名称
     $imgTargetFullName = $imgFullName
     # 如果启用了阿里云，使用阿里云做目标仓库
     if ($isAliyun -eq $True) {
-        $imgTargetFullName = $imgNamespaceAliyun + '/' + $imgName + ':' + $imgTag
+        $imgTargetFullName = $hubAliyun + $imgFullName
     }
 
-    # 是否需要打包
-    if (($needBuild -contains $imgFullName) -eq $False) {
-        # 不需要打包，跳过
-        Write-Host "============= skip $imgFullName ============="
-        continue
-    }
 
-    # ========== 编译并推送镜像 ==========
-    Write-Host "============= start $imgFullName ============="
-    # 拉取现有镜像
-    docker pull $imgFullName
-
-
-    # 切换到Dockerfile所在目录+编译推送
+    # 切换到打包目录
     Set-Location $imgTagDir
-    if ($buildX -contains $imgFullName) {
-        # buildx
-        docker buildx build --platform 'linux/arm64,linux/amd64' -t $imgTargetFullName -f ./Dockerfile . --push
-    }
-    else {
-        # build
-        docker build . -t $imgTargetFullName  -f ./Dockerfile
-        docker push $imgTargetFullName
-    }
-    Write-Host "============= stop $imgFullName ============="
-
+    Write-Host "============= start $imgFullName ============="
     
 
-   
-
+    # 打包并推送
+    docker buildx build --platform 'linux/arm64,linux/amd64' -t $imgTargetFullName -f ./Dockerfile . --push
+    
+    
     # 回到当前目录
     Set-Location $currentPath
+    Write-Host "============= stop $imgFullName ============="
 }
+
+
+# 遍历打包 buildx
+foreach ($imgFullName in $build) {
+    if ($imgFullName -eq "") {
+        continue;
+    }
+
+    # 打包路径信息
+    $imgTagDir = $imgInfoDict[$imgFullName]
+
+    # 目标仓库名称
+    $imgTargetFullName = $imgFullName
+    # 如果启用了阿里云，使用阿里云做目标仓库
+    if ($isAliyun -eq $True) {
+        $imgTargetFullName = $hubAliyun + $imgFullName
+    }
+
+
+    # 切换到打包目录
+    Set-Location $imgTagDir
+    Write-Host "============= start $imgFullName ============="
+    
+
+    # 打包并推送
+    docker build . -t $imgTargetFullName  -f ./Dockerfile
+    docker push $imgTargetFullName
+    
+    
+    # 回到当前目录
+    Set-Location $currentPath
+    Write-Host "============= stop $imgFullName ============="
+}
+
+
 
 if ($Error.Count -eq 0) {
     exit 0
