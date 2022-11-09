@@ -3,7 +3,6 @@ FROM --platform=$BUILDPLATFORM debian:buster-slim
 
 # pwsh version and download url
 ARG PS_VERSION=7.2.7
-ARG PS_PACKAGE_URL=https://github.com/PowerShell/PowerShell/releases/download/v${PS_VERSION}/powershell-${PS_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz
 
 # change source
 # RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
@@ -34,7 +33,8 @@ RUN apt-get update\
 
 # install powershell
 # RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/powershell-7.2.7-linux-arm64.tar.gz \
-RUN curl -L -o /tmp/powershell.tar.gz ${PS_PACKAGE_URL} \
+RUN export PS_PACKAGE_URL=https://github.com/PowerShell/PowerShell/releases/download/v${PS_VERSION}/powershell-${PS_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz \
+  && curl -L -o /tmp/powershell.tar.gz ${PS_PACKAGE_URL} \
   && mkdir -p /opt/microsoft/powershell/7 \
   && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7 \
   && rm -rf /tmp/powershell.tar.gz \
