@@ -5,8 +5,8 @@ $currentPath = (Get-Location).Path
 $buildX = (
     # "staneee/aspnet:5-focal-gdi-fontconfig",
     # "staneee/aspnet:6-focal-gdi-fontconfig",
-    "staneee/aspnet:5-focal-puppeteer",
-    "staneee/aspnet:6-focal-puppeteer",
+    # "staneee/aspnet:5-focal-puppeteer", # 未完成
+    # "staneee/aspnet:6-focal-puppeteer", # 未完成
     # "staneee/dotnet:5-focal",
     # "staneee/dotnet:6-focal",
     # "staneee/nginx:1.19.6-basic",
