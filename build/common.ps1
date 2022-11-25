@@ -18,7 +18,7 @@ $buildX = (
     # "staneee/node:16.13.1",
     # "staneee/powershell:lts-debian-10-focal",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21",    
-    "staneee/powershell:lts-debian-10-focal-docker-20-10-21-zip",    
+    # "staneee/powershell:lts-debian-10-focal-docker-20-10-21-zip",    
     # "staneee/powershell:lts-debian-10-focal-dotnet-5",
     # "staneee/powershell:lts-debian-10-focal-dotnet-5-node-16",
     # "staneee/powershell:lts-debian-10-focal-dotnet-6",
