@@ -9,8 +9,8 @@ $buildX = (
     # "staneee/aspnet:6-focal-puppeteer", # 未完成
     # "staneee/dotnet:5-focal",
     # "staneee/dotnet:6-focal",
-    "staneee/dotnet:5-focal-gdi-fontconfig",
-    "staneee/dotnet:6-focal-gdi-fontconfig",    
+    # "staneee/dotnet:5-focal-gdi-fontconfig",
+    # "staneee/dotnet:6-focal-gdi-fontconfig",    
     # "staneee/nginx:1.19.6-basic",
     # "staneee/nginx:1.19.6-appconfig-prod",
     # "staneee/nginx:1.19.6-shell-runner",
@@ -19,7 +19,9 @@ $buildX = (
     # "staneee/powershell:lts-debian-10-focal",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21",    
     # "staneee/powershell:lts-debian-10-focal-dotnet-5",
+    "staneee/powershell:lts-debian-10-focal-dotnet-5-node-16",
     # "staneee/powershell:lts-debian-10-focal-dotnet-6",
+    "staneee/powershell:lts-debian-10-focal-dotnet-6-node-16",
     # "staneee/powershell:lts-debian-10-focal-node-14",
     # "staneee/powershell:lts-debian-10-focal-node-16"
     # "staneee/frpc:0.34.3-env",

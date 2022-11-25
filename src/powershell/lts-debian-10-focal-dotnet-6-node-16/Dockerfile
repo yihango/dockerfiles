@@ -1,0 +1,18 @@
+FROM --platform=$TARGETPLATFORM staneee/powershell:lts-debian-10-focal-dotnet-6
+
+
+# change source
+# RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
+#   && sed -i "s@http://deb.debian.org@http://repo.huaweicloud.com@g" /etc/apt/sources.list \
+#   && sed -i "s@http://deb.debian.org@http://repo.huaweicloud.com@g" /etc/apt/sources.list
+
+# install nodejs
+RUN apt-get update \
+    && apt-get install -y curl \
+    && curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get update \
+    && apt-get install -y nodejs \
+    && apt-get clean
+
+
+ENTRYPOINT /bin/bash
