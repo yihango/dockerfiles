@@ -13,6 +13,7 @@ $buildX = (
     # "staneee/dotnet:6-focal-gdi-fontconfig",    
     # "staneee/nginx:1.19.6-basic",
     # "staneee/nginx:1.19.6-appconfig-prod",
+    "staneee/nginx:1.19.6-appconfig-prod-pda",
     # "staneee/nginx:1.19.6-shell-runner",
     # "staneee/nginx:1.19.6-wait-for-it",
     # "staneee/node:16.13.1",
