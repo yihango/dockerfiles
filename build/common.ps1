@@ -13,7 +13,7 @@ $buildX = (
     # "staneee/dotnet:6-focal-gdi-fontconfig",    
     # "staneee/nginx:1.19.6-basic",
     # "staneee/nginx:1.19.6-appconfig-prod",
-    "staneee/nginx:1.19.6-appconfig-prod-pda",
+    # "staneee/nginx:1.19.6-appconfig-prod-pda",
     # "staneee/nginx:1.19.6-shell-runner",
     # "staneee/nginx:1.19.6-wait-for-it",
     # "staneee/node:16.13.1",
@@ -27,6 +27,7 @@ $buildX = (
     # "staneee/powershell:lts-debian-10-focal-node-14",
     # "staneee/powershell:lts-debian-10-focal-node-16"
     # "staneee/frpc:0.34.3-env",
+    "staneee/common-scripts:alpine-3.17",
     ""
 )
 
