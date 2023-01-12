@@ -29,8 +29,10 @@ $buildX = (
     # "staneee/frpc:0.34.3-env",
     # "staneee/common-scripts:alpine-3.17",
     # "staneee/ntp:chrony",
-    "staneee/portainer:agent-2.16.1",
-    "staneee/portainer:ce-2.16.1"
+    # "staneee/portainer:agent-2.16.1",
+    # "staneee/portainer:ce-2.16.1"
+    "self-signed-ssl:1.1.1",
+    ""
 )
 
 # 普通编译
