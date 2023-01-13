@@ -31,7 +31,8 @@ $buildX = (
     # "staneee/ntp:chrony",
     # "staneee/portainer:agent-2.16.1",
     # "staneee/portainer:ce-2.16.1"
-    "self-signed-ssl:latest",
+    "self-signed-ssl:openssl-1.1.1",
+    "keepalived:2.0.20",
     ""
 )
 
