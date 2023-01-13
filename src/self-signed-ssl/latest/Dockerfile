@@ -1,10 +1,9 @@
 FROM --platform=$TARGETPLATFORM alpine:latest  AS base
 
+RUN apk add --no-cache bash curl openssl
+
 WORKDIR /bin
 
-RUN apk add --no-cache bash \
-    && apk add --no-cache curl \
-    && apk add --no-cache openssl \
-    && curl --output self-signed-ssl https://raw.githubusercontent.com/lstellway/self-signed-ssl/master/self-signed-ssl \
+RUN curl --output self-signed-ssl https://raw.githubusercontent.com/lstellway/self-signed-ssl/master/self-signed-ssl \
     && chmod +x self-signed-ssl
 
