@@ -25,6 +25,7 @@ $dockerFiles = Get-ChildItem -r "../src" | Where-Object {
 # 遍历存储镜像信息： 镜像名称:编译路径
 $directorySeparatorChar = [System.IO.Path]::DirectorySeparatorChar
 foreach ($path in $dockerFiles) {
+    Write-Host "============= Dockerfile Path: $path"
 
     # 路径
     $imgTagDir = Split-Path -Parent $path # Dockerfile 所在路径
@@ -61,8 +62,7 @@ foreach ($imgFullName in $buildX) {
     # 切换到打包目录
     # 切换到打包目录
     Set-Location $imgTagDir
-    $tmpPath = (Get-Location).Path
-    Write-Host "============= CurrentPath: $tmpPath"
+    Write-Host "============= Build Path: $imgTagDir"
     Write-Host "============= start $imgFullName ============="
     
 
@@ -73,7 +73,7 @@ foreach ($imgFullName in $buildX) {
     # 回到当前目录
     Set-Location $currentPath
     $tmpPath = (Get-Location).Path
-    Write-Host "============= CurrentPath: $tmpPath"
+    Write-Host "============= Run Path: $tmpPath"
     Write-Host "============= stop $imgFullName ============="
 }
 
@@ -97,8 +97,7 @@ foreach ($imgFullName in $build) {
 
     # 切换到打包目录
     Set-Location $imgTagDir
-    $tmpPath = (Get-Location).Path
-    Write-Host "============= CurrentPath: $tmpPath"
+    Write-Host "============= Build Path: $imgTagDir"
     Write-Host "============= start $imgFullName ============="
     
 
@@ -110,7 +109,7 @@ foreach ($imgFullName in $build) {
     # 回到当前目录
     Set-Location $currentPath
     $tmpPath = (Get-Location).Path
-    Write-Host "============= CurrentPath: $tmpPath"
+    Write-Host "============= Run Path: $tmpPath"
     Write-Host "============= stop $imgFullName ============="
 }
 
