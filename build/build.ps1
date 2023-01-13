@@ -59,7 +59,10 @@ foreach ($imgFullName in $buildX) {
 
 
     # 切换到打包目录
+    # 切换到打包目录
     Set-Location $imgTagDir
+    $tmpPath = (Get-Location).Path
+    Write-Host "============= CurrentPath: $tmpPath"
     Write-Host "============= start $imgFullName ============="
     
 
@@ -69,6 +72,8 @@ foreach ($imgFullName in $buildX) {
     
     # 回到当前目录
     Set-Location $currentPath
+    $tmpPath = (Get-Location).Path
+    Write-Host "============= CurrentPath: $tmpPath"
     Write-Host "============= stop $imgFullName ============="
 }
 
@@ -92,6 +97,8 @@ foreach ($imgFullName in $build) {
 
     # 切换到打包目录
     Set-Location $imgTagDir
+    $tmpPath = (Get-Location).Path
+    Write-Host "============= CurrentPath: $tmpPath"
     Write-Host "============= start $imgFullName ============="
     
 
@@ -102,6 +109,8 @@ foreach ($imgFullName in $build) {
     
     # 回到当前目录
     Set-Location $currentPath
+    $tmpPath = (Get-Location).Path
+    Write-Host "============= CurrentPath: $tmpPath"
     Write-Host "============= stop $imgFullName ============="
 }
 
