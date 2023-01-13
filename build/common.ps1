@@ -32,8 +32,9 @@ $buildX = (
     # "staneee/portainer:agent-2.16.1",
     # "staneee/portainer:ce-2.16.1"
     # "staneee/self-signed-ssl:openssl-1.1.1",
+    # "staneee/redis:6.0.16",        
     # "staneee/keepalived:2.0.20",
-    "staneee/redis:6.0.16",
+    "staneee/keepalived:2.0.20-docker",
     ""
 )
 
