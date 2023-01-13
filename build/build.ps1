@@ -73,7 +73,7 @@ foreach ($imgFullName in $buildX) {
 }
 
 
-# 遍历打包 buildx
+# 遍历打包 build
 foreach ($imgFullName in $build) {
     if ($imgFullName -eq "") {
         continue;
