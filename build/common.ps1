@@ -41,6 +41,7 @@ $buildX = (
 # 普通编译
 $build = (
     # "staneee/antlr4:4.12.0",
+    "staneee/antlr4:4.6",
     ""
 )
 
