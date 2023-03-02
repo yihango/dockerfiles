@@ -1,6 +1,18 @@
 # 说明
 antlr4 镜像
 
+## 用例
+```shell
+# 指定命令行参数
+alias antlr4='docker run -it -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd):/work staneee/antlr4:4.12.0 $@'
+
+# 下载语法配置
+wget https://raw.githubusercontent.com/antlr/grammars-v4/master/json/JSON.g4
+
+# 运行
+antlr4 -Dlanguage=Go JSON.g4
+```
+
 ---
 
 ## 官方镜像文件
