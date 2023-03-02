@@ -34,12 +34,13 @@ $buildX = (
     # "staneee/self-signed-ssl:openssl-1.1.1",
     # "staneee/redis:6.0.16",        
     # "staneee/keepalived:2.0.20",
-    "staneee/keepalived:2.0.20-docker",
+    # "staneee/keepalived:2.0.20-docker",
     ""
 )
 
 # 普通编译
 $build = (
+    "staneee/antlr4:4.12.0",
     ""
 )
 
