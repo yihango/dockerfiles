@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# create before_shell.sh
+# create appconfig.prod.json
 if [ -n "${APPCONFIG}" ]; then
   cat <<EOF > /usr/share/nginx/html/assets/appconfig.prod.json
 ${APPCONFIG}
