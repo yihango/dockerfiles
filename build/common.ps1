@@ -11,11 +11,11 @@ $buildX = (
     # "staneee/dotnet:6-focal",
     # "staneee/dotnet:5-focal-gdi-fontconfig",
     # "staneee/dotnet:6-focal-gdi-fontconfig",    
-    "staneee/nginx:1.19.6-basic",
-    # "staneee/nginx:1.19.6-appconfig-prod",
-    # "staneee/nginx:1.19.6-appconfig-prod-pda",
-    # "staneee/nginx:1.19.6-shell-runner",
-    # "staneee/nginx:1.19.6-wait-for-it",
+    # "staneee/nginx:1.19.6-basic",
+    "staneee/nginx:1.19.6-appconfig-prod",
+    "staneee/nginx:1.19.6-appconfig-prod-pda",
+    "staneee/nginx:1.19.6-shell-runner",
+    "staneee/nginx:1.19.6-wait-for-it",
     # "staneee/node:16.13.1",
     # "staneee/powershell:lts-debian-10-focal",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21",    
@@ -42,7 +42,7 @@ $buildX = (
 # 普通编译
 $build = (
     # "staneee/antlr4:4.12.0",
-    "staneee/antlr4:4.6",
+    # "staneee/antlr4:4.6",
     ""
 )
 
