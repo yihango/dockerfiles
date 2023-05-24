@@ -1,0 +1,1 @@
+docker buildx build --platform 'linux/amd64' -t staneee/antlr4:4.6  -f ./Dockerfile . --push

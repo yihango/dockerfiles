@@ -26,7 +26,7 @@ $buildX = (
     # "staneee/powershell:lts-debian-10-focal-dotnet-6-node-16",
     # "staneee/powershell:lts-debian-10-focal-node-14",
     # "staneee/powershell:lts-debian-10-focal-node-16"
-    # "staneee/frpc:0.34.3-env",
+    "staneee/frpc:0.34.3-env",
     # "staneee/common-scripts:alpine-3.17",
     # "staneee/ntp:chrony",
     # "staneee/portainer:agent-2.16.1",
@@ -42,6 +42,8 @@ $buildX = (
 
 # 普通编译
 $build = (
+    # "staneee/antlr4:4.12.0",
+    # "staneee/antlr4:4.6",
     ""
 )
 
