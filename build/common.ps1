@@ -36,7 +36,7 @@ $buildX = (
     # "staneee/keepalived:2.0.20",
     # "staneee/keepalived:2.0.20-docker",
     # "staneee/rabbitmq:3.11.10-management",
-    "staneee/android-template:uni-app-3.7.11.81746_20230428",
+    # "staneee/android-template:uni-app-3.7.11.81746_20230428",
     ""
 )
 
@@ -44,6 +44,7 @@ $buildX = (
 $build = (
     # "staneee/antlr4:4.12.0",
     # "staneee/antlr4:4.6",
+    "staneee/android:33.0.2",
     ""
 )
 
