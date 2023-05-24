@@ -44,7 +44,8 @@ $buildX = (
 $build = (
     # "staneee/antlr4:4.12.0",
     # "staneee/antlr4:4.6",
-    "staneee/android:33.0.2",
+    # "staneee/android:33.0.2",
+    "staneee/android:30.0.3",
     ""
 )
 
