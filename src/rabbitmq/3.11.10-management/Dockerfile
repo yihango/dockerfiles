@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM rabbitmq:3.11.10-management
