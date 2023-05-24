@@ -34,7 +34,9 @@ $buildX = (
     # "staneee/self-signed-ssl:openssl-1.1.1",
     # "staneee/redis:6.0.16",        
     # "staneee/keepalived:2.0.20",
-    "staneee/keepalived:2.0.20-docker",
+    # "staneee/keepalived:2.0.20-docker",
+    "staneee/rabbitmq:3.11.10-management",
+    "staneee/android-template:uni-app-3.7.11.81746_20230428",
     ""
 )
 
