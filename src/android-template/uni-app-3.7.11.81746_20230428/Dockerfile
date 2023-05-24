@@ -8,4 +8,6 @@ COPY ["./android/","."]
 WORKDIR /scripts
 COPY ["./scripts/","."]
 
+# 当前木
+WORKDIR /app
 
