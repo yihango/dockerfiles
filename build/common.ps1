@@ -41,8 +41,9 @@ $buildX = (
     # "staneee/gitlab-runner:v15.11.1",
     # "staneee/clash:v1.16.0",
     # "staneee/yacd:v0.3.8",
-    "staneee/cp-zookeeper:7.3.2",
-    "staneee/cp-kafka:7.3.2",
+    # "staneee/cp-zookeeper:7.3.2",
+    # "staneee/cp-kafka:7.3.2",
+    "staneee/wait-for-it:default",
     ""
 )
 

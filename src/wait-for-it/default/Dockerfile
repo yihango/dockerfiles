@@ -1,0 +1,8 @@
+FROM --platform=$TARGETPLATFORM alpine:latest  AS base
+# FROM alpine:latest  AS base
+
+WORKDIR /wait-for-it
+
+RUN apk add --no-cache wget \
+    && wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
+    && chmod +x /wait-for-it/wait-for-it.sh
