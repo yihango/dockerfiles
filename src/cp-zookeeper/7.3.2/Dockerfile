@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM confluentinc/cp-zookeeper:7.3.2  AS base
