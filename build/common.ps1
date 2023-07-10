@@ -43,7 +43,9 @@ $buildX = (
     # "staneee/yacd:v0.3.8",
     # "staneee/cp-zookeeper:7.3.2",
     # "staneee/cp-kafka:7.3.2",
-    "staneee/wait-for-it:default",
+    # "staneee/wait-for-it:default",
+    
+    "staneee/node:14.21.3",
     ""
 )
 
