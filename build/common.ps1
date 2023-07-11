@@ -44,7 +44,7 @@ $buildX = (
     # "staneee/cp-zookeeper:7.3.2",
     # "staneee/cp-kafka:7.3.2",
     # "staneee/wait-for-it:default",
-    "staneee/node:14.21.3",
+    # "staneee/node:14.21.3",
     ""
 )
 
@@ -54,6 +54,7 @@ $build = (
     # "staneee/antlr4:4.6",
     # "staneee/android:33.0.2",
     # "staneee/android:30.0.3",
+    "staneee/mssql:2019-latest",
     ""
 )
 
