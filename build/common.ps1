@@ -36,6 +36,7 @@ $buildX = (
     # "staneee/keepalived:2.0.20",
     # "staneee/keepalived:2.0.20-docker",
     # "staneee/rabbitmq:3.11.10-management",
+    "staneee/rabbitmq:3.11.10-management-mqtt",
     # "staneee/android-template:uni-app-3.7.11.81746_20230428",
     # "staneee/gitlab-runner:v14.10.1",
     # "staneee/gitlab-runner:v15.11.1",
