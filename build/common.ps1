@@ -55,7 +55,7 @@ $build = (
     # "staneee/antlr4:4.6",
     # "staneee/android:33.0.2",
     # "staneee/android:30.0.3",
-    "staneee/mssql:2019-latest",
+    # "staneee/mssql:2019-latest",
     ""
 )
 
