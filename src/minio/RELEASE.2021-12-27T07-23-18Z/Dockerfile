@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM minio/minio:RELEASE.2021-12-27T07-23-18Z AS base

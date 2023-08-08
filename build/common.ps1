@@ -36,7 +36,7 @@ $buildX = (
     # "staneee/keepalived:2.0.20",
     # "staneee/keepalived:2.0.20-docker",
     # "staneee/rabbitmq:3.11.10-management",
-    "staneee/rabbitmq:3.11.10-management-mqtt",
+    # "staneee/rabbitmq:3.11.10-management-mqtt",
     # "staneee/android-template:uni-app-3.7.11.81746_20230428",
     # "staneee/gitlab-runner:v14.10.1",
     # "staneee/gitlab-runner:v15.11.1",
@@ -46,6 +46,8 @@ $buildX = (
     # "staneee/cp-kafka:7.3.2",
     # "staneee/wait-for-it:default",
     # "staneee/node:14.21.3",
+    "staneee/minio:RELEASE.2021-12-27T07-23-18Z",
+    "staneee/mongo:4.2.8-bionic",
     ""
 )
 
@@ -56,6 +58,7 @@ $build = (
     # "staneee/android:33.0.2",
     # "staneee/android:30.0.3",
     # "staneee/mssql:2019-latest",
+    "staneee/redis:3.0.5",
     ""
 )
 
