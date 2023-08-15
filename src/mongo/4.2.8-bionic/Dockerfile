@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM mongo:4.2.8-bionic AS base
