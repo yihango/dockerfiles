@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM haproxy:2.2.28-alpine AS base

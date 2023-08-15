@@ -33,7 +33,7 @@ $buildX = (
     # "staneee/portainer:ce-2.16.1"
     # "staneee/self-signed-ssl:openssl-1.1.1",
     # "staneee/redis:6.0.16",
-    "staneee/redis:6.2.4",
+    # "staneee/redis:6.2.4",
     # "staneee/keepalived:2.0.20",
     # "staneee/keepalived:2.0.20-docker",
     # "staneee/rabbitmq:3.11.10-management",
@@ -49,6 +49,7 @@ $buildX = (
     # "staneee/node:14.21.3",
     # "staneee/minio:RELEASE.2021-12-27T07-23-18Z",
     # "staneee/mongo:4.2.8-bionic",
+    "staneee/haproxy:2.2.28-alpine",
     ""
 )
 
