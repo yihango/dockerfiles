@@ -32,11 +32,12 @@ $buildX = (
     # "staneee/portainer:agent-2.16.1",
     # "staneee/portainer:ce-2.16.1"
     # "staneee/self-signed-ssl:openssl-1.1.1",
-    # "staneee/redis:6.0.16",        
+    # "staneee/redis:6.0.16",
+    "staneee/redis:6.2.4",
     # "staneee/keepalived:2.0.20",
     # "staneee/keepalived:2.0.20-docker",
     # "staneee/rabbitmq:3.11.10-management",
-    "staneee/rabbitmq:3.11.10-management-mqtt",
+    # "staneee/rabbitmq:3.11.10-management-mqtt",
     # "staneee/android-template:uni-app-3.7.11.81746_20230428",
     # "staneee/gitlab-runner:v14.10.1",
     # "staneee/gitlab-runner:v15.11.1",
@@ -59,6 +60,18 @@ $build = (
     ""
 )
 
+# 同步镜像
+$sync_images = (
+    # "grafana/promtail:main",
+    # "grafana/loki:main",
+    # "grafana/grafana:8.4.0",
+    # "stefanprodan/caddy:0.10.10",
+    # "stefanprodan/swarmprom-prometheus:v2.5.0",
+    # "stefanprodan/swarmprom-node-exporter:v0.16.0",
+    # "stefanprodan/swarmprom-alertmanager:v0.14.0",
+    # "google/cadvisor:v0.33.0",
+    ""
+)
 
 # 创建编译器
 docker buildx create --name mybuilder --driver docker-container --bootstrap
