@@ -47,8 +47,8 @@ $buildX = (
     # "staneee/cp-kafka:7.3.2",
     # "staneee/wait-for-it:default",
     # "staneee/node:14.21.3",
-    "staneee/minio:RELEASE.2021-12-27T07-23-18Z",
-    "staneee/mongo:4.2.8-bionic",
+    # "staneee/minio:RELEASE.2021-12-27T07-23-18Z",
+    # "staneee/mongo:4.2.8-bionic",
     ""
 )
 
@@ -59,7 +59,7 @@ $build = (
     # "staneee/android:33.0.2",
     # "staneee/android:30.0.3",
     # "staneee/mssql:2019-latest",
-    "staneee/redis:3.0.5",
+    # "staneee/redis:3.0.5",
     ""
 )
 
