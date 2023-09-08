@@ -47,9 +47,10 @@ $buildX = (
     # "staneee/cp-kafka:7.3.2",
     # "staneee/wait-for-it:default",
     # "staneee/node:14.21.3",
+    "staneee/node:8.9.4",
     # "staneee/minio:RELEASE.2021-12-27T07-23-18Z",
     # "staneee/mongo:4.2.8-bionic",
-    "staneee/haproxy:2.2.28-alpine",
+    # "staneee/haproxy:2.2.28-alpine",
     ""
 )
 
