@@ -62,6 +62,8 @@ $build = (
     # "staneee/android:30.0.3",
     # "staneee/mssql:2019-latest",
     # "staneee/redis:3.0.5",
+    "staneee/dotnet:2.1-bionic",
+    "staneee/aspnet:2.1-bionic",
     ""
 )
 
