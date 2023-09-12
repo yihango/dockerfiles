@@ -51,7 +51,6 @@ $androidPermissionArray = $appPlus.distribute.google.permissions
 $androidPermission = ''
 foreach ($item in $androidPermissionArray) {
     $androidPermission += $item;
-    $androidPermission += '\n';
 }
 
 
@@ -86,7 +85,7 @@ ConentReplace -path "$filePath" -oldVal "Placeholder_AppName" -newVal "$appName"
 $filePath = $androidTemplatePath + "/app/src/main/AndroidManifest.xml"
 ConentReplace -path "$filePath" -oldVal "Placeholder_ApplicationId" -newVal "$applicationId"
 ConentReplace -path "$filePath" -oldVal "Placeholder_AppKey" -newVal "$appKey"
-ConentReplace -path "$filePath" -oldVal "Placeholder_PermissionFeature" -newVal "$androidPermission"
+ConentReplace -path "$filePath" -oldVal "<!-- Placeholder_PermissionFeature -->" -newVal "$androidPermission"
 
 ## build.gradle
 $filePath = $androidTemplatePath + "/app/build.gradle"
