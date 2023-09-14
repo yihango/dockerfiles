@@ -91,7 +91,7 @@ jobs:
 
   sync-hub:
     runs-on: ubuntu-20.04
-    name: Sync image to hub
+    name: Sync image to hub 
     steps:
       # checkout source code
       - uses: actions/checkout@v2
