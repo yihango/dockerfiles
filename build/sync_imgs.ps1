@@ -1,7 +1,12 @@
 # 执行公用脚本
 . ".\common.ps1"
 
+# 输入参数，目标是否存储到阿里云
+$isAliyun = $args[0]
+
+
 # 命名空间
+$imgNamespace = "staneee" # docker hub 
 $hubAliyun = $env:ALIYUN_DOCKERHUB # 阿里云
 
 
@@ -21,7 +26,11 @@ foreach ($imgFullName in $sync_images) {
     }
 
     # 镜像目标名称
-    $imgTargetFullName = $hubAliyun + '/staneee/' + $newImgName
+    $imgTargetFullName = $imgNamespace + '/' + $newImgName
+    # 如果启用了阿里云，使用阿里云做目标仓库
+    if ($isAliyun -eq $True) {
+        $imgTargetFullName = $hubAliyun + '/' + $imgTargetFullName
+    }
 
     # 镜像重命名
     docker tag $imgFullName $imgTargetFullName

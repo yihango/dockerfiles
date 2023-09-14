@@ -89,6 +89,26 @@ jobs:
         working-directory: ./build
         run: ./build.ps1 $True
 
+  sync-hub:
+    runs-on: ubuntu-20.04
+    name: Build image to hub
+    steps:
+      # checkout source code
+      - uses: actions/checkout@v2
+
+      # login docker hub
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{env.DOCKERHUB_USERNAME}}
+          password: ${{env.DOCKERHUB_TOKEN}}
+
+      # build
+      - name: build
+        shell: pwsh
+        working-directory: ./build
+        run: ./sync_imgs.ps1
+
   sync-aliyun:
     runs-on: ubuntu-20.04
     name: Sync image to aliyun
@@ -108,4 +128,4 @@ jobs:
       - name: build
         shell: pwsh
         working-directory: ./build
-        run: ./sync_imgs.ps1
+        run: ./sync_imgs.ps1 $True
