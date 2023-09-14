@@ -79,13 +79,13 @@ $sync_images = (
     # "stefanprodan/swarmprom-node-exporter:v0.16.0",
     # "stefanprodan/swarmprom-alertmanager:v0.14.0",
     # "google/cadvisor:v0.33.0",
-    "prom/alertmanager:v0.26.0",
-    "prom/prometheus:v2.47.0",
-    "flaviostutz/docker-swarm-node-exporter:1.1.1",
-    "grafana/grafana:9.5.2",
-    "grafana/loki:2.8.4",
-    "grafana/promtail:2.8.4",
-    "duaneduan/wechat-webhook:v1",
+    # "prom/alertmanager:v0.26.0",
+    # "prom/prometheus:v2.47.0",
+    # "flaviostutz/docker-swarm-node-exporter:1.1.1",
+    # "grafana/grafana:9.5.2",
+    # "grafana/loki:2.8.4",
+    # "grafana/promtail:2.8.4",
+    # "duaneduan/wechat-webhook:v1",
     ""
 
 )
