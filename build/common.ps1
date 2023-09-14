@@ -40,7 +40,7 @@ $buildX = (
     # "staneee/keepalived:2.0.20-docker",
     # "staneee/rabbitmq:3.11.10-management",
     # "staneee/rabbitmq:3.11.10-management-mqtt",
-    "staneee/android-template:uni-app-3.7.11.81746_20230428",
+    # "staneee/android-template:uni-app-3.7.11.81746_20230428",
     # "staneee/gitlab-runner:v14.10.1",
     # "staneee/gitlab-runner:v15.11.1",
     # "staneee/clash:v1.16.0",
@@ -65,6 +65,7 @@ $build = (
     # "staneee/dotnet:2.1-bionic",
     # "staneee/aspnet:2.1-bionic",
     # "staneee/aspnet:2.1-bionic-fontconfig",
+    "staneee/rocketmq:4.9.7",
     ""
 )
 
@@ -78,7 +79,14 @@ $sync_images = (
     # "stefanprodan/swarmprom-node-exporter:v0.16.0",
     # "stefanprodan/swarmprom-alertmanager:v0.14.0",
     # "google/cadvisor:v0.33.0",
+    "prom/alertmanager:v0.26.0",
+    "prom/prometheus:v2.47.0",
+    "flaviostutz/docker-swarm-node-exporter:1.1.1",
+    "grafana/grafana:9.5.2",
+    "grafana/loki:2.8.4",
+    "grafana/promtail:2.8.4",
     ""
+
 )
 
 # 创建编译器
