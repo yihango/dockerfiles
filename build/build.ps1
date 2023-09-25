@@ -53,7 +53,7 @@ foreach ($imgFullName in $buildX) {
     $imgTargetFullName = $imgFullName
     # 如果启用了阿里云，使用阿里云做目标仓库
     if ($isAliyun -eq $True) {
-        $imgTargetFullName = $hubAliyun + $imgFullName
+        $imgTargetFullName = $hubAliyun + '/' + $imgFullName
     }
 
 
@@ -86,7 +86,7 @@ foreach ($imgFullName in $build) {
     $imgTargetFullName = $imgFullName
     # 如果启用了阿里云，使用阿里云做目标仓库
     if ($isAliyun -eq $True) {
-        $imgTargetFullName = $hubAliyun + $imgFullName
+        $imgTargetFullName = $hubAliyun  + '/' + $imgFullName
     }
 
 
