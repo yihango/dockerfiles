@@ -13,6 +13,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y nodejs \
     && apt-get clean
-
+    
+RUN npm install -g yarn
 
 ENTRYPOINT /bin/bash
