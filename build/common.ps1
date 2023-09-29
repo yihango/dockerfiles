@@ -23,11 +23,11 @@ $buildX = (
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21-zip",
     # "staneee/powershell:lts-debian-10-focal-dotnet-5",
-    "staneee/powershell:lts-debian-10-focal-dotnet-5-node-16",
+    # "staneee/powershell:lts-debian-10-focal-dotnet-5-node-16",
     # "staneee/powershell:lts-debian-10-focal-dotnet-6",
-    "staneee/powershell:lts-debian-10-focal-dotnet-6-node-16",
-    "staneee/powershell:lts-debian-10-focal-node-14",
-    "staneee/powershell:lts-debian-10-focal-node-16",
+    # "staneee/powershell:lts-debian-10-focal-dotnet-6-node-16",
+    # "staneee/powershell:lts-debian-10-focal-node-14",
+    # "staneee/powershell:lts-debian-10-focal-node-16",
     # "staneee/frpc:0.34.3-env",
     # "staneee/common-scripts:alpine-3.17",
     # "staneee/ntp:chrony",
@@ -51,6 +51,7 @@ $buildX = (
     # "staneee/minio:RELEASE.2021-12-27T07-23-18Z",
     # "staneee/mongo:4.2.8-bionic",
     # "staneee/haproxy:2.2.28-alpine",
+    "staneee/mysql:8.1.0",
     ""
 )
 
@@ -86,6 +87,7 @@ $sync_images = (
     # "grafana/loki:2.8.4",
     # "grafana/promtail:2.8.4",
     # "duaneduan/wechat-webhook:v1",
+    "mysql:5.7.43",
     ""
 
 )
