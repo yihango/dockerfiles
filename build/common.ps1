@@ -88,7 +88,7 @@ $sync_images = (
     # "grafana/promtail:2.8.4",
     # "duaneduan/wechat-webhook:v1",
     # "mysql:5.7.43",
-    " docker.osgeo.org/geoserver:2.24.x",
+    "docker.osgeo.org/geoserver:2.24.x",
     ""
 
 )
