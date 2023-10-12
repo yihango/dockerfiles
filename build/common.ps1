@@ -51,7 +51,7 @@ $buildX = (
     # "staneee/minio:RELEASE.2021-12-27T07-23-18Z",
     # "staneee/mongo:4.2.8-bionic",
     # "staneee/haproxy:2.2.28-alpine",
-    "staneee/mysql:8.1.0",
+    # "staneee/mysql:8.1.0",
     ""
 )
 
@@ -87,7 +87,8 @@ $sync_images = (
     # "grafana/loki:2.8.4",
     # "grafana/promtail:2.8.4",
     # "duaneduan/wechat-webhook:v1",
-    "mysql:5.7.43",
+    # "mysql:5.7.43",
+    " docker.osgeo.org/geoserver:2.24.x",
     ""
 
 )
