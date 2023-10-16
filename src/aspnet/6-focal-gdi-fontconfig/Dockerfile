@@ -7,17 +7,20 @@ FROM --platform=$TARGETPLATFORM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS bas
 #     && sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list \
 #     && sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
 
-
-# 安装fontconfig库，用于Pdf导出,安装gdi+ 用于excel
-RUN apt-get update \
-    && apt-get install -y fontconfig libgdiplus \
-    && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
+# 更新包源
+RUN apt-get update
 
 # ldap兼容性问题
 RUN apt-get install -y --no-install-recommends libldap-2.4-2 \
     && apt-get install -y --no-install-recommends libldap-common \
-    && ln -s -f /usr/lib/x86_64-linux-gnu/libldap-2.4.so.2 /usr/lib/x86_64-linux-gnu/libldap.so.2 \
-    && ln -s -f /usr/lib/x86_64-linux-gnu/liblber-2.4.so.2 /usr/lib/x86_64-linux-gnu/liblber.so.2
+    && ln -s /usr/lib/x86_64-linux-gnu/libldap-2.4.so.2 /usr/lib/x86_64-linux-gnu/libldap.so.2 \
+    && ln -s /usr/lib/x86_64-linux-gnu/liblber-2.4.so.2 /usr/lib/x86_64-linux-gnu/liblber.so.2
 
+
+# 安装fontconfig库，用于Pdf导出,安装gdi+ 用于excel
+RUN apt-get install -y fontconfig libgdiplus \
+    && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
+
+# 清理包源
 RUN apt-get clean
 
