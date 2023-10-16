@@ -12,9 +12,11 @@ RUN apt-get update
 
 # ldap兼容性问题
 RUN apt-get install -y --no-install-recommends libldap-2.4-2 \
-    && apt-get install -y --no-install-recommends libldap-common \
-    && ln -s /usr/lib/x86_64-linux-gnu/libldap-2.4.so.2 /usr/lib/x86_64-linux-gnu/libldap.so.2 \
-    && ln -s /usr/lib/x86_64-linux-gnu/liblber-2.4.so.2 /usr/lib/x86_64-linux-gnu/liblber.so.2
+    && apt-get install -y --no-install-recommends libldap-common
+
+# link ldap
+# ln -s /usr/lib/x86_64-linux-gnu/libldap-2.4.so.2 /usr/lib/x86_64-linux-gnu/libldap.so.2 \
+# ln -s /usr/lib/x86_64-linux-gnu/liblber-2.4.so.2 /usr/lib/x86_64-linux-gnu/liblber.so.2
 
 
 # 安装fontconfig库，用于Pdf导出,安装gdi+ 用于excel
