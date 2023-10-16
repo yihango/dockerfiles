@@ -10,6 +10,6 @@ FROM --platform=$TARGETPLATFORM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS bas
 
 # 安装fontconfig库，用于Pdf导出,安装gdi+ 用于excel
 RUN apt-get update \
-    && apt-get install -y fontconfig libgdiplus\
+    && apt-get install -y fontconfig libgdiplus libldap-2.4-2 \
     && apt-get clean \
     && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
