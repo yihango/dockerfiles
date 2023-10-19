@@ -3,8 +3,9 @@ $currentPath = (Get-Location).Path
 
 # 需要多平台编译
 $buildX = (
-    "staneee/aspnet:6-focal-gdi-fontconfig",
-    "staneee/aspnet:5-focal-gdi-fontconfig",
+    "staneee/aspnet:6-centos-7.9.2009-gdi-fontconfig",
+    # "staneee/aspnet:6-focal-gdi-fontconfig",
+    # "staneee/aspnet:5-focal-gdi-fontconfig",
     # "staneee/aspnet:5-focal-puppeteer", # 未完成
     # "staneee/aspnet:6-focal-puppeteer", # 未完成
     # "staneee/dotnet:5-focal",
