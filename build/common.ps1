@@ -3,8 +3,8 @@ $currentPath = (Get-Location).Path
 
 # 需要多平台编译
 $buildX = (
-    "staneee/aspnet:6-focal-gdi-fontconfig",
-    "staneee/aspnet:5-focal-gdi-fontconfig",
+    # "staneee/aspnet:6-focal-gdi-fontconfig",
+    # "staneee/aspnet:5-focal-gdi-fontconfig",
     # "staneee/aspnet:5-focal-puppeteer", # 未完成
     # "staneee/aspnet:6-focal-puppeteer", # 未完成
     # "staneee/dotnet:5-focal",
@@ -19,15 +19,19 @@ $buildX = (
     # "staneee/node:8.9.4",
     # "staneee/node:14.21.3",
     # "staneee/node:16.13.1",
+    "staneee/node:20.10.0",
     # "staneee/powershell:lts-debian-10-focal",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21-zip",
     # "staneee/powershell:lts-debian-10-focal-dotnet-5",
     # "staneee/powershell:lts-debian-10-focal-dotnet-5-node-16",
+    "staneee/powershell:lts-debian-10-focal-dotnet-5-node-20",
     # "staneee/powershell:lts-debian-10-focal-dotnet-6",
     # "staneee/powershell:lts-debian-10-focal-dotnet-6-node-16",
+    "staneee/powershell:lts-debian-10-focal-dotnet-6-node-20",
     # "staneee/powershell:lts-debian-10-focal-node-14",
     # "staneee/powershell:lts-debian-10-focal-node-16",
+    "staneee/powershell:lts-debian-10-focal-node-20",
     # "staneee/frpc:0.34.3-env",
     # "staneee/common-scripts:alpine-3.17",
     # "staneee/ntp:chrony",
