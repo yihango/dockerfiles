@@ -132,7 +132,7 @@ jobs:
 
   build-hub-win:
     runs-on: windows-latest
-    name: Build image to hub
+    name: Build image to hub Windows
     steps:
       # checkout source code
       - uses: actions/checkout@v2
@@ -149,3 +149,24 @@ jobs:
         shell: pwsh
         working-directory: ./build
         run: ./build-win.ps1
+
+  build-aliyun-win:
+    runs-on: windows-latest
+    name: Build image to aliyun Windows
+    steps:
+      # checkout source code
+      - uses: actions/checkout@v2
+
+      # login docker hub
+      - name: Login to DockerHub
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{env.ALIYUN_DOCKERHUB}}
+          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
+          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+
+      # build
+      - name: build
+        shell: pwsh
+        working-directory: ./build
+        run: ./build-win.ps1 $True
