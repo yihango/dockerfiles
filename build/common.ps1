@@ -20,19 +20,19 @@ $buildX = (
     # "staneee/node:8.9.4",
     # "staneee/node:14.21.3",
     # "staneee/node:16.13.1",
-    "staneee/node:20.10.0",
+    # "staneee/node:20.10.0",
     # "staneee/powershell:lts-debian-10-focal",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21-zip",
     # "staneee/powershell:lts-debian-10-focal-dotnet-5",
     # "staneee/powershell:lts-debian-10-focal-dotnet-5-node-16",
-    "staneee/powershell:lts-debian-10-focal-dotnet-5-node-20",
+    # "staneee/powershell:lts-debian-10-focal-dotnet-5-node-20",
     # "staneee/powershell:lts-debian-10-focal-dotnet-6",
     # "staneee/powershell:lts-debian-10-focal-dotnet-6-node-16",
-    "staneee/powershell:lts-debian-10-focal-dotnet-6-node-20",
+    # "staneee/powershell:lts-debian-10-focal-dotnet-6-node-20",
     # "staneee/powershell:lts-debian-10-focal-node-14",
     # "staneee/powershell:lts-debian-10-focal-node-16",
-    "staneee/powershell:lts-debian-10-focal-node-20",
+    # "staneee/powershell:lts-debian-10-focal-node-20",
     # "staneee/frpc:0.34.3-env",
     # "staneee/common-scripts:alpine-3.17",
     # "staneee/ntp:chrony",
@@ -75,6 +75,13 @@ $build = (
     ""
 )
 
+# 编译-win
+$buildWin = (
+    "staneee/aspnet:6-win-ltsc2019",
+    "staneee/dotnet:6-win-ltsc2019",
+    ""
+)
+
 # 同步镜像
 $sync_images = (
     # "grafana/promtail:main",
@@ -98,8 +105,12 @@ $sync_images = (
 
 )
 
-# 创建编译器
-docker buildx create --name mybuilder --driver docker-container --bootstrap
-docker buildx use mybuilder
-docker buildx inspect
+# linux 创建编译器
+if ([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([System.Runtime.InteropServices.OSPlatform]::Linux)) {
+    docker buildx create --name mybuilder --driver docker-container --bootstrap
+    docker buildx use mybuilder
+    docker buildx inspect
+}
+
+
 

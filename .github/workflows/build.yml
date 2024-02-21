@@ -129,3 +129,23 @@ jobs:
         shell: pwsh
         working-directory: ./build
         run: ./sync_imgs.ps1 $True
+
+  build-hub-win:
+    runs-on: windows-latest
+    name: Build image to hub
+    steps:
+      # checkout source code
+      - uses: actions/checkout@v2
+
+      # login docker hub
+      - name: Login to DockerHub
+        uses: azure/docker-login@v1
+        with:
+          username: ${{env.DOCKERHUB_USERNAME}}
+          password: ${{env.DOCKERHUB_TOKEN}}
+
+      # build
+      - name: build
+        shell: pwsh
+        working-directory: ./build
+        run: ./build-win.ps1
