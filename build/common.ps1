@@ -75,7 +75,7 @@ $build = (
     ""
 )
 
-# 编译-win
+# 编译 win
 $buildWin = (
     "staneee/aspnet:6-win-ltsc2019",
     "staneee/dotnet:6-win-ltsc2019",
