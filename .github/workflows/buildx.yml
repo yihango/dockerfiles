@@ -1,0 +1,91 @@
+name: "build"
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'src/**'
+      - 'build/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'src/**'
+      - 'build/**'
+
+env:
+  DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  ALIYUN_DOCKERHUB: ${{ vars.ALIYUN_DOCKERHUB }}
+  ALIYUN_DOCKERHUB_USERNAME: ${{ vars.ALIYUN_DOCKERHUB_USERNAME }}
+  ALIYUN_DOCKERHUB_TOKEN: ${{ secrets.ALIYUN_DOCKERHUB_TOKEN }}
+
+jobs:
+  build-hub:
+    runs-on: ubuntu-20.04
+    name: Images to DockerHub
+    steps:
+      # checkout source code
+      - uses: actions/checkout@v2
+
+      # login docker hub
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{env.DOCKERHUB_USERNAME}}
+          password: ${{env.DOCKERHUB_TOKEN}}
+
+      # arm64    
+      - uses: uraimo/run-on-arch-action@v2.3.0
+        name: use arm64
+        id: runcmd
+        with:
+          arch: aarch64 # cpu架构
+          distro: ubuntu20.04 # linux发行版
+          shell: /bin/bash # 执行的shell
+          githubToken: ${{ github.token }} # Not required, but speeds up builds by storing container images in a GitHub package registry.
+          # Set an output parameter `uname` for use in subsequent steps
+          run: |
+            uname -a
+            echo ::set-output name=uname::$(uname -a)
+
+      # build
+      - name: build
+        shell: pwsh
+        working-directory: ./build
+        run: ./build-and-push.ps1
+
+  build-aliyun:
+    runs-on: ubuntu-20.04
+    name: Images to Aliyun
+    steps:
+      # checkout source code
+      - uses: actions/checkout@v2
+
+      # login docker hub
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          registry: ${{env.ALIYUN_DOCKERHUB}}
+          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
+          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+
+      # arm64    
+      - uses: uraimo/run-on-arch-action@v2.3.0
+        name: use arm64
+        id: runcmd
+        with:
+          arch: aarch64 # cpu架构
+          distro: ubuntu20.04 # linux发行版
+          shell: /bin/bash # 执行的shell
+          githubToken: ${{ github.token }} # Not required, but speeds up builds by storing container images in a GitHub package registry.
+          # Set an output parameter `uname` for use in subsequent steps
+          run: |
+            uname -a
+            echo ::set-output name=uname::$(uname -a)
+
+      # build
+      - name: build
+        shell: pwsh
+        working-directory: ./build
+        run: ./build-and-push.ps1 $True
+
