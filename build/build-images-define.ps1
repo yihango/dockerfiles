@@ -18,7 +18,7 @@ $xImages=(
     # "staneee/node:14.21.3",
     # "staneee/node:16.13.1",
     # "staneee/node:20.10.0",
-    # "staneee/powershell:lts-debian-10-focal",
+    "staneee/powershell:lts-debian-10-focal",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21-zip",
     # "staneee/powershell:lts-debian-10-focal-dotnet-5",

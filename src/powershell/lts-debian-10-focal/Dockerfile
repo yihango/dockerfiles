@@ -38,6 +38,16 @@ RUN apt-get update\
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*  
 
+# print buildx default args
+RUN echo "TARGETPLATFORM:"${TARGETPLATFORM} \
+  && echo "TARGETOS:"${TARGETOS} \
+  && echo "TARGETARCH:"${TARGETARCH} \
+  && echo "TARGETVARIANT:"${TARGETVARIANT} \
+  && echo "BUILDPLATFORM:"${BUILDPLATFORM} \
+  && echo "BUILDOS:"${BUILDOS} \
+  && echo "BUILDARCH:"${BUILDARCH} \
+  && echo "BUILDVARIANT:"${BUILDVARIANT}
+
 # install powershell
 COPY ./pwsh-install-${TARGETARCH}.sh /root/pwsh-install.sh
 RUN chmod +x /root/pwsh-install.sh \

@@ -111,7 +111,8 @@ function ImagesSync ($ImageList,$Registry,$Namespace) {
         docker pull $imgFullName
 
         # 新镜像名称
-        $newImgName = $imgFullName.Split('/')[1]
+        $imgFullNameArray=$imgFullName.Split('/')
+        $newImgName = $imgFullNameArray[$imgFullNameArray.Length - 1]
         ## 当前镜像名称不存在/，那么就直接使用当前镜像名称
         if (!$imgFullName.Contains("/")) {
             $newImgName = $imgFullName
@@ -122,8 +123,10 @@ function ImagesSync ($ImageList,$Registry,$Namespace) {
 
         # 如果指定了仓库地址，最终名称为： registry.cn-shanghai.aliyuncs.com/staneee/aspnet:6.0
         if ($Registry -ne $Null -and $Registry -ne "") {
-            $imgTargetFullName = $Registry + '/' + $imgFullName
+            $imgTargetFullName = $Registry + '/' + $imgTargetFullName
         }
+
+        Write-Host "$imgTargetFullName"
 
         # 镜像重命名
         docker tag $imgFullName $imgTargetFullName
