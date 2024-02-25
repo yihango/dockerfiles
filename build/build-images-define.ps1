@@ -18,7 +18,7 @@ $xImages=(
     # "staneee/node:14.21.3",
     # "staneee/node:16.13.1",
     # "staneee/node:20.10.0",
-    "staneee/powershell:lts-debian-10-focal",
+    # "staneee/powershell:lts-debian-10-focal",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21",
     # "staneee/powershell:lts-debian-10-focal-docker-20-10-21-zip",
     # "staneee/powershell:lts-debian-10-focal-dotnet-5",
@@ -59,7 +59,7 @@ $xImages=(
 
 # 交叉编译镜像 linux/arm64,linux/amd64,windows/amd64
 $xWinImages=(
-    # "staneee/aspnet:6.0",
+    "staneee/aspnet:6.0",
     # "staneee/dotnet:6.0",
     ""
 )
@@ -81,14 +81,14 @@ $linuxImages=(
 
 # 编译镜像 windows/amd64
 $winImages=(
-    "staneee/aspnet:6-win-ltsc2019",
+    # "staneee/aspnet:6-win-ltsc2019",
     # "staneee/dotnet:6-win-ltsc2019",
     ""
 )
 
 # 同步镜像 linux/amd64
 $syncLinuxImages=(
-    "grafana/promtail:main",
+    # "grafana/promtail:main",
     # "grafana/loki:main",
     # "grafana/grafana:8.4.0",
     # "stefanprodan/caddy:0.10.10",
@@ -110,6 +110,6 @@ $syncLinuxImages=(
 
 # 同步镜像 windows/amd64
 $syncWinImages=(
-    "mcr.microsoft.com/windows/nanoserver:ltsc2022",
+    # "mcr.microsoft.com/windows/nanoserver:ltsc2022",
     ""
 )
