@@ -19,12 +19,12 @@ if($isAliyun){
 
 # 同步镜像
 if(IsLinux){
-    ImagesSync -ImageInfo $imagesInfo `
+    ImagesSync -Namespace $registry `
         -ImageList $syncLinuxImages `
         -Registry $registry 
 }
 else {
-    ImagesSync -ImageInfo $imagesInfo `
+    ImagesSync -Namespace $registry `
         -ImageList $syncWinImages `
         -Registry $registry 
 }
