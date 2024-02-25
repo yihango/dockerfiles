@@ -46,7 +46,7 @@ $xImages=(
     # "staneee/gitlab-runner:v14.10.1",
     # "staneee/gitlab-runner:v15.11.1",
     # "staneee/clash:v1.16.0",
-    "staneee/yacd:v0.3.8",
+    # "staneee/yacd:v0.3.8",
     # "staneee/cp-zookeeper:7.3.2",
     # "staneee/cp-kafka:7.3.2",
     # "staneee/wait-for-it:default",
@@ -59,8 +59,8 @@ $xImages=(
 
 # 交叉编译镜像 linux/arm64,linux/amd64,windows/amd64
 $xWinImages=(
-    "staneee/aspnet:6.0",
-    "staneee/dotnet:6.0",
+    # "staneee/aspnet:6.0",
+    # "staneee/dotnet:6.0",
     ""
 )
 
