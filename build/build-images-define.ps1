@@ -81,8 +81,6 @@ $linuxImages=(
 
 # 编译镜像 windows/amd64
 $winImages=(
-    # "staneee/aspnet:6-win-ltsc2019",
-    # "staneee/dotnet:6-win-ltsc2019",
     ""
 )
 
