@@ -12,6 +12,20 @@ function CmdExec ($CmdStr) {
     }
 }
 
+# 执行命令
+function BashCmdExec ($CmdStr) {
+    Write-Host "CmdExec: ${CmdStr}"
+    try {
+        /bin/bash -c '"'+$CmdStr+'"'
+    }
+    catch {
+        Write-Host "CmdExec Error: ${CmdStr}"
+    }
+    finally {
+        
+    }
+}
+
 # 获取仓库中的镜像信息
 function GetImagesInfo() {
     # 打包的配置与路径信息
