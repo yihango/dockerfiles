@@ -21,7 +21,7 @@ env:
 
 jobs:
   build-hub:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     name: Images to DockerHub
     steps:
       # checkout source code
@@ -40,7 +40,7 @@ jobs:
       #   id: runcmd
       #   with:
       #     arch: aarch64 # cpu架构
-      #     distro: ubuntu20.04 # linux发行版
+      #     distro: ubuntu2.04 # linux发行版
       #     shell: /bin/bash # 执行的shell
       #     githubToken: ${{ github.token }} # Not required, but speeds up builds by storing container images in a GitHub package registry.
       #     # Set an output parameter `uname` for use in subsequent steps
