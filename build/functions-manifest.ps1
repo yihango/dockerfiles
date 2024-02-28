@@ -40,11 +40,12 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace, $BuildImage)
     }
 
     # 睡眠
-    Write-Host "Start-Sleep -Seconds 20"
-    Start-Sleep -Seconds 20
+
 
     # 创建最终的 manifestImageTag 镜像
     if (!$BuildImage) {
+        Write-Host "Start-Sleep -Seconds 20"
+        Start-Sleep -Seconds 20
         CreateManifestImage -ManifestImageTag $manifestImageTag `
             -ManifestPlateformImageTags $manifestPlateformImageTags
     }

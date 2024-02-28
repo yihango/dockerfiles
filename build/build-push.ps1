@@ -4,7 +4,7 @@ param(
     # image namespace
     [string]$Namespace = "staneee",
     # build image
-    [string]$BuildImage = $true
+    [bool]$BuildImage = $true
 )
 
 # 执行公用脚本
