@@ -1,30 +1,23 @@
 # 执行公用脚本
-. ".\build-functions.ps1"
+. ".\functions-common.ps1"
+. ".\functions-sync.ps1"
 . ".\build-images-define.ps1"
 
-
-
-# 输入参数，目标是否存储到阿里云
-$isAliyun = $args[0]
-
-# 命名空间
-$imgNamespace = "staneee" # docker hub 
-$aliyunRegistry = $env:ALIYUN_DOCKERHUB # 阿里云
-
-# 镜像仓库
-$registry=""
-if($isAliyun){
-    $registry = $aliyunRegistry
-}
+param(
+    # image registry
+    [string]$Registry,
+    # image namespace
+    [string]$Namespace = "staneee"
+)
 
 # 同步镜像
-if(IsLinux){
-    ImagesSync -Namespace $imgNamespace `
-        -ImageList $syncLinuxImages `
-        -Registry $registry 
+if (IsLinux) {
+    ImagesSync -Registry $Registry `
+        -Namespace $Namespace `
+        -ImageList $syncLinuxImages
 }
 else {
-    ImagesSync -Namespace $imgNamespace `
-        -ImageList $syncWinImages `
-        -Registry $registry 
+    ImagesSync -Registry $Registry `
+        -Namespace $Namespace `
+        -ImageList $syncWinImages
 }

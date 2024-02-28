@@ -1,33 +1,5 @@
-# 需要编译的镜像类型
-# 1. linux/amd64 (默认)
-# 2. linux/amd64 + linux/arm64
-# 3. linux/amd64 + linux/arm64 + windows/amd64
-# 4. windows/amd64
-# 5. 同步，需要指定运行平台
-
-
-
 # 创建复合镜像
-function ImagesBuildManifest1($DockerfileDir, $Registry, $Namespace) {
-
-    # 获取所有的dockerfile
-    $dockerfiles = GetDockerfiles -DockerfileDir $DockerfileDir
-
-    # 遍历 Dockerfile 编译镜像
-    foreach ($dockerfile in $dockerfiles) {
-        # 获取镜像支持的平台
-        $plateforms = GetPlateforms -DockerfileName $dockerfile
-
-        # 编译执行
-        ImagesBuildManifest2 -DockerfileDir $DockerfileDir `
-            -Registry $Registry `
-            -Namespace $Namespace `
-            -Plateforms $plateforms
-    }
-}
-
-# 创建复合镜像
-function ImagesBuildManifest2($DockerfileDir, $Registry, $Namespace, $Plateforms) {
+function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
 
     # 切换到此目录
     Set-Location $DockerfileDir
@@ -41,8 +13,13 @@ function ImagesBuildManifest2($DockerfileDir, $Registry, $Namespace, $Plateforms
     # 获取所有的dockerfile
     $dockerfiles = GetDockerfiles -DockerfileDir $DockerfileDir
 
+    Write-Host "============= start $manifestImageTag ============="
+
     # 遍历 Dockerfile 编译镜像
     foreach ($dockerfile in $dockerfiles) {
+        # 获取镜像支持的平台
+        $plateforms = GetPlateforms -DockerfileName $dockerfile
+
         # 遍历平台
         foreach ($plateform in $Plateforms) {
 
@@ -59,6 +36,8 @@ function ImagesBuildManifest2($DockerfileDir, $Registry, $Namespace, $Plateforms
 
     # 创建最终的 manifestImageTag 镜像
     CreateManifestImage -ManifestImageTag $manifestImageTag -ManifestPlateformImageTags $manifestPlateformImageTags
+
+    Write-Host "============= end $manifestImageTag ============="
 }
 
 # 获取基础镜像名称
@@ -74,7 +53,7 @@ function GetManifestImageTag($DockerfileDir, $Registry, $Namespace) {
     $imageTag = $dockerDirArray[-1]
 
     # Manifest镜像标签
-    $manifestImageTag = "${Registry}/${Namespace}/${imageName}:${imageTag}"
+    $manifestImageTag = "${Registry}/${Namespace}/${imageName}:${imageTag}".TrimStart("/")
 
     return $manifestImageTag
 }
@@ -131,8 +110,3 @@ function CreateManifestImage($ManifestImageTag, $ManifestPlateformImageTags) {
     CmdExec -CmdStr "docker manifest push ${ManifestImageTag}"
 }
 
-# 执行命令
-function CmdExec ($CmdStr) {
-    Write-Host "CmdExec: ${CmdStr}"
-    # & $CmdStr
-}
