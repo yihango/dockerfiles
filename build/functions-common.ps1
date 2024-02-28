@@ -4,8 +4,11 @@ function CmdExec ($CmdStr) {
     try {
         Invoke-Expression $CmdStr
     }
-    finally {
+    catch {
         Write-Host "CmdExec Error: ${CmdStr}"
+    }
+    finally {
+        
     }
 }
 

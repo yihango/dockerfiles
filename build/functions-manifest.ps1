@@ -36,6 +36,9 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
         }
     }
 
+    # 睡眠
+    Start-Sleep -Seconds 10
+
     # 创建最终的 manifestImageTag 镜像
     CreateManifestImage -ManifestImageTag $manifestImageTag -ManifestPlateformImageTags $manifestPlateformImageTags
 
