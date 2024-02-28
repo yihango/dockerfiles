@@ -30,7 +30,9 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
             $manifestPlateformImageTags.Add($plateformImageTag)
 
             # # 编译镜像特定平台并推送镜像
-            CmdExec -CmdStr "docker buildx build --platform ""${plateform}"" -t ${plateformImageTag} -f ./${dockerfile} . --push"
+            #docker buildx build --platform "linux/arm64" -t staneee/aspnet:6-centos-7.9.2009-gdi-fontconfig-linux-arm64 -f ./Dockerfile.linux-arm64.linux-amd64 . --push
+            #docker buildx build --platform 'linux/arm64,linux/amd64' -t $imgTargetFullName -f ./Dockerfile . --push
+            CmdExec -CmdStr "docker buildx build --platform '${plateform}' -t ${plateformImageTag} -f ./${dockerfile} . --push"
         }
     }
 

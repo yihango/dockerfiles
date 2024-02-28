@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
+FROM --platform=$TARGETPLATFORM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
 
 # change sources.list
 # COPY ["./sources.list", "/etc/apt/sources.list"]

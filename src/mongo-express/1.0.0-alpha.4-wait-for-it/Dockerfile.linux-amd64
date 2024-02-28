@@ -1,4 +1,4 @@
-FROM mongo-express:1.0.0-alpha.4
+FROM --platform=$TARGETPLATFORM mongo-express:1.0.0-alpha.4
 
 
 WORKDIR /node_modules/mongo-express

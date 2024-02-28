@@ -1,5 +1,4 @@
 FROM --platform=$TARGETPLATFORM alpine:latest  AS base
-# FROM alpine:latest  AS base
 
 WORKDIR /wait-for-it
 

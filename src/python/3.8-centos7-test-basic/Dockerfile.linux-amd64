@@ -1,4 +1,4 @@
-FROM centos/python-38-centos7:latest
+FROM --platform=$TARGETPLATFORM centos/python-38-centos7:latest
 
 
 WORKDIR /app

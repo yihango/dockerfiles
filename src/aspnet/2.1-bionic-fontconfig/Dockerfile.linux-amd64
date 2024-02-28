@@ -1,5 +1,4 @@
-# FROM --platform=$TARGETPLATFORM mcr.microsoft.com/dotnet/aspnet:5.0-focal AS base
-FROM mcr.microsoft.com/dotnet/aspnet:2.1-bionic AS base
+FROM --platform=$TARGETPLATFORM mcr.microsoft.com/dotnet/aspnet:2.1-bionic AS base
 
 # 安装fontconfig库，用于Pdf导出,安装gdi+ 用于excel
 RUN apt-get update \

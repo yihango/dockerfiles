@@ -1,5 +1,4 @@
 FROM --platform=$TARGETPLATFORM alpine:latest  AS base
-# FROM alpine:latest  AS base
 
 RUN apk add --no-cache bash curl openssl
 
