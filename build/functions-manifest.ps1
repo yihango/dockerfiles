@@ -102,7 +102,7 @@ function CreateManifestImage($ManifestImageTag, $ManifestPlateformImageTags) {
     CmdExec -CmdStr "docker manifest create --help"
 
     # 创建
-    $createCmd = "docker manifest create $ManifestImageTag "
+    $createCmd = "docker manifest create --amend $ManifestImageTag "
     foreach ($plateformImageTag in $ManifestPlateformImageTags) {
         $createCmd += " $plateformImageTag "
     }
