@@ -18,7 +18,7 @@ if($isAliyun){
 }
 
 # 获取镜像信息
-$imagesInfo = GetImagesInfo
+$imageInfo = GetImagesInfo
 
 
 # 初始化 buildx
@@ -26,14 +26,14 @@ InitBuildX
 
 
 # 编译linux
-ImagesBuildX -ImageInfo $imagesInfo `
+ImagesBuildX -ImageInfo $imageInfo `
     -ImageList $xImages `
     -Registry $registry `
     -Platform "linux/arm64,linux/amd64"
 
 
 # 编译linux、windows
-ImagesBuildX -ImageInfo $imagesInfo `
+ImagesBuildX -ImageInfo $imageInfo `
     -ImageList $xWinImages `
     -Registry $registry `
     -Platform "linux/arm64,linux/amd64,windows/amd64"
@@ -41,12 +41,12 @@ ImagesBuildX -ImageInfo $imagesInfo `
     
 # 普通编译
 if(IsLinux){
-    ImagesBuild -ImageInfo $imagesInfo `
+    ImagesBuild -ImageInfo $imageInfo `
         -ImageList $linuxImages `
         -Registry $registry 
 }
 else {
-    ImagesBuild -ImageInfo $imagesInfo `
+    ImagesBuild -ImageInfo $imageInfo `
         -ImageList $winImages `
         -Registry $registry 
 }
