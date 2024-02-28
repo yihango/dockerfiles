@@ -2,7 +2,9 @@ param(
     # image registry
     [string]$Registry,
     # image namespace
-    [string]$Namespace = "staneee"
+    [string]$Namespace = "staneee",
+    # build image
+    [string]$BuildImage = $true
 )
 
 # 执行公用脚本
@@ -31,7 +33,8 @@ foreach ($imgName in $buildImageList) {
     # 编译
     ImagesBuildManifest -DockerfileDir $dockerfileDir `
         -Registry $Registry `
-        -Namespace $Namespace
+        -Namespace $Namespace `
+        -BuildImage $BuildImage
 }
 
 # 回到当前路径

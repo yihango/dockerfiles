@@ -49,10 +49,15 @@ jobs:
             echo ::set-output name=uname::$(uname -a)
 
       # build
-      - name: build
+      - name: build 1
         shell: pwsh
         working-directory: ./build
-        run: ./build-push.ps1
+        run: ./build-push.ps1 -BuildImage $True
+
+      - name: build 2
+        shell: pwsh
+        working-directory: ./build
+        run: ./build-push.ps1 -BuildImage $False
 
   build-aliyun:
     runs-on: ubuntu-20.04
@@ -87,5 +92,9 @@ jobs:
       - name: build
         shell: pwsh
         working-directory: ./build
-        run: ./build-push.ps1 -Registry $env:ALIYUN_DOCKERHUB
+        run: ./build-push.ps1 -BuildImage $True -Registry $env:ALIYUN_DOCKERHUB
 
+      - name: build
+        shell: pwsh
+        working-directory: ./build
+        run: ./build-push.ps1 -BuildImage $Flase -Registry $env:ALIYUN_DOCKERHUB
