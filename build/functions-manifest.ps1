@@ -1,5 +1,5 @@
 # 创建复合镜像
-function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace, $BuildImage) {
+function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
 
     # 切换到此目录
     Set-Location $DockerfileDir
@@ -30,25 +30,11 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace, $BuildImage)
             $manifestPlateformImageTags.Add($plateformImageTag)
 
             # # 编译镜像特定平台并推送镜像
-            #docker buildx build --platform "linux/arm64" -t staneee/aspnet:6-centos-7.9.2009-gdi-fontconfig-linux-arm64 -f ./Dockerfile.linux-arm64.linux-amd64 . --push
-            #docker buildx build --platform 'linux/arm64,linux/amd64' -t $imgTargetFullName -f ./Dockerfile . --push
-            # if ($BuildImage) {
-            #     CmdExec -CmdStr "docker buildx build --platform '${plateform}' --provenance false -t ${manifestImageTag} -t ${plateformImageTag} -f ./${dockerfile} . --push"
-            # }
             CmdExec -CmdStr "docker buildx build --platform '${plateform}' --provenance false -t ${manifestImageTag} -t ${plateformImageTag} -f ./${dockerfile} . --push"        
         }
     }
 
-    # 睡眠
-
-
     # 创建最终的 manifestImageTag 镜像
-    # if (!$BuildImage) {
-    #     Write-Host "Start-Sleep -Seconds 20"
-    #     Start-Sleep -Seconds 20
-    # CreateManifestImage -ManifestImageTag $manifestImageTag `
-    #     -ManifestPlateformImageTags $manifestPlateformImageTags
-    # }
     CreateManifestImage -ManifestImageTag $manifestImageTag `
         -ManifestPlateformImageTags $manifestPlateformImageTags
 
