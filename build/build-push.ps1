@@ -13,6 +13,14 @@ param(
 # 当前路径
 $currentPath = (Get-Location).Path
 
+# 安装版本
+$VERSION_STRING='5:20.10.23~3-0~ubuntu-focal'
+apt-get install -y `
+docker-ce=$VERSION_STRING `
+docker-ce-cli=$VERSION_STRING `
+containerd.io `
+docker-compose-plugin
+
 # 初始化 buildx
 InitBuildX
 
