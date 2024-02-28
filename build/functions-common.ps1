@@ -57,4 +57,6 @@ function InitBuildX() {
         docker buildx use mybuilder
         docker buildx inspect
     }
+
+    docker info
 }
