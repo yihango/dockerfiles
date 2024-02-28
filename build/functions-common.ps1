@@ -14,12 +14,12 @@ function CmdExec ($CmdStr) {
 
 # 执行命令
 function BashCmdExec ($CmdStr) {
-    Write-Host "CmdExec: ${CmdStr}"
+    Write-Host "BashCmdExec: ${CmdStr}"
     try {
         /bin/bash -c '"'+$CmdStr+'"'
     }
     catch {
-        Write-Host "CmdExec Error: ${CmdStr}"
+        Write-Host "BashCmdExec Error: ${CmdStr}"
     }
     finally {
         
