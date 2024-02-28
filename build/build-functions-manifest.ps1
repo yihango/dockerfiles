@@ -1,5 +1,33 @@
+# 需要编译的镜像类型
+# 1. linux/amd64 (默认)
+# 2. linux/amd64 + linux/arm64
+# 3. linux/amd64 + linux/arm64 + windows/amd64
+# 4. windows/amd64
+# 5. 同步，需要指定运行平台
+
+
+
 # 创建复合镜像
-function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
+function ImagesBuildManifest1($DockerfileDir, $Registry, $Namespace) {
+
+    # 获取所有的dockerfile
+    $dockerfiles = GetDockerfiles -DockerfileDir $DockerfileDir
+
+    # 遍历 Dockerfile 编译镜像
+    foreach ($dockerfile in $dockerfiles) {
+        # 获取镜像支持的平台
+        $plateforms = GetPlateforms -DockerfileName $dockerfile
+
+        # 编译执行
+        ImagesBuildManifest2 -DockerfileDir $DockerfileDir `
+            -Registry $Registry `
+            -Namespace $Namespace `
+            -Plateforms $plateforms
+    }
+}
+
+# 创建复合镜像
+function ImagesBuildManifest2($DockerfileDir, $Registry, $Namespace, $Plateforms) {
 
     # 切换到此目录
     Set-Location $DockerfileDir
@@ -15,11 +43,8 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
 
     # 遍历 Dockerfile 编译镜像
     foreach ($dockerfile in $dockerfiles) {
-        # 获取镜像支持的平台
-        $plateforms = GetPlateforms -DockerfileName $dockerfile
-
         # 遍历平台
-        foreach ($plateform in $plateforms) {
+        foreach ($plateform in $Plateforms) {
 
             # 获取特定平台的镜像标签
             $plateformImageTag = GetPlateformImageTag -ManifestImageTag $manifestImageTag -Plateform $plateform
@@ -28,14 +53,7 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
             $manifestPlateformImageTags.Add($plateformImageTag)
 
             # # 编译镜像特定平台并推送镜像
-            Write-Host "exec: docker buildx --platform ${plateform} ${plateformImageTag} -f ./${dockerfile} . --push"
-            # docker buildx build `
-            #     --platform $plateform `
-            #     -t $plateformImageTag `
-            #     -f "./${dockerfile}" `
-            #     . --push
-
-            
+            CmdExec -CmdStr "docker buildx build --platform ${plateform} -t ${plateformImageTag} -f ./${dockerfile} . --push"
         }
     }
 
@@ -78,7 +96,6 @@ function GetDockerfiles($DockerfileDir) {
     return $dockerfiles
 }
 
-
 # 获取镜像支持的平台
 function GetPlateforms($DockerfileName) {
     if ($DockerfileName.Contains('.')) {
@@ -103,18 +120,19 @@ function CreateManifestImage($ManifestImageTag, $ManifestPlateformImageTags) {
     foreach ($plateformImageTag in $ManifestPlateformImageTags) {
         $createCmd += " $plateformImageTag "
     }
-    Write-Host "exec: ${createCmd}"
-    # & $createCmd
-    
+    CmdExec -CmdStr $createCmd
 
     # 添加标记
     foreach ($plateformImageTag in $ManifestPlateformImageTags) {
-        Write-Host "exec: docker manifest annotate ${ManifestImageTag} ${plateformImageTag}"
-        # docker manifest annotate $ManifestImageTag $plateformImageTag
+        CmdExec -CmdStr "docker manifest annotate ${ManifestImageTag} ${plateformImageTag}"
     }
 
     # 推送
-    Write-Host "exec: docker manifest push ${ManifestImageTag}"
-    # docker manifest push $ManifestImageTag
-    
+    CmdExec -CmdStr "docker manifest push ${ManifestImageTag}"
+}
+
+# 执行命令
+function CmdExec ($CmdStr) {
+    Write-Host "CmdExec: ${CmdStr}"
+    # & $CmdStr
 }
