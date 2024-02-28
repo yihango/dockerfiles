@@ -1,15 +1,14 @@
-# 执行公用脚本
-. ".\functions-common.ps1"
-. ".\functions-manifest.ps1"
-. ".\build-images-define.ps1"
-
-
 param(
     # image registry
     [string]$Registry,
     # image namespace
     [string]$Namespace = "staneee"
 )
+
+# 执行公用脚本
+. ".\functions-common.ps1"
+. ".\functions-manifest.ps1"
+. ".\build-images-define.ps1"
 
 # 当前路径
 $currentPath = (Get-Location).Path
@@ -27,7 +26,7 @@ foreach ($imgName in $buildImageList) {
     }
 
     # 所在目录
-    $dockerfileDir = $imageInfo[$imgFullName]
+    $dockerfileDir = $imageInfo[$imgName]
 
     # 编译
     ImagesBuildManifest -DockerfileDir $dockerfileDir `

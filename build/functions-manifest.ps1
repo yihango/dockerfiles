@@ -38,6 +38,9 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
     CreateManifestImage -ManifestImageTag $manifestImageTag -ManifestPlateformImageTags $manifestPlateformImageTags
 
     Write-Host "============= end $manifestImageTag ============="
+    Write-Host ""
+    Write-Host ""
+    Write-Host ""
 }
 
 # 获取基础镜像名称
@@ -45,7 +48,6 @@ function GetManifestImageTag($DockerfileDir, $Registry, $Namespace) {
     $directorySeparatorChar = [System.IO.Path]::DirectorySeparatorChar
 
     $dockerDirArray = $DockerfileDir.Split($directorySeparatorChar)
-
     # 镜像名称
     $imageName = $dockerDirArray[-2]
 
