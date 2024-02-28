@@ -1,5 +1,9 @@
+$imageList = New-Object -TypeName "System.Collections.Generic.List[Object]"
+
+
+
 # 交叉编译镜像 linux/arm64,linux/amd64
-$xImages=(
+$xImages = (
     # "staneee/aspnet:6-centos-7.9.2009-gdi-fontconfig",
     # "staneee/aspnet:6-focal-gdi-fontconfig",
     # "staneee/aspnet:5-focal-gdi-fontconfig",
@@ -58,14 +62,14 @@ $xImages=(
 )
 
 # 交叉编译镜像 linux/arm64,linux/amd64,windows/amd64
-$xWinImages=(
-    "staneee/aspnet:6.0",
-    # "staneee/dotnet:6.0",
+$xWinImages = (
+    "staneee/aspnet:6-focal-gdi-fontconfig",
+    # "staneee/dotnet:6-focal-gdi-fontconfig",
     ""
 )
 
 # 编译镜像 linux/amd64
-$linuxImages=(
+$linuxImages = (
     # "staneee/antlr4:4.12.0",
     # "staneee/antlr4:4.6",
     # "staneee/android:33.0.2",
@@ -80,12 +84,12 @@ $linuxImages=(
 )
 
 # 编译镜像 windows/amd64
-$winImages=(
+$winImages = (
     ""
 )
 
 # 同步镜像 linux/amd64
-$syncLinuxImages=(
+$syncLinuxImages = (
     # "grafana/promtail:main",
     # "grafana/loki:main",
     # "grafana/grafana:8.4.0",
@@ -107,7 +111,7 @@ $syncLinuxImages=(
 )
 
 # 同步镜像 windows/amd64
-$syncWinImages=(
+$syncWinImages = (
     # "mcr.microsoft.com/windows/nanoserver:ltsc2022",
     ""
 )
