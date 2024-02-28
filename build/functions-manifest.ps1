@@ -101,6 +101,11 @@ function CreateManifestImage($ManifestImageTag, $ManifestPlateformImageTags) {
     # 删除镜像
     CmdExec -CmdStr "docker manifest create --help"
 
+    # 删除镜像
+    foreach ($plateformImageTag in $ManifestPlateformImageTags) {
+        CmdExec -CmdStr "docker rmi -f ${plateformImageTag}"
+    }
+
     # 创建
     $createCmd = "docker manifest create --amend $ManifestImageTag "
     foreach ($plateformImageTag in $ManifestPlateformImageTags) {

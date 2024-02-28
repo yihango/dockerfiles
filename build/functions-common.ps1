@@ -1,7 +1,12 @@
 # 执行命令
 function CmdExec ($CmdStr) {
     Write-Host "CmdExec: ${CmdStr}"
-    Invoke-Expression $CmdStr
+    try {
+        Invoke-Expression $CmdStr
+    }
+    finally {
+        Write-Host "CmdExec Error: ${CmdStr}"
+    }
 }
 
 # 获取仓库中的镜像信息
