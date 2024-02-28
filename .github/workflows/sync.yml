@@ -59,7 +59,7 @@ jobs:
       - name: build
         shell: pwsh
         working-directory: ./build
-        run: ./build-sync.ps1 $True
+        run: ./build-sync.ps1 -Registry $env:ALIYUN_DOCKERHUB
 
   sync-hub-win:
     runs-on: ubuntu-20.04
@@ -100,4 +100,4 @@ jobs:
       - name: build
         shell: pwsh
         working-directory: ./build
-        run: ./build-sync.ps1 $True
+        run: ./build-sync.ps1 -Registry $env:ALIYUN_DOCKERHUB

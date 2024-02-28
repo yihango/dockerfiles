@@ -52,7 +52,7 @@ jobs:
       - name: build
         shell: pwsh
         working-directory: ./build
-        run: ./build-and-push.ps1
+        run: ./build-push.ps1
 
   build-aliyun:
     runs-on: ubuntu-20.04
@@ -87,5 +87,5 @@ jobs:
       - name: build
         shell: pwsh
         working-directory: ./build
-        run: ./build-and-push.ps1 $True
+        run: ./build-push.ps1 -Registry $env:ALIYUN_DOCKERHUB
 
