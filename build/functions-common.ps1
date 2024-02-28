@@ -16,7 +16,7 @@ function CmdExec ($CmdStr) {
 function BashCmdExec ($CmdStr) {
     Write-Host "BashCmdExec: ${CmdStr}"
     try {
-        /bin/bash -c '"'+$CmdStr+'"'
+        /bin/bash -c """$CmdStr"""
     }
     catch {
         Write-Host "BashCmdExec Error: ${CmdStr}"
