@@ -54,10 +54,10 @@ jobs:
         working-directory: ./build
         run: ./build-push.ps1 -BuildImage $True
 
-      - name: build 2
-        shell: pwsh
-        working-directory: ./build
-        run: ./build-push.ps1 -BuildImage $False
+      # - name: build 2
+      #   shell: pwsh
+      #   working-directory: ./build
+      #   run: ./build-push.ps1 -BuildImage $False
 
   # build-aliyun:
   #   runs-on: ubuntu-20.04

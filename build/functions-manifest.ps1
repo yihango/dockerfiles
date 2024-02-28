@@ -32,10 +32,10 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace, $BuildImage)
             # # 编译镜像特定平台并推送镜像
             #docker buildx build --platform "linux/arm64" -t staneee/aspnet:6-centos-7.9.2009-gdi-fontconfig-linux-arm64 -f ./Dockerfile.linux-arm64.linux-amd64 . --push
             #docker buildx build --platform 'linux/arm64,linux/amd64' -t $imgTargetFullName -f ./Dockerfile . --push
-            if ($BuildImage) {
-                BashCmdExec -CmdStr "docker buildx build --platform '${plateform}' -t ${manifestImageTag} -t ${plateformImageTag} -f ./${dockerfile} . --push"
-            }
-            
+            # if ($BuildImage) {
+            #     CmdExec -CmdStr "docker buildx build --platform '${plateform}' --provenance false -t ${manifestImageTag} -t ${plateformImageTag} -f ./${dockerfile} . --push"
+            # }
+            CmdExec -CmdStr "docker buildx build --platform '${plateform}' --provenance false -t ${manifestImageTag} -t ${plateformImageTag} -f ./${dockerfile} . --push"        
         }
     }
 
@@ -43,12 +43,15 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace, $BuildImage)
 
 
     # 创建最终的 manifestImageTag 镜像
-    if (!$BuildImage) {
-        Write-Host "Start-Sleep -Seconds 20"
-        Start-Sleep -Seconds 20
-        CreateManifestImage -ManifestImageTag $manifestImageTag `
-            -ManifestPlateformImageTags $manifestPlateformImageTags
-    }
+    # if (!$BuildImage) {
+    #     Write-Host "Start-Sleep -Seconds 20"
+    #     Start-Sleep -Seconds 20
+    # CreateManifestImage -ManifestImageTag $manifestImageTag `
+    #     -ManifestPlateformImageTags $manifestPlateformImageTags
+    # }
+    CreateManifestImage -ManifestImageTag $manifestImageTag `
+        -ManifestPlateformImageTags $manifestPlateformImageTags
+
  
     Write-Host "============= end $manifestImageTag ============="
     Write-Host ""
@@ -115,14 +118,14 @@ function CreateManifestImage($ManifestImageTag, $ManifestPlateformImageTags) {
     foreach ($plateformImageTag in $ManifestPlateformImageTags) {
         $createCmd += " $plateformImageTag"
     }
-    BashCmdExec -CmdStr $createCmd
+    CmdExec -CmdStr $createCmd
 
     # 添加标记
     foreach ($plateformImageTag in $ManifestPlateformImageTags) {
-        BashCmdExec -CmdStr "docker manifest annotate ${ManifestImageTag} ${plateformImageTag}"
+        CmdExec -CmdStr "docker manifest annotate ${ManifestImageTag} ${plateformImageTag}"
     }
 
     # 推送
-    BashCmdExec -CmdStr "docker manifest push ${ManifestImageTag}"
+    CmdExec -CmdStr "docker manifest push ${ManifestImageTag}"
 }
 
