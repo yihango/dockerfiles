@@ -1,7 +1,7 @@
 # 执行命令
 function CmdExec ($CmdStr) {
     Write-Host "CmdExec: ${CmdStr}"
-    # & $CmdStr
+    & $CmdStr
 }
 
 # 获取仓库中的镜像信息
