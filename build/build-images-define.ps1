@@ -11,7 +11,7 @@ $buildImages = @(
     # "aspnet:5-focal-puppeteer", # 未完成
     # "aspnet:6-focal-puppeteer", # 未完成
     # "dotnet:5-focal",
-    "dotnet:6-focal",
+    "dotnet:6-focal",# 1
     # "dotnet:5-focal-gdi-fontconfig",
     # "dotnet:6-focal-gdi-fontconfig",
     # "nginx:1.19.6-basic",
