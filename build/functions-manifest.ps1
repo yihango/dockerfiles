@@ -98,6 +98,9 @@ function GetPlateformImageTag($ManifestImageTag, $Plateform) {
 
 # 创建合Manifest镜像
 function CreateManifestImage($ManifestImageTag, $ManifestPlateformImageTags) {
+    # 删除镜像
+    CmdExec -CmdStr "docker rmi -f $ManifestImageTag"
+
     # 创建
     $createCmd = "docker manifest create $ManifestImageTag "
     foreach ($plateformImageTag in $ManifestPlateformImageTags) {
