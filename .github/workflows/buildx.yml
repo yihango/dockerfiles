@@ -43,12 +43,13 @@ jobs:
   build-aliyun:
     runs-on: ubuntu-22.04
     name: Images to Aliyun
+    needs: [ build-hub ]
     steps:
       # checkout source code
       - uses: actions/checkout@v2
 
       # login docker hub
-      - name: Login to DockerHub
+      - name: Login to Aliyun
         uses: docker/login-action@v1
         with:
           registry: ${{env.ALIYUN_DOCKERHUB}}
@@ -59,4 +60,4 @@ jobs:
       - name: build 1
         shell: pwsh
         working-directory: ./build
-        run: ./build-push.ps1 -Registry $env:ALIYUN_DOCKERHUB
+        run: ./build-sync-manifest.ps1 -TargetRegistry $env:ALIYUN_DOCKERHUB

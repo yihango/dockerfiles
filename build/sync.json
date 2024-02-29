@@ -1,0 +1,46 @@
+[
+    {
+        "plantforms": [
+            "linux/amd64"
+        ],
+        "images": [
+            // "grafana/promtail:main",
+            // "grafana/loki:main",
+            // "grafana/grafana:8.4.0",
+            // "stefanprodan/caddy:0.10.10",
+            // "stefanprodan/swarmprom-prometheus:v2.5.0",
+            // "stefanprodan/swarmprom-node-exporter:v0.16.0",
+            // "stefanprodan/swarmprom-alertmanager:v0.14.0",
+            // "google/cadvisor:v0.33.0",
+            // "prom/alertmanager:v0.26.0",
+            // "prom/prometheus:v2.47.0",
+            // "flaviostutz/docker-swarm-node-exporter:1.1.1",
+            // "grafana/grafana:9.5.2",
+            // "grafana/loki:2.8.4",
+            // "grafana/promtail:2.8.4",
+            // "duaneduan/wechat-webhook:v1",
+            // "mysql:5.7.43",
+            "docker.osgeo.org/geoserver:2.24.x"
+        ]
+    },
+    {
+        "plantforms": [
+            "linux/arm64"
+        ],
+        "images": []
+    },
+    {
+        "plantforms": [
+            "windows/amd64"
+        ],
+        "images": []
+    },
+    {
+        "plantforms": [
+            "linux/arm64",
+            "linux/amd64",
+            "windows/amd64"
+        ],
+        "images": []
+    }
+]

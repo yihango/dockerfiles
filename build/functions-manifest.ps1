@@ -1,6 +1,9 @@
 # 创建复合镜像
 function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
 
+    # 暂时不使用
+    $buildArgsOption = ""
+
     # 切换到此目录
     Set-Location $DockerfileDir
 
@@ -30,7 +33,12 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
             $manifestPlateformImageTags.Add($plateformImageTag)
 
             # # 编译镜像特定平台并推送镜像
-            CmdExec -CmdStr "docker buildx build --platform '${plateform}' --provenance false -t ${plateformImageTag} -f ./${dockerfile} . --push"        
+            CmdExec -CmdStr ("docker buildx build" `
+                    + " ${buildArgsOption}" `
+                    + " --platform '${plateform}'" `
+                    + " --provenance false" `
+                    + " -t ${plateformImageTag}" `
+                    + " -f ./${dockerfile} . --push")
         }
     }
 
@@ -40,6 +48,42 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
 
  
     Write-Host "============= end $manifestImageTag ============="
+    Write-Host ""
+    Write-Host ""
+    Write-Host ""
+}
+
+# 复制复合镜像
+function ImagesCopyManifest($DockerfileDir, $Registry, $Namespace, $TargetRegistry) {
+
+    # 切换到此目录
+    Set-Location $DockerfileDir
+
+    # 镜像指定支持的所有平台
+    $manifestPlateforms = New-Object -TypeName "System.Collections.Generic.List[Object]"
+
+    # 获取镜像最基本的标签
+    $manifestImageTag = GetManifestImageTag -DockerfileDir $DockerfileDir -Registry $Registry -Namespace $Namespace
+
+    # 获取所有的dockerfile
+    $dockerfiles = GetDockerfiles -DockerfileDir $DockerfileDir
+
+    Write-Host "============= start copy $manifestImageTag ============="
+
+    # 遍历 Dockerfile 编译镜像
+    foreach ($dockerfile in $dockerfiles) {
+        # 获取镜像支持的平台
+        $plateforms = GetPlateforms -DockerfileName $dockerfile
+        $manifestPlateforms.AddRange($plateforms)
+    }
+
+    # 复制
+    CopyManifest -TargetRegistry $TargetRegistry `
+        -ManifestImageTag $manifestImageTag `
+        -Plateforms $manifestPlateforms
+
+ 
+    Write-Host "============= end copy $manifestImageTag ============="
     Write-Host ""
     Write-Host ""
     Write-Host ""
@@ -115,3 +159,38 @@ function CreateManifestImage($ManifestImageTag, $ManifestPlateformImageTags) {
     CmdExec -CmdStr "docker manifest push ${ManifestImageTag}"
 }
 
+# 复制Manifest镜像
+function CopyManifest($TargetRegistry, $ManifestImageTag, $Plateforms) {
+
+    # 临时用的文件
+    $dockerfile = "Syncfile"
+
+    # 创建临时文件并写入内容
+    $dockerfileConent = @"
+ARG IMAGETAG=""
+FROM --platform=`$TARGETPLATFORM `$IMAGETAG
+"@
+    DelFile -Path "./${dockerfile}"
+    WriteFile -Path "./${dockerfile}" -Content $dockerfileConent
+
+    # 编译参数
+    $plateformImageTag = $TargetRegistry + "/" + $ManifestImageTag
+    $plateform = ($Plateforms -join (","))
+    $buildArgsOption = " --build-arg IMAGETAG=${ManifestImageTag} "
+
+    # $ManifestImageTag = "staneee/test:mulite-os"
+    # $plateformImageTag = "staneee/test:linux2"
+    # $plateform = "linux/amd64,linux/arm64"
+    # $dockerfile = "Dockerfile.linux2"
+    # $buildArgsOption = " --build-arg IMAGETAG=${ManifestImageTag} "
+
+    # 执行编译参数
+    CmdExec -CmdStr ("docker buildx build" `
+            + " ${buildArgsOption}" `
+            + " --platform '${plateform}'" `
+            + " -t ${plateformImageTag}" `
+            + " -f ./${dockerfile} . --push")
+
+    # 删除临时文件
+    DelFile -Path "./${dockerfile}"
+}

@@ -82,3 +82,16 @@ function InitBuildX() {
 
     docker info
 }
+
+# 写入文件
+function WriteFile($Path, $Content) {
+    Set-Content -Path  $Path -Value $Content -Encoding UTF8 
+}
+
+# 删除文件如果文件存在
+function DelFile ($Path) {
+    if (Test-Path $Path) {
+        # 如果文件存在，则删除文件
+        Remove-Item $Path -Force
+    }
+}
