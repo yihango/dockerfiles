@@ -70,7 +70,6 @@ $buildImages = @(
     "dotnet:2.1-bionic",
     "aspnet:2.1-bionic",
     "aspnet:2.1-bionic-fontconfig",
-    "rocketmq:4.9.7",
     ""
 )
 
