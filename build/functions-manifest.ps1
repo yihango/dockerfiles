@@ -74,7 +74,10 @@ function ImagesCopyManifest($DockerfileDir, $Registry, $Namespace, $TargetRegist
     foreach ($dockerfile in $dockerfiles) {
         # 获取镜像支持的平台
         $plateforms = GetPlateforms -DockerfileName $dockerfile
-        $manifestPlateforms.AddRange($plateforms)
+
+        foreach ($plateform in $Plateforms) {
+            $manifestPlateforms.Add($plateform)
+        }
     }
 
     # 复制
