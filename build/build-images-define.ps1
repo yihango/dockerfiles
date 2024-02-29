@@ -5,24 +5,24 @@ $buildImageList = New-Object -TypeName "System.Collections.Generic.List[Object]"
 # 编译镜像 linux/amd64
 $buildImages = @(
     # ## 
-    "aspnet:6-centos-7.9.2009-gdi-fontconfig",
-    "aspnet:6-focal-gdi-fontconfig",
-    "aspnet:5-focal-gdi-fontconfig",
-    "aspnet:5-focal-puppeteer", # 未完成
-    "aspnet:6-focal-puppeteer", # 未完成
-    "dotnet:5-focal",
-    "dotnet:6-focal",
-    "dotnet:5-focal-gdi-fontconfig",
-    "dotnet:6-focal-gdi-fontconfig",
-    # "nginx:1.19.6-basic",
-    # "nginx:1.19.6-appconfig-prod",
-    # "nginx:1.19.6-appconfig-prod-pda",
-    # "nginx:1.19.6-shell-runner",
-    # "nginx:1.19.6-wait-for-it",
-    # "node:8.9.4",
-    # "node:14.21.3",
-    # "node:16.13.1",
-    # "node:20.10.0",
+    # "aspnet:6-centos-7.9.2009-gdi-fontconfig",
+    # "aspnet:6-focal-gdi-fontconfig",
+    # "aspnet:5-focal-gdi-fontconfig",
+    # "aspnet:5-focal-puppeteer", # 未完成
+    # "aspnet:6-focal-puppeteer", # 未完成
+    # "dotnet:5-focal",
+    # "dotnet:6-focal",
+    # "dotnet:5-focal-gdi-fontconfig",
+    # "dotnet:6-focal-gdi-fontconfig",
+    "nginx:1.19.6-basic",
+    "nginx:1.19.6-appconfig-prod",
+    "nginx:1.19.6-appconfig-prod-pda",
+    "nginx:1.19.6-shell-runner",
+    "nginx:1.19.6-wait-for-it",
+    "node:8.9.4",
+    "node:14.21.3",
+    "node:16.13.1",
+    "node:20.10.0",
     # "powershell:lts-debian-10-focal",
     # "powershell:lts-debian-10-focal-docker-20-10-21",
     # "powershell:lts-debian-10-focal-docker-20-10-21-zip",
@@ -98,7 +98,7 @@ $syncLinuxImages = (
     # "grafana/promtail:2.8.4",
     # "duaneduan/wechat-webhook:v1",
     # "mysql:5.7.43",
-    "docker.osgeo.org/geoserver:2.24.x",
+    # "docker.osgeo.org/geoserver:2.24.x",
     ""
 )
 
