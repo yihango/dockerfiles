@@ -30,7 +30,7 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
             $manifestPlateformImageTags.Add($plateformImageTag)
 
             # # 编译镜像特定平台并推送镜像
-            CmdExec -CmdStr "docker buildx build --platform '${plateform}' --provenance false -t ${manifestImageTag} -t ${plateformImageTag} -f ./${dockerfile} . --push"        
+            CmdExec -CmdStr "docker buildx build --platform '${plateform}' --provenance false -t ${plateformImageTag} -f ./${dockerfile} . --push"        
         }
     }
 
