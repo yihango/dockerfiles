@@ -109,7 +109,7 @@ function GetManifestImagePlatforms ($ManifestImageTag) {
     }
 
     $plateforms = $plateformDict.Values
-    if ($plateforms.Length -eq 0) {
+    if ($plateforms.Count -eq 0) {
         $plateforms = @(
             'linux/amd64'
         )
