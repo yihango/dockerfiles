@@ -51,7 +51,7 @@ function SyncManifest($ManifestImageTag, $TargetRegistry, $TargetNamespace, $Tar
         $plateformImageTag = ("${TargetRegistry}/${TargetNamespace}/" + $ManifestImageTag.Split('/')[-1]).TrimStart("/")
     }
     else {
-        $plateformImageTag = ("${TargetRegistry}/${TargetNamespace}/${TargetImageName}")
+        $plateformImageTag = ("${TargetRegistry}/${TargetNamespace}/${TargetImageName}").TrimStart("/")
     }
 
 
@@ -68,7 +68,6 @@ FROM --platform=`$TARGETPLATFORM `$IMAGETAG
     WriteFile -Path "./${dockerfile}" -Content $dockerfileConent
 
     # 编译参数
-    $plateformImageTag = $TargetRegistry + "/" + $ManifestImageTag
     $plateform = ($plateforms -join (","))
     $buildArgsOption = " --build-arg IMAGETAG=${ManifestImageTag} "
 

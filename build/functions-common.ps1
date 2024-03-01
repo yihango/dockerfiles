@@ -1,6 +1,9 @@
 # 执行命令
 function CmdExec ($CmdStr) {
     Write-Host "CmdExec: ${CmdStr}"
+    if ($onlyPrint) {
+        return
+    }
     try {
         Invoke-Expression $CmdStr
     }
@@ -74,6 +77,9 @@ function IsLinux() {
 
 # 初始化多平台编译器
 function InitBuildX() {
+    if ($onlyPrint) {
+        return
+    }
     if ([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([System.Runtime.InteropServices.OSPlatform]::Linux)) {
         docker buildx create --name mybuilder --driver docker-container --bootstrap
         docker buildx use mybuilder
@@ -85,6 +91,12 @@ function InitBuildX() {
 
 # 获取支持的平台
 function GetManifestImagePlatforms ($ManifestImageTag) {
+    if ($onlyPrint) {
+        return @(
+            "linux/amd64"
+        )
+    }
+
     $plateformDict = New-Object System.Collections.Generic.Dictionary"[String,String]"
 
     $manifestObj = (docker manifest inspect $ManifestImageTag) | ConvertFrom-Json

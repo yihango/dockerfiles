@@ -27,13 +27,13 @@ foreach ($imgName in $syncSample) {
 }
 
 # 重命名的
-foreach ($key in $syncRenameDict.Keys) {
-    if ($key -eq "") {
+foreach ($imgName in $syncRenameDict.Keys) {
+    if ($imgName -eq "") {
         continue;
     }
 
     SyncManifest -ManifestImageTag $imgName `
         -TargetRegistry $TargetRegistry `
         -TargetNamespace $TargetNamespace `
-        -TargetImageName $syncRenameDict[$key]
+        -TargetImageName $syncRenameDict[$imgName]
 }
