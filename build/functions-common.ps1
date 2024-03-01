@@ -108,7 +108,13 @@ function GetManifestImagePlatforms ($ManifestImageTag) {
         }
     }
 
-    return $plateformDict.Values
+    $plateforms = $plateformDict.Values
+    if ($plateforms.Length -eq 0) {
+        $plateforms = @(
+            'linux/amd64'
+        )
+    }
+    return $plateforms
 }
 
 # 写入文件
