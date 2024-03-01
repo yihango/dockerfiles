@@ -58,15 +58,15 @@ $buildImageList = @(
     # "haproxy:2.2.28-alpine",
     # "mysql:8.1.0",
     # # ## 
-    "antlr4:4.12.0",
-    "antlr4:4.6",
-    "android:33.0.2",
-    "android:30.0.3",
-    "mssql:2019-latest",
-    "redis:3.0.5",
-    "dotnet:2.1-bionic",
-    "aspnet:2.1-bionic",
-    "aspnet:2.1-bionic-fontconfig",
+    # "antlr4:4.12.0",
+    # "antlr4:4.6",
+    # "android:33.0.2",
+    # "android:30.0.3",
+    # "mssql:2019-latest",
+    # "redis:3.0.5",
+    # "dotnet:2.1-bionic",
+    # "aspnet:2.1-bionic",
+    # "aspnet:2.1-bionic-fontconfig",
     ""
 )
 
