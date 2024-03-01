@@ -34,3 +34,51 @@ function ImagesSync ($ImageList, $Registry, $Namespace) {
         docker push $imgTargetFullName
     }
 }
+
+
+
+# 复制Manifest镜像
+function SyncManifest($ManifestImageTag, $TargetRegistry, $TargetNamespace, $TargetImageName) {
+
+    # 当前镜像支持的平台
+    $plateforms = GetManifestImagePlatforms -ManifestImageTag $ManifestImageTag
+
+    # 最终编译镜像标签
+    $plateformImageTag = ""
+
+    # 镜像调整
+    if ($TargetImageName -eq $Null -or $TargetImageName -eq "") {
+        $plateformImageTag = ("${TargetRegistry}/${TargetNamespace}/" + $ManifestImageTag.Split('/')[-1]).TrimStart("/")
+    }
+    else {
+        $plateformImageTag = ("${TargetRegistry}/${TargetNamespace}/${TargetImageName}")
+    }
+
+
+
+    # 临时用的文件
+    $dockerfile = "Syncfile"
+
+    # 创建临时文件并写入内容
+    $dockerfileConent = @"
+ARG IMAGETAG=""
+FROM --platform=`$TARGETPLATFORM `$IMAGETAG
+"@
+    DelFile -Path "./${dockerfile}"
+    WriteFile -Path "./${dockerfile}" -Content $dockerfileConent
+
+    # 编译参数
+    $plateformImageTag = $TargetRegistry + "/" + $ManifestImageTag
+    $plateform = ($plateforms -join (","))
+    $buildArgsOption = " --build-arg IMAGETAG=${ManifestImageTag} "
+
+    # 执行编译参数
+    CmdExec -CmdStr ("docker buildx build" `
+            + " ${buildArgsOption}" `
+            + " --platform '${plateform}'" `
+            + " -t ${plateformImageTag}" `
+            + " -f ./${dockerfile} . --push")
+
+    # 删除临时文件
+    DelFile -Path "./${dockerfile}"
+}

@@ -1,8 +1,8 @@
 param(
     # image registry
-    [string]$Registry,
+    [string]$TargetRegistry,
     # image namespace
-    [string]$Namespace = "staneee"
+    [string]$TargetNamespace = "staneee"
 )
 
 
@@ -12,14 +12,28 @@ param(
 . ".\build-images-define.ps1"
 
 
-# 同步镜像
-if (IsLinux) {
-    ImagesSync -Registry $Registry `
-        -Namespace $Namespace `
-        -ImageList $syncLinuxImages
+# 初始化 buildx
+InitBuildX
+
+# 直接同步的
+foreach ($imgName in $syncSample) {
+    if ($imgName -eq "") {
+        continue;
+    }
+
+    SyncManifest -ManifestImageTag $imgName `
+        -TargetRegistry $TargetRegistry `
+        -TargetNamespace $TargetNamespace
 }
-else {
-    ImagesSync -Registry $Registry `
-        -Namespace $Namespace `
-        -ImageList $syncWinImages
+
+# 重命名的
+foreach ($key in $syncRenameDict.Keys) {
+    if ($key -eq "") {
+        continue;
+    }
+
+    SyncManifest -ManifestImageTag $imgName `
+        -TargetRegistry $TargetRegistry `
+        -TargetNamespace $TargetNamespace `
+        -TargetImageName $syncRenameDict[$key]
 }

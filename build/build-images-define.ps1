@@ -1,9 +1,6 @@
 $namespace = 'staneee';
-# 需要编译的镜像列表
-$buildImageList = New-Object -TypeName "System.Collections.Generic.List[Object]"
-
 # 编译镜像 linux/amd64
-$buildImages = @(
+$buildImageList = @(
     # ## 
     # "aspnet:6-centos-7.9.2009-gdi-fontconfig",
     # "aspnet:6-focal-gdi-fontconfig",
@@ -73,35 +70,31 @@ $buildImages = @(
     ""
 )
 
-$buildImageList.AddRange($buildImages)
 
-
-$buildImageList | Where-Object { $_ -ne $Null -and $_ -ne '' }
-
-
-# 同步镜像 linux/amd64
-$syncLinuxImages = (
-    # "grafana/promtail:main",
-    # "grafana/loki:main",
-    # "grafana/grafana:8.4.0",
-    # "stefanprodan/caddy:0.10.10",
-    # "stefanprodan/swarmprom-prometheus:v2.5.0",
-    # "stefanprodan/swarmprom-node-exporter:v0.16.0",
-    # "stefanprodan/swarmprom-alertmanager:v0.14.0",
-    # "google/cadvisor:v0.33.0",
-    # "prom/alertmanager:v0.26.0",
-    # "prom/prometheus:v2.47.0",
-    # "flaviostutz/docker-swarm-node-exporter:1.1.1",
-    # "grafana/grafana:9.5.2",
-    # "grafana/loki:2.8.4",
-    # "grafana/promtail:2.8.4",
-    # "duaneduan/wechat-webhook:v1",
-    # "mysql:5.7.43",
-    # "docker.osgeo.org/geoserver:2.24.x",
+# 同步镜像，不需要重命名的
+$syncSample = @(
+    "grafana/promtail:main",
+    "grafana/loki:main",
+    "grafana/grafana:8.4.0",
+    "stefanprodan/caddy:0.10.10",
+    "stefanprodan/swarmprom-prometheus:v2.5.0",
+    "stefanprodan/swarmprom-node-exporter:v0.16.0",
+    "stefanprodan/swarmprom-alertmanager:v0.14.0",
+    "google/cadvisor:v0.33.0",
+    "prom/alertmanager:v0.26.0",
+    "prom/prometheus:v2.47.0",
+    "flaviostutz/docker-swarm-node-exporter:1.1.1",
+    "grafana/grafana:9.5.2",
+    "grafana/loki:2.8.4",
+    "grafana/promtail:2.8.4",
+    "duaneduan/wechat-webhook:v1",
+    "mysql:5.7.43",
+    "docker.osgeo.org/geoserver:2.24.x",
     ""
 )
 
-# 同步镜像 windows/amd64
-$syncWinImages = (
-    ""
-)
+# 需要重命名的
+$syncRenameDict = @{
+    "mcr.microsoft.com/windows/nanoserver:ltsc2022" = "windows-nanoserver:ltsc2022"
+    "mcr.microsoft.com/windows/servercore:ltsc2022" = "windows-servercore:ltsc2022"
+}

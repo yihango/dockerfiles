@@ -83,6 +83,22 @@ function InitBuildX() {
     docker info
 }
 
+# 获取支持的平台
+function GetManifestImagePlatforms ($ManifestImageTag) {
+    $plateformDict = New-Object System.Collections.Generic.Dictionary"[String,String]"
+
+    $manifestObj = (docker manifest inspect $ManifestImageTag) | ConvertFrom-Json
+
+    foreach ($item in $manifestObj.manifests) {
+        $platform = $item.platform.os + '/' + $item.platform.architecture
+        if (!$plateformDict.ContainsKey($platform)) {
+            $plateformDict.Add($platform, $platform)
+        }
+    }
+
+    return $plateformDict.Values
+}
+
 # 写入文件
 function WriteFile($Path, $Content) {
     Set-Content -Path  $Path -Value $Content -Encoding UTF8 

@@ -19,6 +19,9 @@ InitBuildX
 # 获取镜像信息
 $imageInfo = GetImagesInfo
 
+# 打印本次编译镜像信息
+$buildImageList
+
 # 遍历镜像并编译
 foreach ($imgName in $buildImageList) {
     if ($imgName -eq "") {
