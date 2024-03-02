@@ -4,29 +4,31 @@ function CmdExec ($CmdStr) {
     if ($onlyPrint) {
         return
     }
-    try {
-        Invoke-Expression $CmdStr
-    }
-    catch {
-        Write-Host "CmdExec Error: ${CmdStr}"
-    }
-    finally {
+    Invoke-Expression $CmdStr
+    # try {
+    #     Invoke-Expression $CmdStr
+    # }
+    # catch {
+    #     Write-Host "CmdExec Error: ${CmdStr}"
+    # }
+    # finally {
         
-    }
+    # }
 }
 
 # 执行命令
 function BashCmdExec ($CmdStr) {
     Write-Host "BashCmdExec: ${CmdStr}"
-    try {
-        /bin/bash -c "${CmdStr}"
-    }
-    catch {
-        Write-Host "BashCmdExec Error: ${CmdStr}"
-    }
-    finally {
+    /bin/bash -c "${CmdStr}"
+    # try {
+    #     /bin/bash -c "${CmdStr}"
+    # }
+    # catch {
+    #     Write-Host "BashCmdExec Error: ${CmdStr}"
+    # }
+    # finally {
         
-    }
+    # }
 }
 
 # 获取仓库中的镜像信息
