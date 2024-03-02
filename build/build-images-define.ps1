@@ -64,7 +64,7 @@ $buildImageList = @(
     # "android:33.0.2",
     # "android:30.0.3",
     # "mssql:2019-latest",
-    # "redis:3.0.5",
+    "redis:3.0.5",
     # "dotnet:2.1-bionic",
     # "aspnet:2.1-bionic",
     # "aspnet:2.1-bionic-fontconfig",
@@ -74,28 +74,28 @@ $buildImageList = @(
 
 # 同步镜像，不需要重命名的
 $syncSample = @(
-    "grafana/promtail:main",
-    "grafana/loki:main",
-    "grafana/grafana:8.4.0",
-    "stefanprodan/caddy:0.10.10",
-    "stefanprodan/swarmprom-prometheus:v2.5.0",
-    "stefanprodan/swarmprom-node-exporter:v0.16.0",
-    "stefanprodan/swarmprom-alertmanager:v0.14.0",
-    "google/cadvisor:v0.33.0",
-    "prom/alertmanager:v0.26.0",
-    "prom/prometheus:v2.47.0",
-    "flaviostutz/docker-swarm-node-exporter:1.1.1",
-    "grafana/grafana:9.5.2",
-    "grafana/loki:2.8.4",
-    "grafana/promtail:2.8.4",
-    "duaneduan/wechat-webhook:v1",
-    "mysql:5.7.43",
-    "docker.osgeo.org/geoserver:2.24.x",
+    # "grafana/promtail:main",
+    # "grafana/loki:main",
+    # "grafana/grafana:8.4.0",
+    # "stefanprodan/caddy:0.10.10",
+    # "stefanprodan/swarmprom-prometheus:v2.5.0",
+    # "stefanprodan/swarmprom-node-exporter:v0.16.0",
+    # "stefanprodan/swarmprom-alertmanager:v0.14.0",
+    # "google/cadvisor:v0.33.0",
+    # "prom/alertmanager:v0.26.0",
+    # "prom/prometheus:v2.47.0",
+    # "flaviostutz/docker-swarm-node-exporter:1.1.1",
+    # "grafana/grafana:9.5.2",
+    # "grafana/loki:2.8.4",
+    # "grafana/promtail:2.8.4",
+    # "duaneduan/wechat-webhook:v1",
+    # "mysql:5.7.43",
+    # "docker.osgeo.org/geoserver:2.24.x",
     ""
 )
 
 # 需要重命名的
 $syncRenameDict = @{
-    "mcr.microsoft.com/windows/nanoserver:ltsc2022" = "windows-nanoserver:ltsc2022"
-    "mcr.microsoft.com/windows/servercore:ltsc2022" = "windows-servercore:ltsc2022"
+    # "mcr.microsoft.com/windows/nanoserver:ltsc2022" = "windows-nanoserver:ltsc2022"
+    # "mcr.microsoft.com/windows/servercore:ltsc2022" = "windows-servercore:ltsc2022"
 }

@@ -1,0 +1,25 @@
+# escape=`
+
+# install image
+FROM mcr.microsoft.com/windows/servercore:ltsc2022 AS installer
+
+# copy package
+WORKDIR C:\installer-packages
+COPY ./redis-x64-3.0.504.zip .
+
+# expand package
+WORKDIR C:\redis
+
+RUN powershell -Command " `
+    Expand-Archive -Path 'C:\installer-packages\Redis-x64-3.0.504.zip' `
+    -DestinationPath 'C:\redis'"
+
+
+
+# run image
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
+WORKDIR C:\redis
+COPY --from=installer ["C:\redis", "C:\redis"]
+
+# start redis
+CMD ["redis-server.exe"]
