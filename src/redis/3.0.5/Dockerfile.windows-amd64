@@ -8,11 +8,10 @@ WORKDIR C:\installer-packages
 COPY ./redis-x64-3.0.504.zip .
 
 # expand package
-WORKDIR C:\redis
-
-RUN powershell -Command " `
+SHELL ["powershell", "-Command"]
+RUN New-Item -Type Directory -Path 'C:\redis' `
     Expand-Archive -Path 'C:\installer-packages\Redis-x64-3.0.504.zip' `
-    -DestinationPath 'C:\redis'"
+    -DestinationPath 'C:\redis'
 
 
 
