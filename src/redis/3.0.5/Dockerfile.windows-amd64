@@ -1,18 +1,19 @@
 # escape=`
 
 # install image
-FROM --platform=$TARGETPLATFORM mcr.microsoft.com/windows/servercore:ltsc2022 AS installer
+FROM --platform=$TARGETPLATFORM mcr.microsoft.com/windows/servercore:ltsc2022-amd64 AS installer
 
 # copy package
 WORKDIR C:\installer-packages
 COPY ./redis-x64-3.0.504.zip .
 
 # expand package
-SHELL ["powershell", "-Command"]
-RUN New-Item -Type Directory -Path 'C:\redis' `
-    Expand-Archive -Path 'C:\installer-packages\Redis-x64-3.0.504.zip' `
-    -DestinationPath 'C:\redis'
-
+RUN powershell -Command " `
+    $ErrorActionPreference = 'Stop'; `
+    $ProgressPreference = 'SilentlyContinue'; `
+    `
+    New-Item -Type Directory -Path 'C:\redis' `
+    Expand-Archive -Path 'C:\installer-packages\Redis-x64-3.0.504.zip' -DestinationPath 'C:\redis'"
 
 
 # run image
