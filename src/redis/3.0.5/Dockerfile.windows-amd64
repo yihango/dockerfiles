@@ -1,7 +1,7 @@
 # escape=`
 
 # install image
-FROM mcr.microsoft.com/windows/servercore:ltsc2022 AS installer
+FROM --platform=$TARGETPLATFORM mcr.microsoft.com/windows/servercore:ltsc2022 AS installer
 
 # copy package
 WORKDIR C:\installer-packages
@@ -17,7 +17,7 @@ RUN powershell -Command " `
 
 
 # run image
-FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
+FROM --platform=$TARGETPLATFORM mcr.microsoft.com/windows/nanoserver:ltsc2022
 WORKDIR C:\redis
 COPY --from=installer ["C:\redis", "C:\redis"]
 
