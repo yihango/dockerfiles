@@ -4,8 +4,7 @@ function CmdExec ($CmdStr) {
     if ($onlyPrint) {
         return
     }
-    & $CmdStr
-    # Invoke-Expression $CmdStr
+    Invoke-Expression $CmdStr
     # try {
     #     Invoke-Expression $CmdStr
     # }
