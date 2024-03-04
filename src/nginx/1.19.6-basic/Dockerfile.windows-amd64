@@ -1,0 +1,17 @@
+# escape=`
+
+# run image
+FROM staneee/nginx:1.19.6
+
+USER ContainerAdministrator
+
+# copy scripts
+COPY ./scripts-windows/  /
+
+# wait for it
+ENV NGINX_WAITHOST=localhost NGINX_WAITPORT=80
+
+# before shell content
+ENV RUN_BEFORE_SHELL=''
+
+ENTRYPOINT nginx -g 'daemon off;'
