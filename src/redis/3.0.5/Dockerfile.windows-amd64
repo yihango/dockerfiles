@@ -1,7 +1,7 @@
 # escape=`
 
 # install image
-FROM --platform=$TARGETPLATFORM mcr.microsoft.com/windows/servercore:ltsc2022-amd64 AS installer
+FROM --platform=$TARGETPLATFORM mcr.microsoft.com/windows/servercore:ltsc2022 AS installer
 
 # copy package
 WORKDIR /installer-packages
@@ -10,7 +10,7 @@ COPY ./redis-x64-3.0.504.zip .
 # expand package
 RUN powershell -Command " `
 New-Item -Type Directory -Path '/redis'; `
-Expand-Archive -Path '/installer-packages\Redis-x64-3.0.504.zip' -DestinationPath '/redis'"
+Expand-Archive -Path '/installer-packages/redis-x64-3.0.504.zip' -DestinationPath '/redis'"
 
 
 # run image
@@ -19,6 +19,7 @@ WORKDIR /redis
 COPY --from=installer ["/redis", "/redis"]
 
 USER ContainerAdministrator
+
 # start redis
 EXPOSE 6379
 CMD ["redis-server.exe"]
