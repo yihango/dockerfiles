@@ -1,0 +1,9 @@
+# escape=`
+FROM staneee/nginx:1.19.6-basic
+
+# appconfig.prod.json content
+ENV APPCONFIG=''
+
+# entrypoint
+ENTRYPOINT /before_shell_appconfig_prod_pda.ps1; `
+    nginx -g "daemon off;"
