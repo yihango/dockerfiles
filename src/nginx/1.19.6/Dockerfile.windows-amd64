@@ -5,10 +5,13 @@ FROM mcr.microsoft.com/powershell:lts-7.2-nanoserver-ltsc2022
 
 USER ContainerAdministrator
 
+SHELL ["pwsh", "-c"]
+
 WORKDIR /nginx
 
-RUN pwsh -Command " `
-    $ErrorActionPreference = 'Stop'; `
+
+
+RUN $ErrorActionPreference = 'Stop'; `
     $ProgressPreference = 'SilentlyContinue'; `
     # download nginx
     $nginx_version='1.19.6'; `
@@ -16,6 +19,6 @@ RUN pwsh -Command " `
     # expand install package
     Expand-Archive -Path 'nginx.zip' -DestinationPath '/nginx'; `
     # remove files
-    Remove-Item -Force nginx.zip;"
+    Remove-Item -Force nginx.zip;
 
 ENTRYPOINT nginx.exe -g 'daemon off;'
