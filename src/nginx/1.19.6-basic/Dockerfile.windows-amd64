@@ -13,5 +13,3 @@ ENV NGINX_WAITHOST=localhost NGINX_WAITPORT=80
 
 # before shell content
 ENV RUN_BEFORE_SHELL=''
-
-ENTRYPOINT nginx -g 'daemon off;'

@@ -6,4 +6,4 @@ ENV APPCONFIG=''
 
 # entrypoint
 ENTRYPOINT /before_shell_appconfig_prod.ps1; `
-    nginx -g "daemon off;"
+    nginx.exe

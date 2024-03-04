@@ -5,4 +5,4 @@ ENV NGINX_WAITHOST=localhost NGINX_WAITPORT=80
 
 # entrypoint
 ENTRYPOINT /wait-for-it.ps1 $NGINX_WAITHOST:$NGINX_WAITPORT --timeout=0; `
-    nginx -g "daemon off;"
+    nginx.exe

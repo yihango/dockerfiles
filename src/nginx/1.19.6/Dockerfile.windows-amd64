@@ -7,18 +7,24 @@ USER ContainerAdministrator
 
 SHELL ["pwsh", "-c"]
 
-WORKDIR /nginx
-
-
 
 RUN $ErrorActionPreference = 'Stop'; `
     $ProgressPreference = 'SilentlyContinue'; `
+    # new dirs
+    New-Item -Type Directory -Path /downloads; `
+    Set-Location /downloads; `
     # download nginx
     $nginx_version='1.19.6'; `
-    Invoke-WebRequest -OutFile nginx.zip https://nginx.org/download/nginx-$nginx_version.zip; `
+    Invoke-WebRequest -OutFile './nginx.zip' https://nginx.org/download/nginx-$nginx_version.zip; `
     # expand install package
-    Expand-Archive -Path 'nginx.zip' -DestinationPath '/nginx'; `
+    Expand-Archive -Path './nginx.zip' -DestinationPath '/'; `
+    # rename
+    Rename-Item -Path "/nginx-${nginx_version}" -NewName '/nginx'; `  
     # remove files
     Remove-Item -Force nginx.zip;
 
-ENTRYPOINT nginx.exe -g 'daemon off;'
+
+WORKDIR /nginx
+
+EXPOSE 80
+ENTRYPOINT ["nginx.exe"]

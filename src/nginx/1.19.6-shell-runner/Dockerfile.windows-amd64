@@ -6,4 +6,4 @@ ENV RUN_BEFORE_SHELL=''
 
 # entrypoint
 ENTRYPOINT /before_shell_runner.ps1; `
-    nginx -g "daemon off;"
+    nginx.exe
