@@ -1,5 +1,7 @@
 # 创建复合镜像
 function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
+    # 是否为linux
+    $isLinuxOS = IsLinux
 
     # 暂时不使用
     $buildArgsOption = ""
@@ -32,20 +34,36 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
             # 将特定平台的镜像标签添加到集合中
             $manifestPlateformImageTags.Add($plateformImageTag)
 
-            # # 编译镜像特定平台并推送镜像
-            CmdExec -CmdStr ("docker buildx build" `
-                    + " ${buildArgsOption}" `
-                    + " --platform '${plateform}'" `
-                    + " --provenance false" `
-                    + " -t ${plateformImageTag}" `
-                    + " -f ./${dockerfile} . --push")
+            # windows先编译，linux后编译，linux 编译时推送 manifestImageTag
+            ## linux os
+            if ($isLinuxOS -and $plateform.Contains('linux')) {
+                # docker buildx build
+                CmdExec -CmdStr ("docker buildx build" `
+                        + " ${buildArgsOption}" `
+                        + " --platform '${plateform}'" `
+                        + " --provenance false" `
+                        + " -t ${plateformImageTag}" `
+                        + " -f ./${dockerfile} . --push")
+            }
+            ### windows
+            if (!$isLinuxOS -and $plateform.Contains('windows')) {
+                # docker build
+                CmdExec -CmdStr ("docker build" `
+                        + " ${buildArgsOption}" `
+                        + " -t ${plateformImageTag}" `
+                        + " -f ./${dockerfile} .")
+                
+                # docker push image
+                CmdExec -CmdStr ("docker push ${plateformImageTag}")
+            }
         }
     }
 
     # 创建最终的 manifestImageTag 镜像
-    CreateManifestImage -ManifestImageTag $manifestImageTag `
-        -ManifestPlateformImageTags $manifestPlateformImageTags
-
+    if ($isLinuxOS) {
+        CreateManifestImage -ManifestImageTag $manifestImageTag `
+            -ManifestPlateformImageTags $manifestPlateformImageTags
+    }
  
     Write-Host "============= end $manifestImageTag ============="
     Write-Host ""
