@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM nginx:1.19.6
