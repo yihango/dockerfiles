@@ -1,7 +1,7 @@
 # escape=`
 
 # install image
-FROM --platform=$TARGETPLATFORM mcr.microsoft.com/windows/servercore:ltsc2022 AS installer
+FROM mcr.microsoft.com/windows/servercore:ltsc2022 AS installer
 
 # copy package
 WORKDIR /installer-packages
@@ -14,7 +14,7 @@ Expand-Archive -Path '/installer-packages/redis-x64-3.0.504.zip' -DestinationPat
 
 
 # run image
-FROM --platform=$TARGETPLATFORM mcr.microsoft.com/windows/nanoserver:ltsc2022
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
 WORKDIR /redis
 COPY --from=installer ["/redis", "/redis"]
 
