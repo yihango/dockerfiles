@@ -27,4 +27,5 @@ RUN $ErrorActionPreference = 'Stop'; `
 WORKDIR /nginx
 
 EXPOSE 80
-ENTRYPOINT ["nginx.exe"]
+# ENTRYPOINT ["nginx.exe"]
+CMD ["nginx", "-g", "\"daemon off;\""]
