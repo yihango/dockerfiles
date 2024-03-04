@@ -19,9 +19,9 @@ RUN $ErrorActionPreference = 'Stop'; `
     # expand install package
     Expand-Archive -Path './nginx.zip' -DestinationPath '/'; `
     # rename
-    Rename-Item -Path "/nginx-${nginx_version}" -NewName '/nginx'; `  
+    Rename-Item -Path "/nginx-${nginx_version}" -NewName 'nginx'; `  
     # remove files
-    Remove-Item -Force nginx.zip;
+    Remove-Item -Force './nginx.zip';
 
 
 WORKDIR /nginx
