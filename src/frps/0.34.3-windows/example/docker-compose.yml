@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  frps:
+    container_name: frps
+    image: my-frps
+    ports:
+      - "7000:7000"
+      - "7500:7500"
+    networks:
+      - net
+    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+    volumes:
+      - .\conf:C:\frps\conf
+    command: frps.exe -c C:\\frps\\conf\\frps.ini
+
+networks:
+  net:
