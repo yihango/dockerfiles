@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  frpc:
+    container_name: frpc
+    image: my-frpc
+    networks:
+      - net
+    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+    volumes:
+      - .\conf:C:\frpc\conf
+    command: frpc.exe -c C:\\frpc\\conf\\frpc.ini
+
+networks:
+  net:
