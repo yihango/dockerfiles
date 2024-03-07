@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  minio:
+    container_name: minio
+    image: my-minio
+    ports:
+      - "8235:8235"
+      - "8236:8236"
+    networks:
+      - net
+    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+    env_file:
+      - ./configs/environment.env
+    volumes:
+      - minio_data:C:\minio\data
+      - minio_config:C:\Users\ContainerAdministrator\.minio
+    command: minio.exe server C:\\minio\\data --address '0.0.0.0:8235' --console-address '0.0.0.0:8236'
+
+volumes:
+  minio_data:
+  minio_config:
+
+networks:
+  net:
