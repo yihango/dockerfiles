@@ -12,7 +12,7 @@ $buildImageList = @(
     # "dotnet:6-focal",
     # "dotnet:5-focal-gdi-fontconfig",
     # "dotnet:6-focal-gdi-fontconfig",
-    "nginx:1.19.6", 
+    # "nginx:1.19.6", 
     # "nginx:1.19.6-basic",
     # "nginx:1.19.6-appconfig-prod",
     # "nginx:1.19.6-appconfig-prod-pda",
@@ -92,6 +92,7 @@ $syncSample = @(
     # "duaneduan/wechat-webhook:v1",
     # "mysql:5.7.43",
     # "docker.osgeo.org/geoserver:2.24.x",
+    "loicsharma/baget:0.4.0-preview2"
     ""
 )
 
