@@ -69,6 +69,8 @@ $buildImageList = @(
     # "dotnet:2.1-bionic",
     # "aspnet:2.1-bionic",
     # "aspnet:2.1-bionic-fontconfig",
+    "dotnet:8-jammy",
+    "aspnet:8-jammy",
     ""
 )
 
@@ -92,7 +94,7 @@ $syncSample = @(
     # "duaneduan/wechat-webhook:v1",
     # "mysql:5.7.43",
     # "docker.osgeo.org/geoserver:2.24.x",
-    "loicsharma/baget:0.4.0-preview2"
+    # "loicsharma/baget:0.4.0-preview2"
     ""
 )
 

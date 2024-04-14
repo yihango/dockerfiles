@@ -1,0 +1,10 @@
+FROM --platform=$TARGETPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS base
+
+
+# 安装fontconfig库，用于Pdf导出,安装gdi+ 用于excel
+RUN apt-get update \
+    && apt-get install -y fontconfig libgdiplus\
+    && apt-get clean \
+    && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
+
+    
