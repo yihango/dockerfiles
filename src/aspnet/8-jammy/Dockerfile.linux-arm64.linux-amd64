@@ -25,3 +25,6 @@ RUN apt-get install -y fontconfig libgdiplus \
 # 清理包源
 RUN apt-get clean
 
+# 公共脚本
+COPY ./scripts/  /
+RUN chmod +x /wait-for-it.sh

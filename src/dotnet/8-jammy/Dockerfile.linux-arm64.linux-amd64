@@ -7,4 +7,6 @@ RUN apt-get update \
     && apt-get clean \
     && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
 
-    
+# 公共脚本
+COPY ./scripts/  /
+RUN chmod +x /wait-for-it.sh
