@@ -10,8 +10,8 @@ FROM --platform=$TARGETPLATFORM mcr.microsoft.com/dotnet/aspnet:8.0-jammy AS bas
 RUN apt-get update
 
 # ldap兼容性问题
-RUN apt-get install -y --no-install-recommends libldap-2.4-2 \
-    && apt-get install -y --no-install-recommends libldap-common
+# RUN apt-get install -y --no-install-recommends libldap-2.5.0 \
+#     && apt-get install -y --no-install-recommends libldap-common
 
 # link ldap
 # ln -s /usr/lib/x86_64-linux-gnu/libldap-2.4.so.2 /usr/lib/x86_64-linux-gnu/libldap.so.2 \
