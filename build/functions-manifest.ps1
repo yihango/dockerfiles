@@ -110,11 +110,13 @@ function ImagesCopyManifest($DockerfileDir, $Registry, $Namespace, $TargetRegist
             # windows先同步，linux后同步，linux 同步时推送 manifestImageTag
             ## linux os
             if ($isLinuxOS -and $plateform.Contains('linux')) {
+                CmdExec -CmdStr ("docker pull ${plateformImageTag}")
                 CmdExec -CmdStr ("docker tag ${plateformImageTag} ${targetPlateformImageTag}")
                 CmdExec -CmdStr ("docker push ${targetPlateformImageTag}")
             }
             ### windows
             if (!$isLinuxOS -and $plateform.Contains('windows')) {
+                CmdExec -CmdStr ("docker pull ${plateformImageTag}")
                 CmdExec -CmdStr ("docker tag ${plateformImageTag} ${targetPlateformImageTag}")
                 CmdExec -CmdStr ("docker push ${targetPlateformImageTag}")
             }
