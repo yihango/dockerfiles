@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
+
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+USER ContainerAdministrator
+
+RUN $node_version='16.13.1'; \
+    # download nodejs https://nodejs.org/dist/v$node_version/node-v$node_version-win-x64.zip
+    Invoke-WebRequest -OutFile './nodejs.zip' https://registry.npmmirror.com/-/binary/node/v$node_version/node-v$node_version-win-x64.zip; \
+    Expand-Archive -Path './nodejs.zip' -DestinationPath '/'; \
+    Rename-Item -Path "/node-v${node_version}-win-x64" -NewName 'nodejs'; \
+    Remove-Item -Force './nodejs.zip'; \
+    # download and install vc_redist.x64
+    $vc_redist_installUrl='https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe'; \
+    Invoke-WebRequest -OutFile './vc_redist.x64.exe' $vc_redist_installUrl; \
+    Start-Process -FilePath './vc_redist.x64.exe' -NoNewWindow -ArgumentList '/install', '/quiet', '/norestart' -Wait; \
+    Remove-Item -Force ./vc_redist.x64.exe;
+
+RUN cmd.exe /c "setx PATH \"%PATH%;C:\nodejs\"" /M
+
+# 全局安装 yarn
+RUN npm install -g yarn
