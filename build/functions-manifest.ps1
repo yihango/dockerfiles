@@ -73,20 +73,25 @@ function ImagesBuildManifest($DockerfileDir, $Registry, $Namespace) {
 
 # 复制复合镜像
 function ImagesCopyManifest($DockerfileDir, $Registry, $Namespace, $TargetRegistry) {
+    # 是否为linux
+    $isLinuxOS = IsLinux
 
     # 切换到此目录
     Set-Location $DockerfileDir
 
-    # 镜像指定支持的所有平台
-    $manifestPlateforms = New-Object -TypeName "System.Collections.Generic.List[Object]"
+    # 镜像指定平台的标签（目标）
+    $targetManifestPlateformImageTags = New-Object -TypeName "System.Collections.Generic.List[Object]"
 
     # 获取镜像最基本的标签
     $manifestImageTag = GetManifestImageTag -DockerfileDir $DockerfileDir -Registry $Registry -Namespace $Namespace
+    
+    # 获取镜像最基本的标签（目标仓库）
+    $targetManifestImageTag = GetManifestImageTag -DockerfileDir $DockerfileDir -Registry $TargetRegistry -Namespace $Namespace
 
     # 获取所有的dockerfile
     $dockerfiles = GetDockerfiles -DockerfileDir $DockerfileDir
 
-    Write-Host "============= start copy $manifestImageTag ============="
+    Write-Host "============= start copy $manifestImageTag -> $targetManifestImageTag ============="
 
     # 遍历 Dockerfile 编译镜像
     foreach ($dockerfile in $dockerfiles) {
@@ -94,17 +99,36 @@ function ImagesCopyManifest($DockerfileDir, $Registry, $Namespace, $TargetRegist
         $plateforms = GetPlateforms -DockerfileName $dockerfile
 
         foreach ($plateform in $Plateforms) {
-            $manifestPlateforms.Add($plateform)
+            # 获取特定平台的镜像标签
+            $plateformImageTag = GetPlateformImageTag -ManifestImageTag $manifestImageTag -Plateform $plateform
+            # 获取特定平台的镜像标签（目标仓库）
+            $targetPlateformImageTag = GetPlateformImageTag -ManifestImageTag $targetManifestImageTag -Plateform $plateform
+
+            # 将特定平台的镜像标签添加到集合中
+            $targetManifestPlateformImageTags.Add($targetPlateformImageTag)
+
+            # windows先同步，linux后同步，linux 同步时推送 manifestImageTag
+            ## linux os
+            if ($isLinuxOS -and $plateform.Contains('linux')) {
+                CmdExec -CmdStr ("docker tag ${plateformImageTag} ${targetPlateformImageTag}")
+                CmdExec -CmdStr ("docker push ${targetPlateformImageTag}")
+            }
+            ### windows
+            if (!$isLinuxOS -and $plateform.Contains('windows')) {
+                CmdExec -CmdStr ("docker tag ${plateformImageTag} ${targetPlateformImageTag}")
+                CmdExec -CmdStr ("docker push ${targetPlateformImageTag}")
+            }
         }
     }
 
-    # 复制
-    CopyManifest -TargetRegistry $TargetRegistry `
-        -ManifestImageTag $manifestImageTag `
-        -Plateforms $manifestPlateforms
+    # 创建最终的 manifestImageTag 镜像
+    if ($isLinuxOS) {
+        CreateManifestImage -ManifestImageTag $targetManifestImageTag `
+            -ManifestPlateformImageTags $targetManifestPlateformImageTags
+    }
 
  
-    Write-Host "============= end copy $manifestImageTag ============="
+    Write-Host "============= end copy $manifestImageTag -> $targetManifestImageTag ============="
     Write-Host ""
     Write-Host ""
     Write-Host ""
@@ -178,40 +202,4 @@ function CreateManifestImage($ManifestImageTag, $ManifestPlateformImageTags) {
 
     # 推送
     CmdExec -CmdStr "docker manifest push ${ManifestImageTag}"
-}
-
-# 复制Manifest镜像
-function CopyManifest($TargetRegistry, $ManifestImageTag, $Plateforms) {
-
-    # 临时用的文件
-    $dockerfile = "Syncfile"
-
-    # 创建临时文件并写入内容
-    $dockerfileConent = @"
-ARG IMAGETAG=""
-FROM --platform=`$TARGETPLATFORM `$IMAGETAG
-"@
-    DelFile -Path "./${dockerfile}"
-    WriteFile -Path "./${dockerfile}" -Content $dockerfileConent
-
-    # 编译参数
-    $plateformImageTag = $TargetRegistry + "/" + $ManifestImageTag
-    $plateform = ($Plateforms -join (","))
-    $buildArgsOption = " --build-arg IMAGETAG=${ManifestImageTag} "
-
-    # $ManifestImageTag = "staneee/test:mulite-os"
-    # $plateformImageTag = "staneee/test:linux2"
-    # $plateform = "linux/amd64,linux/arm64"
-    # $dockerfile = "Dockerfile.linux2"
-    # $buildArgsOption = " --build-arg IMAGETAG=${ManifestImageTag} "
-
-    # 执行编译参数
-    CmdExec -CmdStr ("docker buildx build" `
-            + " ${buildArgsOption}" `
-            + " --platform '${plateform}'" `
-            + " -t ${plateformImageTag}" `
-            + " -f ./${dockerfile} . --push")
-
-    # 删除临时文件
-    DelFile -Path "./${dockerfile}"
 }

@@ -70,6 +70,7 @@ function GetImagesInfo() {
 
 # 是否为linux
 function IsLinux() {
+    # return $True
     if ([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([System.Runtime.InteropServices.OSPlatform]::Linux)) {
         return $True
     }

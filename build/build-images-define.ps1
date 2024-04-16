@@ -1,4 +1,4 @@
-$onlyPrint = $false
+$onlyPrint = $False
 
 # 编译镜像 linux/amd64
 $buildImageList = @(

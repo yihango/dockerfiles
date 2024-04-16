@@ -62,10 +62,32 @@ jobs:
         working-directory: ./build
         run: ./build-push.ps1
 
-  build-aliyun:
-    runs-on: ubuntu-22.04
-    name: Images to Aliyun
+  build-aliyun-windows:
+    runs-on: windows-latest
+    name: Images to Aliyun  (Windows)
     needs: [ build-hub-linux ]
+    steps:
+      # checkout source code
+      - uses: actions/checkout@v2
+
+      # login docker hub
+      - name: Login to Aliyun
+        uses: azure/docker-login@v1
+        with:
+          registry: ${{env.ALIYUN_DOCKERHUB}}
+          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
+          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+
+      # build
+      - name: build 1
+        shell: pwsh
+        working-directory: ./build
+        run: ./build-sync-manifest.ps1 -TargetRegistry $env:ALIYUN_DOCKERHUB
+
+  build-aliyun-linux:
+    runs-on: ubuntu-22.04
+    name: Images to Aliyun (Linux)
+    needs: [ build-aliyun-windows ]
     steps:
       # checkout source code
       - uses: actions/checkout@v2
