@@ -1,0 +1,2 @@
+# PowerShell 7.2.18
+FROM mcr.microsoft.com/powershell:lts-nanoserver-ltsc2022

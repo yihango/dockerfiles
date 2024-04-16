@@ -1,0 +1,2 @@
+# PowerShell 7.2.19
+FROM mcr.microsoft.com/powershell:lts-windowsservercore-ltsc2022
