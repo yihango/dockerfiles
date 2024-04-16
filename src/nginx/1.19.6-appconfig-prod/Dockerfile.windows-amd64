@@ -1,9 +1,8 @@
-# escape=`
 FROM staneee/nginx:1.19.6-basic
 
 # appconfig.prod.json content
 ENV APPCONFIG=''
 
 # entrypoint
-ENTRYPOINT /before_shell_appconfig_prod.ps1; `
-    nginx.exe
+ENTRYPOINT ./before_shell_appconfig_prod.ps1; \
+    ./nginx.exe
