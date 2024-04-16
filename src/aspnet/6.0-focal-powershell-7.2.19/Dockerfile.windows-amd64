@@ -40,7 +40,7 @@ RUN Write-host "Verifying valid Version..."; `
     Expand-Archive /installer/powershell.zip -DestinationPath \PowerShell
 
 # Install PowerShell into aspnet:6.0
-FROM staneee/dotnet-aspnet:6.0-focal
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 
 # Copy PowerShell Core from the installer container
 ENV ProgramFiles="C:\Program Files" `
