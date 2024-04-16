@@ -74,7 +74,7 @@ jobs:
       - name: Login to Aliyun
         uses: azure/docker-login@v1
         with:
-          registry: ${{env.ALIYUN_DOCKERHUB}}
+          login-server: ${{env.ALIYUN_DOCKERHUB}}
           username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
           password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
 
