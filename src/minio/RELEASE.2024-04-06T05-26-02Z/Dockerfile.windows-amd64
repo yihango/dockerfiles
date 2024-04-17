@@ -1,0 +1,12 @@
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
+
+USER ContainerAdministrator
+
+WORKDIR /minio
+
+# 会永远拉取最新版本，官方未提供历史版本exe文件，2024-4-17目前最新版本： RELEASE.2024-04-06T05-26-02Z
+ADD https://dl.min.io/server/minio/release/windows-amd64/minio.exe C:\\minio\\minio.exe
+
+EXPOSE 9000 9001
+
+CMD ["minio.exe", "server", "C:\\minio\\data", "--console-address", ":9001"]
