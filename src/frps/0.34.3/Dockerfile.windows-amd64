@@ -1,0 +1,17 @@
+FROM staneee/powershell:lts-nanoserver-ltsc2022
+
+SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+USER ContainerAdministrator
+
+RUN $frps_version='0.34.3'; \
+    Invoke-WebRequest -OutFile './frps.zip' -Uri https://github.com/fatedier/frp/releases/download/v${frps_version}/frp_${frps_version}_windows_amd64.zip; \
+    Expand-Archive -Path './frps.zip' -DestinationPath '/'; \
+    Rename-Item -Path "/frp_${frps_version}_windows_amd64" -NewName 'frps'; \
+    Remove-Item -Force './frps.zip';
+
+WORKDIR /frps
+
+EXPOSE 7000 7500
+
+CMD ["frps.exe"]

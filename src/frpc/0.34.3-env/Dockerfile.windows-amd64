@@ -1,0 +1,22 @@
+FROM staneee/powershell:lts-nanoserver-ltsc2022
+
+SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+USER ContainerAdministrator
+
+RUN $frpc_version='0.34.3'; \
+    Invoke-WebRequest -OutFile './frpc.zip' -Uri https://github.com/fatedier/frp/releases/download/v${frpc_version}/frp_${frpc_version}_windows_amd64.zip; \
+    Expand-Archive -Path './frpc.zip' -DestinationPath '/'; \
+    Rename-Item -Path "/frp_${frpc_version}_windows_amd64" -NewName 'frpc'; \
+    Remove-Item -Force './frpc.zip';
+
+WORKDIR /frpc
+
+COPY ./before_shell_frpc_ini.ps1 .
+
+EXPOSE 7000 7500
+
+ENV FRPC_INI=''
+
+CMD ./before_shell_frpc_ini.ps1; \
+    ./frpc.exe -c C:\\frpc\\frpc.ini
