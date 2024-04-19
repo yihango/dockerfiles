@@ -1,0 +1,59 @@
+# escape=`
+
+ARG ERLANG_VERSION=25.3.2.9
+ARG RABBITMQ_VERSION=3.11.10
+
+FROM mcr.microsoft.com/windows/servercore:ltsc2022 As Installer
+USER ContainerAdministrator
+
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; "]
+
+ARG ERLANG_VERSION
+ARG RABBITMQ_VERSION
+
+ENV ERLANG_VERSION=$ERLANG_VERSION `
+    RABBITMQ_VERSION=$RABBITMQ_VERSION `
+    ERLANG_HOME=C:\erlang
+
+RUN Write-Host -Object 'Downloading Erlang OTP' ; `
+    Invoke-WebRequest -UseBasicParsing -Uri $('http://erlang.org/download/otp_win64_{0}.exe' -f $env:ERLANG_VERSION) -OutFile './otp_win64.exe'; `
+    Unblock-File -Path './otp_win64.exe'; `
+    Write-Host -Object 'Installing Erlang OTP'; `
+    Start-Process -NoNewWindow -Wait -FilePath './otp_win64.exe' -ArgumentList /S, /D=${env:ERLANG_HOME}; `
+    Write-Host -Object 'Removing Erlang OTP Installer'; `
+    Remove-Item -Force './otp_win64.exe'; `
+    Write-Host -Object 'Done Installing Erlang OTP'; `
+    Write-Host -Object 'Downloading RabbitMQ Zip'; `
+    Invoke-WebRequest -UseBasicParsing -Uri $('https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.11.10/rabbitmq-server-windows-{0}.zip' -f $env:RABBITMQ_VERSION) -OutFile './rabbitmq.zip'; `
+    Unblock-File -Path './rabbitmq.zip'; `
+    Write-Host -Object 'Extracting RabbitMQ Zip'; `
+    Expand-Archive -Path './rabbitmq.zip' -DestinationPath '/'; `
+    Rename-Item -Path "/rabbitmq_server-${env:RABBITMQ_VERSION}" -NewName 'rabbitmq'; `
+    Write-Host -Object 'Removing RabbitMQ Zip'; `
+    Remove-Item -Path './rabbitmq.zip'; `
+    Write-Host -Object 'Done Installing RabbitMQ'
+
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
+USER ContainerAdministrator
+
+COPY --from=Installer ["/erlang", "/erlang"]
+COPY --from=Installer ["/rabbitmq", "/rabbitmq"]
+COPY --from=Installer ["/Windows/System32/vcruntime140.dll", "/Windows/System32"]
+COPY --from=Installer ["/Windows/System32/msvcp140.dll", "/Windows/System32"]
+COPY --from=Installer ["/Windows/System32/vcruntime140_1.dll", "/Windows/System32"]
+
+ENV ERLANG_HOME=C:\erlang `
+    RABBITMQ_BASE=C:\rabbitmq\data `
+    RABBITMQ_CONFIG_FILE=c:\rabbitmq\data\rabbitmq.conf `
+    HOMEDRIVE=C:\ `
+    HOMEPATH=Users\ContainerAdministrator
+
+RUN setx /M PATH "%PATH%;%ERLANG_HOME%\bin"
+
+RUN c:\rabbitmq\sbin\rabbitmq-plugins.bat enable rabbitmq_management --offline
+
+RUN ["cmd", "/c", "echo loopback_users.guest = false> C:\\rabbitmq\\data\\rabbitmq.conf"]
+
+EXPOSE 5672 15672 15673
+
+CMD "c:\rabbitmq\sbin\rabbitmq-server.bat"
