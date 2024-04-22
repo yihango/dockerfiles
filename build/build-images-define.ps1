@@ -24,7 +24,7 @@ $buildImageList = @(
     # "node:14.21.3",
     # "node:16.13.1",
     # "node:20.10.0",
-    # "powershell:lts-debian-10-focal",
+    "powershell:lts-debian-10-focal",
     # "powershell:lts-debian-10-focal-node-14",
     # "powershell:lts-debian-10-focal-node-16",
     # "powershell:lts-debian-10-focal-node-20",
@@ -71,8 +71,8 @@ $buildImageList = @(
     # "dotnet:2.1-bionic",
     # "aspnet:2.1-bionic",
     # "aspnet:2.1-bionic-fontconfig",
-    "dotnet:8-jammy",
-    "aspnet:8-jammy",
+    # "dotnet:8-jammy",
+    # "aspnet:8-jammy",
     ""
 )
 
