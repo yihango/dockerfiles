@@ -18,6 +18,7 @@ env:
   ALIYUN_DOCKERHUB: ${{ vars.ALIYUN_DOCKERHUB }}
   ALIYUN_DOCKERHUB_USERNAME: ${{ vars.ALIYUN_DOCKERHUB_USERNAME }}
   ALIYUN_DOCKERHUB_TOKEN: ${{ secrets.ALIYUN_DOCKERHUB_TOKEN }}
+  ALIYUN_HK_DOCKERHUB: ${{ vars.ALIYUN_HK_DOCKERHUB }}
 
 jobs:
   # ----------------------------------- build -----------------------------------
@@ -106,6 +107,50 @@ jobs:
         working-directory: ./build
         run: ./build-sync-manifest.ps1 -TargetRegistry $env:ALIYUN_DOCKERHUB
 
+  build-aliyun-hk-windows:
+    runs-on: windows-latest
+    name: Images to Aliyun HK (Windows)
+    needs: [ build-hub-linux ]
+    steps:
+      # checkout source code
+      - uses: actions/checkout@v2
+
+      # login docker hub
+      - name: Login to Aliyun
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{env.ALIYUN_HK_DOCKERHUB}}
+          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
+          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+
+      # build
+      - name: build 1
+        shell: pwsh
+        working-directory: ./build
+        run: ./build-sync-manifest.ps1 -TargetRegistry $env:ALIYUN_HK_DOCKERHUB
+
+  build-aliyun-hk-linux:
+    runs-on: ubuntu-22.04
+    name: Images to Aliyun HK (Linux)
+    needs: [ build-aliyun-hk-windows ]
+    steps:
+      # checkout source code
+      - uses: actions/checkout@v2
+
+      # login docker hub
+      - name: Login to Aliyun
+        uses: docker/login-action@v1
+        with:
+          registry: ${{env.ALIYUN_HK_DOCKERHUB}}
+          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
+          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+
+      # build
+      - name: build 1
+        shell: pwsh
+        working-directory: ./build
+        run: ./build-sync-manifest.ps1 -TargetRegistry $env:ALIYUN_HK_DOCKERHUB
+
   # ----------------------------------- sync -----------------------------------
 
   sync-hub:
@@ -148,3 +193,24 @@ jobs:
         shell: pwsh
         working-directory: ./build
         run: ./build-sync.ps1 -TargetRegistry $env:ALIYUN_DOCKERHUB
+
+  sync-aliyun-hk:
+    runs-on: ubuntu-22.04
+    name: Sync to Aliyun HK
+    steps:
+      # checkout source code
+      - uses: actions/checkout@v2
+
+      # login docker hub
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          registry: ${{env.ALIYUN_HK_DOCKERHUB}}
+          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
+          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+
+      # build
+      - name: build
+        shell: pwsh
+        working-directory: ./build
+        run: ./build-sync.ps1 -TargetRegistry $env:ALIYUN_HK_DOCKERHUB
