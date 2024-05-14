@@ -6,14 +6,14 @@ $onlyPrint = $False
 $buildImageList = @(
     # ## 
     # "aspnet:6-centos-7.9.2009-gdi-fontconfig",
-    # "aspnet:6-focal-gdi-fontconfig",
+    "aspnet:6-focal-gdi-fontconfig",
     # "aspnet:5-focal-gdi-fontconfig",
     # "aspnet:5-focal-puppeteer", # 未完成
     # "aspnet:6-focal-puppeteer", # 未完成
     # "dotnet:5-focal",
-    # "dotnet:6-focal",
+    "dotnet:6-focal",
     # "dotnet:5-focal-gdi-fontconfig",
-    # "dotnet:6-focal-gdi-fontconfig",
+    "dotnet:6-focal-gdi-fontconfig",
     # "nginx:1.19.6", 
     # "nginx:1.19.6-basic",
     # "nginx:1.19.6-appconfig-prod",
@@ -68,11 +68,11 @@ $buildImageList = @(
     # "android:30.0.3",
     # "mssql:2019-latest",
     # "redis:3.0.5",
-    "dotnet:2.1-bionic",
-    "aspnet:2.1-bionic",
-    "aspnet:2.1-bionic-fontconfig",
-    "dotnet:8-jammy",
-    "aspnet:8-jammy",
+    # "dotnet:2.1-bionic",
+    # "aspnet:2.1-bionic",
+    # "aspnet:2.1-bionic-fontconfig",
+    # "dotnet:8-jammy",
+    # "aspnet:8-jammy",
     ""
 )
 

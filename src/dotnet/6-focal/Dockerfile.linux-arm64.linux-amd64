@@ -1,1 +1,10 @@
 FROM --platform=$TARGETPLATFORM mcr.microsoft.com/dotnet/sdk:6.0-focal AS base
+
+# 更新包源
+RUN apt-get update
+
+# 安装zip
+RUN apt-get install -y zip
+
+# 清理包源
+RUN apt-get clean

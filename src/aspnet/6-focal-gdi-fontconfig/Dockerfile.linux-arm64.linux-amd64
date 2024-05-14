@@ -22,6 +22,9 @@ RUN apt-get install -y --no-install-recommends libldap-2.4-2 \
 RUN apt-get install -y fontconfig libgdiplus \
     && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
 
+# 安装zip
+RUN apt-get install -y zip
+
 # 清理包源
 RUN apt-get clean
 
