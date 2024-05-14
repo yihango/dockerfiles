@@ -23,7 +23,7 @@ RUN apt-get install -y fontconfig libgdiplus \
     && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
 
 # 安装zip
-RUN apt-get install -y zip
+RUN apt-get install -y zip wget
 
 # 清理包源
 RUN apt-get clean
