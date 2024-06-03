@@ -1,0 +1,2 @@
+FROM --platform=$TARGETPLATFORM emqx/emqx:5.7.0 AS base
+
