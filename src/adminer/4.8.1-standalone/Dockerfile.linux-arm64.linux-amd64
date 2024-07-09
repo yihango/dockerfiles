@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM adminer:4.8.1-standalone
