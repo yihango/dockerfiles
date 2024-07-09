@@ -73,7 +73,18 @@ $buildImageList = @(
     # "aspnet:2.1-bionic-fontconfig",
     # "dotnet:8-jammy",
     # "aspnet:8-jammy",
-    "emqx:5.7.0",
+    # "emqx:5.7.0",
+    "postgres:12",
+    "postgres:12.19",
+    "postgres:13",
+    "postgres:13.15",
+    "postgres:14",
+    "postgres:14.5",
+    "postgres:14.12",
+    "postgres:15",
+    "postgres:15.7",
+    "postgres:16",
+    "postgres:16.3",
     ""
 )
 
