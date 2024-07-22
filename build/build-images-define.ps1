@@ -23,8 +23,9 @@ $buildImageList = @(
     # "node:8.9.4",
     # "node:14.21.3",
     # "node:16.13.1",
+    "node:18.12.0",
     # "node:20.10.0",
-    "node:22.3.0",
+    # "node:22.3.0",
     # "powershell:lts-debian-10-focal",
     # "powershell:lts-debian-10-focal-node-14",
     # "powershell:lts-debian-10-focal-node-16",
@@ -87,6 +88,7 @@ $buildImageList = @(
     # "postgres:16",
     # "postgres:16.3",
     # "adminer:4.8.1-standalone",
+    "registry:2.8.3",
     ""
 )
 
