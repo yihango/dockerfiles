@@ -1,0 +1,16 @@
+FROM --platform=$TARGETPLATFORM node:16.13.2
+
+# 工作目录
+WORKDIR /app
+
+# 复制代码
+COPY app.js package.json package-lock.json ./
+
+# 安装
+RUN npm ci
+
+# 暴露端口
+EXPOSE 3000
+
+# 启动服务器
+CMD [ "node", "./app.js" ]

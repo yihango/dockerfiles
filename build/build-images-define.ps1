@@ -90,6 +90,7 @@ $buildImageList = @(
     # "postgres:16.3",
     # "adminer:4.8.1-standalone",
     # "registry:2.8.3",
+    "api-service:el-login-encrypt",
     ""
 )
 
