@@ -23,7 +23,7 @@ $buildImageList = @(
     # "node:8.9.4",
     # "node:14.21.3",
     # "node:16.13.1",
-    "node:16.13.2",
+    # "node:16.13.2",
     # "node:18.12.0",
     # "node:20.10.0",
     # "node:22.3.0",
@@ -62,6 +62,7 @@ $buildImageList = @(
     # "wait-for-it:default",
     # "minio:RELEASE.2021-12-27T07-23-18Z",
     # "mongo:4.2.8-bionic",
+    "mongo:7.0.12",
     # "haproxy:2.2.28-alpine",
     # "mysql:8.1.0",
     # # ## 
@@ -90,7 +91,7 @@ $buildImageList = @(
     # "postgres:16.3",
     # "adminer:4.8.1-standalone",
     # "registry:2.8.3",
-    "api-service:el-login-encrypt",
+    # "api-service:el-login-encrypt",
     ""
 )
 
