@@ -62,7 +62,7 @@ $buildImageList = @(
     # "wait-for-it:default",
     # "minio:RELEASE.2021-12-27T07-23-18Z",
     # "mongo:4.2.8-bionic",
-    "mongo:7.0.12",
+    # "mongo:7.0.12",
     # "haproxy:2.2.28-alpine",
     # "mysql:8.1.0",
     # # ## 
@@ -92,6 +92,7 @@ $buildImageList = @(
     # "adminer:4.8.1-standalone",
     # "registry:2.8.3",
     # "api-service:el-login-encrypt",
+    "acme.sh:3.0.9",
     ""
 )
 
