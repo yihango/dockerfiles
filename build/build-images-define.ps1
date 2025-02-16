@@ -40,7 +40,7 @@ $buildImageList = @(
     # "powershell:lts-debian-10-focal-dotnet-6-node-16",
     # "powershell:lts-debian-10-focal-dotnet-6-node-20",
     # "frps:0.34.3",
-    "frpc:0.34.3",
+    # "frpc:0.34.3",
     # "frpc:0.34.3-env",
     # "common-scripts:alpine-3.17",
     # "ntp:chrony",
@@ -94,6 +94,8 @@ $buildImageList = @(
     # "registry:2.8.3",
     # "api-service:el-login-encrypt",
     # "acme.sh:3.0.9",
+    "gitea:1.23",
+    "gitea:1.23-rootless",
     ""
 )
 
