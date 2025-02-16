@@ -1,6 +1,9 @@
 FROM --platform=$TARGETPLATFORM gitea/runner-images:ubuntu-22.04-slim
 
-RUN apt-get install -y \
+# RUN sed -i 's/deb.debian.org/mirrors.huaweicloud.com/g' /etc/apt/sources.list
+
+RUN apt-get update \
+    && apt-get install -y \
     ca-certificates \
     curl \
     gnupg \
@@ -8,10 +11,12 @@ RUN apt-get install -y \
     gnupg2 \
     software-properties-common \
     zip \
+    wget \
     && wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb \
     && dpkg -i packages-microsoft-prod.deb \
     && apt update \
     && apt install -y powershell \
-    && apt-get clean
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* 
 
     
