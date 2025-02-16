@@ -94,8 +94,9 @@ $buildImageList = @(
     # "registry:2.8.3",
     # "api-service:el-login-encrypt",
     # "acme.sh:3.0.9",
-    "gitea:1.23",
-    "gitea:1.23-rootless",
+    # "gitea:1.23",
+    # "gitea:1.23-rootless",
+    "gitea-runner:0.2.11",
     ""
 )
 
