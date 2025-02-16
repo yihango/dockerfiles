@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM snowdreamtech/frpc:0.34.3
