@@ -96,7 +96,13 @@ $buildImageList = @(
     # "acme.sh:3.0.9",
     # "gitea:1.23",
     # "gitea:1.23-rootless",
-    "gitea-runner:0.2.11",
+    # "gitea-runner:0.2.11",
+    "gitea-runner-images:ubuntu-20.04",
+    "gitea-runner-images:ubuntu-20.04-slim",
+    "gitea-runner-images:ubuntu-22.04",
+    "gitea-runner-images:ubuntu-22.04-slim",
+    "gitea-runner-images:ubuntu-latest",
+    "gitea-runner-images:ubuntu-latest-slim",
     ""
 )
 
