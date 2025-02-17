@@ -24,3 +24,4 @@ curl -L -o /tmp/powershell.tar.gz "${ps_package_url}" &&
     rm -rf /tmp/powershell.tar.gz &&
     chmod +x /opt/microsoft/powershell/7/pwsh &&
     ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+
