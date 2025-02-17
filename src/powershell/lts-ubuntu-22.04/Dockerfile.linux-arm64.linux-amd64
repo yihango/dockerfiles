@@ -10,26 +10,15 @@ RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
 RUN apt-get update \
   # install basic
   && apt-get install --no-install-recommends -y \
-  git \
   ca-certificates \
   curl \
   gnupg \
-  lsb-release \
-  less \
-  locales \
-  gss-ntlmssp \
-  libicu63 \
-  libssl1.1 \
-  libc6 \
-  libgcc1 \
-  libgssapi-krb5-2 \
-  libstdc++6 \
-  zlib1g \
-  openssh-client \
-  wget \
   apt-transport-https \
-  software-properties-common \
+  gnupg2 \
+  software-properties-common
+  git \
   vim \
+  git \
   # install powershell source
   && source /etc/os-release \
   && wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb \
