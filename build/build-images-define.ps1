@@ -43,7 +43,7 @@ $buildImageList = @(
     # "powershell:lts-debian-10-focal-dotnet-6-node-16",
     # "powershell:lts-debian-10-focal-dotnet-6-node-20",
     # "powershell:lts-ubuntu-22.04",
-    "powershell:lts-ubuntu-22.04-docker",
+    # "powershell:lts-ubuntu-22.04-docker",
     # "powershell:lts-ubuntu-22.04-docker-node16",
     # "powershell:lts-ubuntu-22.04-docker-node20",
     # "powershell:lts-ubuntu-22.04-docker-node22",
@@ -111,8 +111,8 @@ $buildImageList = @(
     # "gitea-runner-images:ubuntu-22.04-slim",
     # "gitea-runner-images:ubuntu-latest",
     # "gitea-runner-images:ubuntu-latest-slim",
-    # "ubuntu:20.04",
-    # "ubuntu:22.04",
+    "ubuntu:20.04",
+    "ubuntu:22.04",
     ""
 )
 
