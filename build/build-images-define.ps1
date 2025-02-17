@@ -42,7 +42,7 @@ $buildImageList = @(
     # "powershell:lts-debian-10-focal-dotnet-6",
     # "powershell:lts-debian-10-focal-dotnet-6-node-16",
     # "powershell:lts-debian-10-focal-dotnet-6-node-20",
-    "powershell:lts-ubuntu-22.04",
+    # "powershell:lts-ubuntu-22.04",
     # "powershell:lts-ubuntu-22.04-docker",
     # "powershell:lts-ubuntu-22.04-docker-node16",
     # "powershell:lts-ubuntu-22.04-docker-node20",
