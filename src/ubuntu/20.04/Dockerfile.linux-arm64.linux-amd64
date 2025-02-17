@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM ubuntu:20.04

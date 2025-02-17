@@ -111,6 +111,8 @@ $buildImageList = @(
     # "gitea-runner-images:ubuntu-22.04-slim",
     # "gitea-runner-images:ubuntu-latest",
     # "gitea-runner-images:ubuntu-latest-slim",
+    "ubuntu:20.04",
+    "ubuntu:22.04",
     ""
 )
 

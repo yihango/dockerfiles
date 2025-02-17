@@ -16,8 +16,6 @@ RUN apt-get update \
   apt-transport-https \
   gnupg2 \
   software-properties-common
-  vim \
-  git \
   # install powershell source
   && source /etc/os-release \
   && wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb \
