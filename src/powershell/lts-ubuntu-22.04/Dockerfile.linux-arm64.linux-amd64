@@ -1,22 +1,6 @@
-FROM --platform=$TARGETPLATFORM ubuntu:22.04
+FROM --platform=$TARGETPLATFORM staneee/ubuntu:22.04
 
-# change source
-RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
-  && cp -a /etc/apt/sources.list /etc/apt/sources.list.hw \
-  && sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list.hw \
-  && sed -i "s@http://.*security.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list.hw
-
-# install baisc depends
 RUN apt-get update \
-  # install basic
-  && apt-get install --no-install-recommends -y \
-  ca-certificates \
-  curl \
-  gnupg \
-  apt-transport-https \
-  gnupg2 \
-  software-properties-common
-  # install powershell source
   && source /etc/os-release \
   && wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb \
   && dpkg -i packages-microsoft-prod.deb \
