@@ -9,7 +9,6 @@ ARG PS_VERSION=7.5.0
 #   && rm pwsh.deb
 
 COPY ./pwsh-install-${TARGETARCH}.sh /root/pwsh-install.sh
-RUN /bin/bash /root/pwsh-install.sh \
-  && /root/pwsh-install.sh "${PS_VERSION}"
+RUN /bin/bash /root/pwsh-install.sh "${PS_VERSION}"
 
 ENTRYPOINT /bin/bash
