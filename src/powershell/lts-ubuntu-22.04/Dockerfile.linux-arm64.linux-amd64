@@ -16,7 +16,6 @@ RUN apt-get update \
   apt-transport-https \
   gnupg2 \
   software-properties-common
-  git \
   vim \
   git \
   # install powershell source
