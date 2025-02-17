@@ -3,8 +3,6 @@ FROM --platform=$TARGETPLATFORM staneee/ubuntu:22.04
 ARG TARGETARCH
 ARG PS_VERSION=7.5.0
 
-COPY ./pwsh-install-${TARGETARCH}.sh /root/pwsh-install.sh
-
 RUN wget https://github.com/PowerShell/PowerShell/releases/download/v${PS_VERSION}/powershell_${PS_VERSION}-1.deb_${TARGETARCH}.deb -o pwsh.deb \
   && dpkg -i pwsh.deb \
   && apt-get install -f \
