@@ -31,6 +31,7 @@ $buildImageList = @(
     # "powershell:lts-debian-10-focal-node-14",
     # "powershell:lts-debian-10-focal-node-16",
     # "powershell:lts-debian-10-focal-node-20",
+    "powershell:lts-debian-10-focal-docker",
     # "powershell:lts-debian-10-focal-docker-20-10-21",
     # "powershell:lts-debian-10-focal-docker-20-10-21-zip",
     # "powershell:lts-debian-10-focal-dotnet-5",
@@ -97,12 +98,12 @@ $buildImageList = @(
     # "gitea:1.23",
     # "gitea:1.23-rootless",
     # "gitea-runner:0.2.11",
-    "gitea-runner-images:ubuntu-20.04",
-    "gitea-runner-images:ubuntu-20.04-slim",
-    "gitea-runner-images:ubuntu-22.04",
-    "gitea-runner-images:ubuntu-22.04-slim",
-    "gitea-runner-images:ubuntu-latest",
-    "gitea-runner-images:ubuntu-latest-slim",
+    # "gitea-runner-images:ubuntu-20.04",
+    # "gitea-runner-images:ubuntu-20.04-slim",
+    # "gitea-runner-images:ubuntu-22.04",
+    # "gitea-runner-images:ubuntu-22.04-slim",
+    # "gitea-runner-images:ubuntu-latest",
+    # "gitea-runner-images:ubuntu-latest-slim",
     ""
 )
 
