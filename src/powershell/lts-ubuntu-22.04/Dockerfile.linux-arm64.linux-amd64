@@ -1,16 +1,14 @@
 FROM --platform=$TARGETPLATFORM staneee/ubuntu:22.04
 
-ARG VERSION_ID=22.04
+ARG TARGETARCH
+ARG PS_VERSION=7.5.0
 
-RUN apt-get update \
-  && wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb \
-  && dpkg -i packages-microsoft-prod.deb \
-  && rm packages-microsoft-prod.deb \
-  && apt-get update \
-  && apt-get install --no-install-recommends -y powershell \
-  && apt-get dist-upgrade -y \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+COPY ./pwsh-install-${TARGETARCH}.sh /root/pwsh-install.sh
+
+RUN wget https://github.com/PowerShell/PowerShell/releases/download/v${PS_VERSION}/powershell_${PS_VERSION}-1.deb_${TARGETARCH}.deb -o pwsh.deb \
+  && dpkg -i pwsh.deb \
+  && apt-get install -f \
+  && rm pwsh.deb
 
 
 ENTRYPOINT /bin/bash
