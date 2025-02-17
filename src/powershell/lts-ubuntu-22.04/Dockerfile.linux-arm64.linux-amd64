@@ -1,7 +1,8 @@
 FROM --platform=$TARGETPLATFORM staneee/ubuntu:22.04
 
+ARG VERSION_ID=22.04
+
 RUN apt-get update \
-  && source /etc/os-release \
   && wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb \
   && dpkg -i packages-microsoft-prod.deb \
   && rm packages-microsoft-prod.deb \

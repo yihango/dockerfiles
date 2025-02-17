@@ -1,4 +1,8 @@
-FROM --platform=$TARGETPLATFORM ubuntu:22.04
+FROM --platform=$TARGETPLATFORM ubuntu:20.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+ENV TZ=Asia/Shanghai
 
 # change source
 RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
@@ -20,3 +24,5 @@ RUN apt-get update \
   && apt-get dist-upgrade -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
+
+# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
