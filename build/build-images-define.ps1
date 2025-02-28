@@ -102,8 +102,8 @@ $buildImageList = @(
     # "registry:2.8.3",
     # "api-service:el-login-encrypt",
     # "acme.sh:3.0.9",
-    "gitea:1.23",
-    "gitea:1.23-rootless",
+    # "gitea:1.23",
+    # "gitea:1.23-rootless",
     # "gitea:1.24",
     # "gitea:1.24-rootless",
     # "gitea-runner:0.2.11",
@@ -139,6 +139,10 @@ $syncSample = @(
     # "mysql:5.7.43",
     # "docker.osgeo.org/geoserver:2.24.x",
     # "loicsharma/baget:0.4.0-preview2"
+    "m1k1o/neko:chromium",
+    "m1k1o/neko:microsoft-edge",
+    "m1k1o/neko:google-chrome",
+    "m1k1o/neko:firefox",
     ""
 )
 
