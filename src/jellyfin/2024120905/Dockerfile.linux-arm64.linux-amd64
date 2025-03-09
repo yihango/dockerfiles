@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM jellyfin/jellyfin:2024120905  AS base
