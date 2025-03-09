@@ -1,0 +1,8 @@
+# escape=`
+FROM staneee/nginx:1.24.0-basic
+
+ENV NGINX_WAITHOST=localhost NGINX_WAITPORT=80
+
+# entrypoint
+ENTRYPOINT /wait-for-it.ps1 $NGINX_WAITHOST:$NGINX_WAITPORT --timeout=0; `
+    nginx.exe

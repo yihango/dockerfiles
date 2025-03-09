@@ -1,0 +1,8 @@
+FROM --platform=$TARGETPLATFORM staneee/nginx:1.24.0-basic
+
+# before shell content
+ENV RUN_BEFORE_SHELL=''
+
+# entrypoint
+ENTRYPOINT /before_shell_runner.sh \
+    && nginx -g "daemon off;"

@@ -1,0 +1,8 @@
+FROM --platform=$TARGETPLATFORM staneee/nginx:1.24.0-basic
+
+# appconfig.prod.json content
+ENV APPCONFIG=''
+
+# entrypoint
+ENTRYPOINT /before_shell_appconfig_prod_pda.sh \
+    && nginx -g "daemon off;"

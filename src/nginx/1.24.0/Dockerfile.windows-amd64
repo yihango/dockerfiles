@@ -1,0 +1,39 @@
+# escape=`
+
+# run image
+FROM mcr.microsoft.com/powershell:lts-7.2-nanoserver-ltsc2022
+
+USER ContainerAdministrator
+
+SHELL ["pwsh", "-c"]
+
+
+RUN $ErrorActionPreference = 'Stop'; `
+    $ProgressPreference = 'SilentlyContinue'; `
+    # new dirs
+    New-Item -Type Directory -Path /downloads; `
+    Set-Location /downloads; `
+    # download nginx
+    $nginx_version='1.24.0'; `
+    Invoke-WebRequest -OutFile './nginx.zip' https://nginx.org/download/nginx-$nginx_version.zip; `
+    # expand install package
+    Expand-Archive -Path './nginx.zip' -DestinationPath '/'; `
+    # rename
+    Rename-Item -Path "/nginx-${nginx_version}" -NewName 'nginx'; `  
+    # remove files
+    Remove-Item -Force './nginx.zip';
+
+# Make sure that Docker always uses default DNS servers which hosted by Dockerd.exe
+RUN Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name ServerPriorityTimeLimit -Value 0 -Type DWord; `
+    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name ScreenDefaultServers -Value 0 -Type DWord; `
+    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name ScreenUnreachableServers -Value 0 -Type DWord
+
+# Shorten DNS cache times
+RUN Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxCacheTtl -Value 30 -Type DWord; `
+    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxNegativeCacheTtl -Value 30 -Type DWord
+
+WORKDIR /nginx
+
+EXPOSE 80
+# ENTRYPOINT ["nginx.exe"]
+CMD ["nginx", "-g", "\"daemon off;\""]
