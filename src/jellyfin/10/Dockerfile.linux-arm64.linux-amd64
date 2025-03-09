@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM jellyfin/jellyfin:10  AS base
