@@ -121,7 +121,8 @@ $buildImageList = @(
     # "gitea-runner-images:ubuntu-latest-slim",
     # "ubuntu:20.04",
     # "ubuntu:22.04",
-    "jellyfin:2025030305",
+    "jellyfin:2025022405",
+    # "jellyfin:2025030305",
     ""
 )
 
