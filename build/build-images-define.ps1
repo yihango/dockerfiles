@@ -22,10 +22,10 @@ $buildImageList = @(
     # "nginx:1.19.6-wait-for-it",
     # "nginx:1.24.0", 
     # "nginx:1.24.0-basic",
-    "nginx:1.24.0-appconfig-prod",
-    "nginx:1.24.0-appconfig-prod-pda",
-    "nginx:1.24.0-shell-runner",
-    "nginx:1.24.0-wait-for-it",
+    # "nginx:1.24.0-appconfig-prod",
+    # "nginx:1.24.0-appconfig-prod-pda",
+    # "nginx:1.24.0-shell-runner",
+    # "nginx:1.24.0-wait-for-it",
     # "node:8.9.4",
     # "node:14.21.3",
     # "node:16.13.1",
@@ -121,6 +121,7 @@ $buildImageList = @(
     # "gitea-runner-images:ubuntu-latest-slim",
     # "ubuntu:20.04",
     # "ubuntu:22.04",
+    "jellyfin:2025030305",
     ""
 )
 
