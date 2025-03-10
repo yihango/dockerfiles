@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM moby/buildkit:buildx-stable-1 AS base

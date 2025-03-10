@@ -8,6 +8,7 @@ RUN apt-get update \
     && apt-get install -y nodejs \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* 
+RUN npm install -g yarn
 
 # dotnet
 RUN apt-get update \
@@ -21,7 +22,6 @@ RUN apt-get update \
     && /dotnet-install.sh -c 7.0 --install-dir /usr/share/dotnet \
     && /dotnet-install.sh -c 8.0 --install-dir /usr/share/dotnet \
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
-    
-RUN npm install -g yarn
+
 
 ENTRYPOINT /bin/bash

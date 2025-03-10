@@ -52,7 +52,7 @@ $buildImageList = @(
     # "powershell:lts-ubuntu-22.04-docker",
     # "powershell:lts-ubuntu-22.04-docker-node16",
     # "powershell:lts-ubuntu-22.04-docker-node20",
-    "powershell:lts-ubuntu-22.04-allinone",
+    # "powershell:lts-ubuntu-22.04-allinone",
     # "frps:0.34.3",
     # "frpc:0.34.3",
     # "frpc:0.34.3-env",
@@ -126,6 +126,8 @@ $buildImageList = @(
     # "jellyfin:2025022405",
     # "jellyfin:2025030305",
     # "samba:4.21.4",
+    "buildkit:buildx-stable-1",
+    "buildkit:buildx-stable-1-rootless",
     ""
 )
 
