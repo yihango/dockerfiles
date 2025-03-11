@@ -130,8 +130,8 @@ $buildImageList = @(
     # "buildkit:buildx-stable-1-rootless",
     # "binfmt:qemu-v9.2.0",
     # "binfmt:qemu-v9.2.2",
-    "busybox:1",
-    "busybox:latest",
+    # "busybox:1",
+    # "busybox:latest",
     ""
 )
 
