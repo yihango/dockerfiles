@@ -128,8 +128,10 @@ $buildImageList = @(
     # "samba:4.21.4",
     # "buildkit:buildx-stable-1",
     # "buildkit:buildx-stable-1-rootless",
-    "binfmt:qemu-v9.2.0",
-    "binfmt:qemu-v9.2.2",
+    # "binfmt:qemu-v9.2.0",
+    # "binfmt:qemu-v9.2.2",
+    "busybox:1",
+    "busybox:latest",
     ""
 )
 
