@@ -5,4 +5,8 @@ ARG VERSION_STRING=5:27.3.1-1~ubuntu.22.04~jammy
 
 COPY ./docker-install.sh /root/docker-install.sh
 
+# install docker buildx
+COPY --from=docker/buildx-bin:0.21.2 /buildx /usr/libexec/docker/cli-plugins/docker-buildx
+RUN docker buildx version
+
 RUN /bin/bash /root/docker-install.sh "${VERSION_STRING}"
