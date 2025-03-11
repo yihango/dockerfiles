@@ -126,8 +126,10 @@ $buildImageList = @(
     # "jellyfin:2025022405",
     # "jellyfin:2025030305",
     # "samba:4.21.4",
-    "buildkit:buildx-stable-1",
-    "buildkit:buildx-stable-1-rootless",
+    # "buildkit:buildx-stable-1",
+    # "buildkit:buildx-stable-1-rootless",
+    "binfmt:qemu-v9.2.0",
+    "binfmt:qemu-v9.2.2",
     ""
 )
 
