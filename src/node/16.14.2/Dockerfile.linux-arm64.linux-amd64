@@ -1,0 +1,3 @@
+FROM --platform=$TARGETPLATFORM node:16.14.2
+
+RUN npm install -g pnpm@latest-8 
