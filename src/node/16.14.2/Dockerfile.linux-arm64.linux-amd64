@@ -1,3 +1,6 @@
 FROM --platform=$TARGETPLATFORM node:16.14.2
 
-RUN npm install -g pnpm@latest-8 
+RUN mkdir /root/.pnpm \
+    && npm install -g pnpm@latest-8 \
+    && pnpm config set store-dir /root/.pnpm --global
+
