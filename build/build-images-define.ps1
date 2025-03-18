@@ -30,7 +30,7 @@ $buildImageList = @(
     # "node:14.21.3",
     # "node:16.13.1",
     # "node:16.13.2",
-    "node:16.14.2",
+    # "node:16.14.2",
     # "node:18.12.0",
     # "node:20.10.0",
     # "node:22.3.0",
@@ -133,6 +133,8 @@ $buildImageList = @(
     # "binfmt:qemu-v9.2.2",
     # "busybox:1",
     # "busybox:latest",
+    "beszel:0.10",
+    "beszel-agent:0.10",
     ""
 )
 

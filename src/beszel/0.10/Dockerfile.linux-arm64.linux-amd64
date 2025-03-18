@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM henrygd/beszel:0.10 AS base
