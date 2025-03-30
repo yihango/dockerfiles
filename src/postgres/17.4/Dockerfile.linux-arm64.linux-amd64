@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM postgres:17.4
