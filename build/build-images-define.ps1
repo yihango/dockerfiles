@@ -88,6 +88,9 @@ $buildImageList = @(
     # "android:30.0.3",
     # "mssql:2019-latest",
     # "redis:3.0.5",
+    "redis:6.0.16",
+    "redis:6.2.4",
+    "redis:6.2.16",
     # "dotnet:2.1-bionic",
     # "aspnet:2.1-bionic",
     # "aspnet:2.1-bionic-fontconfig",
@@ -172,7 +175,7 @@ $syncSample = @(
     # "m1k1o/neko:microsoft-edge",
     # "m1k1o/neko:google-chrome",
     # "m1k1o/neko:firefox",
-    "staneee/openai-token:latest",
+    # "staneee/openai-token:latest",
     ""
 )
 
