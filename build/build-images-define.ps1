@@ -143,8 +143,8 @@ $buildImageList = @(
     # "busybox:latest",
     # "beszel:0.10",
     # "beszel-agent:0.10",
-    "mcr.microsoft.com/playwright:v1.53.0-jammy",
-    "mcr.microsoft.com/playwright:v1.54.0-jammy",
+    "playwright:v1.53.0-jammy",
+    "playwright:v1.54.0-jammy",
     ""
 )
 
