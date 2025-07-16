@@ -88,9 +88,9 @@ $buildImageList = @(
     # "android:30.0.3",
     # "mssql:2019-latest",
     # "redis:3.0.5",
-    "redis:6.0.16",
-    "redis:6.2.4",
-    "redis:6.2.16",
+    # "redis:6.0.16",
+    # "redis:6.2.4",
+    # "redis:6.2.16",
     # "dotnet:2.1-bionic",
     # "aspnet:2.1-bionic",
     # "aspnet:2.1-bionic-fontconfig",
@@ -143,6 +143,8 @@ $buildImageList = @(
     # "busybox:latest",
     # "beszel:0.10",
     # "beszel-agent:0.10",
+    "mcr.microsoft.com/playwright:v1.53.0-jammy",
+    "mcr.microsoft.com/playwright:v1.54.0-jammy",
     ""
 )
 
