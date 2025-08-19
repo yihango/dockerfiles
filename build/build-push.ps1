@@ -51,12 +51,15 @@ param(
 # 脚本执行开始
 # =============================================================================
 
+# 记录开始时间
+$startTime = Get-Date
+
 Write-Host "===============================================" -ForegroundColor Cyan
 Write-Host "Docker 镜像构建和推送脚本启动" -ForegroundColor Cyan
 Write-Host "===============================================" -ForegroundColor Cyan
 Write-Host "目标仓库: $Registry" -ForegroundColor Yellow
 Write-Host "命名空间: $Namespace" -ForegroundColor Yellow
-Write-Host "开始时间: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" -ForegroundColor Green
+Write-Host "开始时间: $($startTime.ToString('yyyy-MM-dd HH:mm:ss'))" -ForegroundColor Green
 Write-Host "===============================================" -ForegroundColor Cyan
 
 # =============================================================================
@@ -222,7 +225,7 @@ Write-Host "完成时间: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" -Foreground
 
 # 计算构建耗时
 $endTime = Get-Date
-$duration = $endTime - (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+$duration = $endTime - $startTime
 Write-Host "构建耗时: $($duration.ToString('hh\:mm\:ss'))" -ForegroundColor Cyan
 
 # 根据构建结果设置退出码
