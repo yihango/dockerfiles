@@ -38,9 +38,9 @@
 #>
 
 param(
-    # 镜像仓库地址 - 必需参数
-    [Parameter(Mandatory = $true, HelpMessage = "目标镜像仓库地址")]
-    [string]$Registry,
+    # 镜像仓库地址 - 可选参数，默认为 "docker.io"
+    [Parameter(Mandatory = $false, HelpMessage = "目标镜像仓库地址")]
+    [string]$Registry = "docker.io",
     
     # 镜像命名空间 - 可选参数，默认为 "ltm0203"
     [Parameter(Mandatory = $false, HelpMessage = "镜像命名空间")]
