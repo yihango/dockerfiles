@@ -1,0 +1,64 @@
+# Dockerfiles 项目概览
+
+这是一个自定义 Docker 基础镜像项目，包含多种技术栈的预配置镜像。
+
+## 项目结构
+
+- **src/** - 所有 Docker 镜像的源代码目录
+- **build/** - 构建脚本和配置目录  
+- **.github/workflows/** - GitHub Actions CI/CD 配置
+- **LICENSE** - Apache 2.0 许可证
+
+## 主要技术栈
+
+### 运行时环境
+
+- **.NET** - ASP.NET Core 和 .NET 运行时镜像
+- **Node.js** - 多个版本的 Node.js 镜像 (8.9.4, 14.21.3, 16.x, 18.x, 20.x, 22.3.0, 22.18.0)
+- **Python** - Python 运行时镜像
+- **PowerShell** - 支持多种组合的 PowerShell 镜像，包含 pnpm 包管理器
+
+### 数据库和中间件
+
+- **MongoDB** - 4.2.8 和 7.0.12 版本
+- **PostgreSQL** - 12, 13, 14, 15, 16, 17 版本
+- **Redis** - 多个版本支持
+- **MySQL** - 8.1.0 版本
+- **RabbitMQ** - 3.11.10 版本
+- **Kafka & Zookeeper** - 7.3.2 版本
+
+### Web 服务器和代理
+
+- **Nginx** - 1.19.6 和 1.24.0 版本，支持多种配置模式
+- **HAProxy** - 2.2.28-alpine 版本
+- **EMQX** - 5.7.0 版本
+
+### 开发工具
+
+- **Android** - 30.0.3 和 33.0.2 版本
+- **Playwright** - v1.53.0 和 v1.54.0
+- **ANTLR4** - 4.6 和 4.12.0 版本
+
+### 运维工具
+
+- **Portainer** - CE 和 Agent 版本
+- **Gitea** - 1.23 和 1.24 版本
+- **GitLab Runner** - v14.10.1 和 v15.11.1 版本
+- **Keepalived** - 2.0.20 版本
+
+## 构建系统
+
+项目使用 GitHub Actions 进行自动化构建，支持：
+
+- 多平台构建 (linux/amd64, linux/arm64, windows/amd64)
+- 推送到 Docker Hub 和阿里云容器镜像服务
+- 跨平台镜像同步
+
+## 命名规范
+
+镜像命名格式：`staneee/[服务名]:[版本]-[特性]`
+例如：`staneee/nginx:1.19.6-shell-runner`
+description:
+globs:
+alwaysApply: false
+---

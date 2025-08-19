@@ -1,0 +1,75 @@
+# Dockerfile 命名和结构模式
+
+## 文件命名规范
+
+### 多平台支持
+
+- `Dockerfile.linux-arm64.linux-amd64` - 支持 Linux ARM64 和 AMD64 平台
+- `Dockerfile.linux-amd64` - 仅支持 Linux AMD64 平台  
+- `Dockerfile.windows-amd64` - 仅支持 Windows AMD64 平台
+
+### 版本目录结构
+
+每个服务按版本号组织：
+
+```
+src/[服务名]/
+├── [版本号]/
+│   ├── Dockerfile.linux-amd64
+│   ├── Dockerfile.linux-arm64.linux-amd64
+│   ├── build.ps1 (Windows 构建脚本)
+│   └── README.md
+```
+
+## 通用 Dockerfile 模式
+
+### 基础镜像选择
+
+- **Alpine** - 轻量级镜像，适用于工具类服务
+- **Ubuntu** - 完整功能镜像，适用于开发环境
+- **Debian** - 稳定版本，适用于生产环境
+
+### 多阶段构建
+
+```dockerfile
+# 构建阶段
+FROM [基础镜像] AS builder
+# 构建逻辑...
+
+# 运行阶段  
+FROM [运行时镜像]
+# 复制构建产物和配置
+```
+
+### 平台特定优化
+
+- 使用 `ARG TARGETPLATFORM` 进行平台检测
+- 根据平台安装对应的二进制文件
+- 设置平台相关的环境变量
+
+## 构建脚本模式
+
+### PowerShell 构建脚本 (build.ps1)
+
+- 使用 `docker buildx` 进行多平台构建
+- 支持镜像标签和推送配置
+- 包含错误处理和日志输出
+
+### 通用函数库
+
+- `functions-common.ps1` - 通用构建函数
+- `functions-manifest.ps1` - 镜像清单管理
+- `functions-sync.ps1` - 镜像同步功能
+
+## 最佳实践
+
+1. **版本标签** - 使用语义化版本号
+2. **安全更新** - 定期更新基础镜像
+3. **多平台支持** - 优先支持 ARM64 和 AMD64
+4. **文档说明** - 每个镜像都要有 README.md
+5. **测试验证** - 构建后验证镜像功能
+description:
+globs:
+alwaysApply: false
+
+---

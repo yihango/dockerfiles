@@ -1,0 +1,78 @@
+# CI/CD 工作流规则
+
+## GitHub Actions 工作流
+
+### 主要工作流文件
+
+- `buildx.yml` - 主要的构建和推送工作流
+
+### 触发条件
+
+- **Push** - 推送到 master 分支时触发
+- **PR** - 创建 Pull Request 时触发
+- **路径过滤** - 仅当 `src/**` 或 `build/**` 目录有变更时触发
+
+## 构建流程
+
+### 1. Windows 构建阶段
+
+- 运行在 `windows-latest` 环境
+- 登录 Docker Hub
+- 执行 `build-push.ps1` 脚本
+
+### 2. Linux 构建阶段  
+
+- 运行在 `ubuntu-22.04` 环境
+- 依赖 Windows 构建完成
+- 登录 Docker Hub
+- 执行 `build-push.ps1` 脚本
+
+### 3. 阿里云同步阶段
+
+- Windows 和 Linux 环境分别执行
+- 登录阿里云容器镜像服务
+- 执行 `build-sync-manifest.ps1` 脚本
+
+## 环境变量配置
+
+### Docker Hub 配置
+
+```yaml
+DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
+DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+```
+
+### 阿里云配置
+
+```yaml
+ALIYUN_DOCKERHUB: ${{ vars.ALIYUN_DOCKERHUB }}
+ALIYUN_DOCKERHUB_USERNAME: ${{ vars.ALIYUN_DOCKERHUB_USERNAME }}
+ALIYUN_DOCKERHUB_TOKEN: ${{ secrets.ALIYUN_DOCKERHUB_TOKEN }}
+```
+
+## 构建脚本
+
+### 主要脚本文件
+
+- `build-push.ps1` - 构建并推送到 Docker Hub
+- `build-sync-manifest.ps1` - 同步镜像到其他仓库
+- `build-images-define.ps1` - 定义要构建的镜像列表
+
+### 构建配置
+
+- 支持多平台构建 (linux/arm64, linux/amd64, windows/amd64)
+- 自动标签管理
+- 镜像推送和同步
+
+## 最佳实践
+
+1. **依赖管理** - 使用 `needs` 确保构建顺序
+2. **错误处理** - 构建失败时及时通知
+3. **资源优化** - 合理分配构建资源
+4. **安全考虑** - 使用 GitHub Secrets 存储敏感信息
+5. **监控告警** - 构建状态监控和通知
+description:
+globs:
+alwaysApply: false
+
+---

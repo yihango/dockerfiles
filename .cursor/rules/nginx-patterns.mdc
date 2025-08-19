@@ -1,0 +1,96 @@
+# Nginx 镜像特殊功能模式
+
+## 镜像类型分类
+
+### 基础镜像 (basic)
+
+- 包含基本的 Nginx 配置
+- 支持 ARM64 和 AMD64 平台
+- 包含通用脚本文件
+
+### Shell Runner 镜像
+
+- 支持 `RUN_BEFORE_SHELL` 环境变量
+- 运行前执行自定义 shell 脚本
+- 适用于动态配置生成
+
+### AppConfig 镜像
+
+- 支持 `APPCONFIG` 环境变量
+- 自动生成 `appconfig.prod.json` 文件
+- 适用于前端应用配置注入
+
+### Wait-for-it 镜像
+
+- 支持服务依赖等待
+- 通过环境变量控制等待目标
+- 适用于微服务启动顺序控制
+
+## 环境变量配置
+
+### RUN_BEFORE_SHELL
+
+```bash
+RUN_BEFORE_SHELL='cd "/usr/share/nginx/html/assets" || exit
+cat >/usr/share/nginx/html/index.html <<EOF
+<h1>HelloWorld</h1>
+EOF
+sed -i "s/\"remoteServiceBaseUrl\": \".*\"/\"remoteServiceBaseUrl\": \"http://testapi.baidu.com\"/g" ./appconfig.prod.json'
+```
+
+### APPCONFIG
+
+```bash
+APPCONFIG='{
+  "remoteServiceBaseUrl": "https://api.baidu.com",
+  "uploadApiUrl": "/api/File/Upload",
+  "portalBaseUrl": "https://www.baidu.com"
+}'
+```
+
+### 等待配置
+
+```bash
+NGINX_WAITHOST=192.168.1.2  # 等待的服务地址
+NGINX_WAITPORT=22           # 等待的服务端口
+```
+
+## 脚本文件说明
+
+### wait-for-it.sh
+
+- 等待指定服务可用后再启动 Nginx
+- 支持超时配置
+- 适用于容器编排环境
+
+### before_shell_runner.sh
+
+- 解析并执行 `RUN_BEFORE_SHELL` 内容
+- 支持多行 shell 命令
+- 错误处理和日志输出
+
+### before_shell_appconfig_prod.sh
+
+- 生成 `appconfig.prod.json` 配置文件
+- 支持 JSON 格式验证
+- 自动创建目录结构
+
+## 使用场景
+
+1. **开发环境** - 动态配置注入
+2. **测试环境** - 自动化配置生成
+3. **生产环境** - 服务依赖管理
+4. **CI/CD 流水线** - 配置自动化
+
+## 最佳实践
+
+1. **环境变量验证** - 使用前检查变量有效性
+2. **错误处理** - 脚本执行失败时优雅降级
+3. **日志记录** - 记录关键操作和错误信息
+4. **安全考虑** - 避免执行恶意脚本内容
+5. **性能优化** - 减少不必要的文件操作
+description:
+globs:
+alwaysApply: false
+
+---

@@ -1,0 +1,91 @@
+# PowerShell 镜像组合模式
+
+## 基础镜像
+
+### 标准 PowerShell
+
+- `lts-debian-10-focal` - 基于 Debian 10 和 Ubuntu 20.04
+- 支持 ARM64 和 AMD64 平台
+- 包含 PowerShell 7 LTS 版本
+
+## 功能组合镜像
+
+### Docker 支持
+
+- `lts-debian-10-focal-docker` - 基础 Docker 支持
+- `lts-debian-10-focal-docker-20-10-21` - 特定 Docker 版本
+- `lts-debian-10-focal-docker-node16` - Docker + Node.js 16
+- `lts-debian-10-focal-docker-node20` - Docker + Node.js 20
+
+### .NET SDK 支持
+
+- `lts-debian-10-focal-dotnet-5` - PowerShell + .NET 5 SDK
+- `lts-debian-10-focal-dotnet-6` - PowerShell + .NET 6 SDK
+
+### Node.js 支持
+
+- `lts-debian-10-focal-node-14` - PowerShell + Node.js 14
+- `lts-debian-10-focal-node-16` - PowerShell + Node.js 16
+- `lts-debian-10-focal-node-20` - PowerShell + Node.js 20
+- `lts-debian-10-focal-node-22-pnpm` - PowerShell + Node.js 22 + pnpm
+
+### 组合镜像
+
+- `lts-debian-10-focal-dotnet-5-node-16` - PowerShell + .NET 5 + Node.js 16
+- `lts-debian-10-focal-dotnet-6-node-16` - PowerShell + .NET 6 + Node.js 16
+- `lts-debian-10-focal-dotnet-5-node-20` - PowerShell + .NET 5 + Node.js 20
+- `lts-debian-10-focal-dotnet-6-node-20` - PowerShell + .NET 6 + Node.js 20
+
+### 特殊功能
+
+- `lts-debian-10-focal-docker-20-10-21-zip` - Docker + ZIP 工具支持
+- `lts-ubuntu-22.04-allinone` - Ubuntu 22.04 全功能版本
+- `lts-debian-10-focal-node-22-pnpm` - Node.js 22 + pnpm 包管理器
+
+## 版本管理策略
+
+### 基础版本
+
+- 使用 LTS (Long Term Support) 版本
+- 基于稳定的 Debian 和 Ubuntu 发行版
+- 定期更新安全补丁
+
+### 组合版本
+
+- 根据开发需求组合不同工具
+- 版本号保持一致性
+- 支持向下兼容
+
+## 使用场景
+
+### 开发环境
+
+- **.NET 开发** - 使用 dotnet 组合镜像
+- **Node.js 开发** - 使用 node 组合镜像
+- **混合开发** - 使用 dotnet-node 组合镜像
+- **现代前端开发** - 使用 node-22-pnpm 组合镜像
+
+### 运维环境
+
+- **Docker 管理** - 使用 docker 组合镜像
+- **脚本执行** - 使用基础 PowerShell 镜像
+- **工具集成** - 使用 allinone 镜像
+
+### CI/CD 流水线
+
+- **构建环境** - 根据项目需求选择合适组合
+- **测试环境** - 使用轻量级基础镜像
+- **部署环境** - 使用功能完整的组合镜像
+
+## 最佳实践
+
+1. **镜像选择** - 根据实际需求选择最小功能集
+2. **版本管理** - 保持工具版本的一致性
+3. **安全更新** - 定期更新基础镜像和工具
+4. **性能优化** - 避免不必要的工具安装
+5. **文档维护** - 及时更新镜像功能说明
+description:
+globs:
+alwaysApply: false
+
+---
