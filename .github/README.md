@@ -17,7 +17,7 @@
 - [node](/src/node/README.md)
 - [ntp](/src/ntp/README.md)
 - [portainer](/src/portainer/README.md)
-- [powershell](/src/powershell/README.md)
+- [powershell](/src/powershell/README.md) - 包含 Node.js 22 + pnpm 支持
 - [python](/src/python/README.md)
 - [redis](/src/redis/README.md)
 - [self-signed-ssl](/src/self-signed-ssl/README.md)
