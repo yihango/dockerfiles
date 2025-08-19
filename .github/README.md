@@ -2,7 +2,7 @@
 
 自定义的基础镜像
 
-[![build](https://github.com/staneee/dockerfiles/actions/workflows/build.yml/badge.svg)](https://github.com/staneee/dockerfiles/actions/workflows/build.yml)
+[![buildx](https://github.com/ltm0203/dockerfiles/actions/workflows/buildx.yml/badge.svg)](https://github.com/ltm0203/dockerfiles/actions/workflows/buildx.yml)
 
 ## 目录
 

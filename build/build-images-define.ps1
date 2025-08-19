@@ -143,8 +143,9 @@ $buildImageList = @(
     # "busybox:latest",
     # "beszel:0.10",
     # "beszel-agent:0.10",
-    "playwright:v1.53.0-jammy",
-    "playwright:v1.54.0-jammy",
+    #"playwright:v1.53.0-jammy",
+    #"playwright:v1.54.0-jammy",
+    "powershell:lts-debian-10-focal-node-22-pnpm",
     ""
 )
 
