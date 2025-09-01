@@ -1,1 +1,1 @@
-FROM --platform=$TARGETPLATFORM nextcloud:30-fpm
+FROM --platform=$TARGETPLATFORM nextcloud:31-fpm
