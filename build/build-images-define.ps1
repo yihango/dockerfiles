@@ -143,8 +143,12 @@ $buildImageList = @(
     # "busybox:latest",
     # "beszel:0.10",
     # "beszel-agent:0.10",
-    "playwright:v1.53.0-jammy",
-    "playwright:v1.54.0-jammy",
+    # "playwright:v1.53.0-jammy",
+    # "playwright:v1.54.0-jammy",
+    "nextcloud:30-apache",
+    "nextcloud:30-fpm",
+    "nextcloud:31-apache",
+    "nextcloud:31-fpm",
     ""
 )
 
