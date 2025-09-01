@@ -1,1 +1,1 @@
-FROM --platform=$TARGETPLATFORM nextcloud:30-apache
+FROM --platform=$TARGETPLATFORM nextcloud:30-fpm
