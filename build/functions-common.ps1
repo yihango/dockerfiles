@@ -46,15 +46,14 @@ function GetImagesInfo() {
 
 
     # 遍历存储镜像信息： 镜像名称:编译路径
-    $directorySeparatorChar = [System.IO.Path]::DirectorySeparatorChar
     foreach ($path in $dockerFiles) {
         # 路径
         $imgTagDir = Split-Path -Parent $path # Dockerfile 所在路径
         $imgNameDir = Split-Path -Parent $imgTagDir
 
         # 镜像tag和镜像名称
-        $imgTag = $imgTagDir.Split($directorySeparatorChar)[-1]
-        $imgName = $imgNameDir.Split($directorySeparatorChar)[-1]
+        $imgTag = $imgTagDir.Replace("\", "/").Split('/')[-1]
+        $imgName = $imgNameDir.Replace("\", "/").Split('/')[-1]
 
         # 镜像全名称
         $imgFullName = $imgName + ':' + $imgTag

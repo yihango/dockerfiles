@@ -138,9 +138,7 @@ function ImagesCopyManifest($DockerfileDir, $Registry, $Namespace, $TargetRegist
 
 # 获取基础镜像名称
 function GetManifestImageTag($DockerfileDir, $Registry, $Namespace) {
-    $directorySeparatorChar = [System.IO.Path]::DirectorySeparatorChar
-
-    $dockerDirArray = $DockerfileDir.Split($directorySeparatorChar)
+    $dockerDirArray = $DockerfileDir.Replace("\", "/").Split('/')
     # 镜像名称
     $imageName = $dockerDirArray[-2]
 
@@ -155,8 +153,6 @@ function GetManifestImageTag($DockerfileDir, $Registry, $Namespace) {
 
 # 获取路径下所有的Dockerfile
 function GetDockerfiles($DockerfileDir) {
-    $directorySeparatorChar = [System.IO.Path]::DirectorySeparatorChar
-
     $dockerfiles = New-Object -TypeName "System.Collections.Generic.List[Object]"
     
     $dockerfileFullPath = Get-ChildItem -r $DockerfileDir | Where-Object { 
@@ -164,7 +160,7 @@ function GetDockerfiles($DockerfileDir) {
     } | Select-Object -ExpandProperty FullName
 
     foreach ($item in $dockerfileFullPath) {
-        $dockerfiles.Add($item.Split($directorySeparatorChar)[-1])
+        $dockerfiles.Add($item.Replace("\", "/").Split("/")[-1])
     }
 
     return $dockerfiles
