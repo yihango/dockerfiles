@@ -30,6 +30,7 @@ foreach ($imgName in $buildImageList) {
 
     # 所在目录
     $dockerfileDir = $imageInfo[$imgName]
+    Write-Host "$imgName $dockerfileDir"
 
     # 编译
     ImagesBuildManifest -DockerfileDir $dockerfileDir `
