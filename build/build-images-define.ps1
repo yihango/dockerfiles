@@ -147,8 +147,10 @@ $buildImageList = @(
     # "playwright:v1.54.0-jammy",
     # "nextcloud:30-apache",
     # "nextcloud:30-fpm",
-    "nextcloud:31-apache",
-    "nextcloud:31-fpm",
+    # "nextcloud:31-apache",
+    # "nextcloud:31-fpm",
+    "next-terminal",
+    "next-terminal-guacd",
     ""
 )
 

@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM dushixiang/guacd:1.6.0

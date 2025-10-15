@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM dushixiang/next-terminal:v2.6.5
