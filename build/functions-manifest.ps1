@@ -138,6 +138,7 @@ function ImagesCopyManifest($DockerfileDir, $Registry, $Namespace, $TargetRegist
 
 # 获取基础镜像名称
 function GetManifestImageTag($DockerfileDir, $Registry, $Namespace) {
+    Write-Host "GetManifestImageTag $DockerfileDir"
     $dockerDirArray = $DockerfileDir.Replace("\", "/").Split('/')
     # 镜像名称
     $imageName = $dockerDirArray[-2]
