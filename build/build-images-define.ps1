@@ -149,8 +149,8 @@ $buildImageList = @(
     # "nextcloud:30-fpm",
     # "nextcloud:31-apache",
     # "nextcloud:31-fpm",
-    "next-terminal",
-    "guacd",
+    "next-terminal:v2.6.5",
+    "guacd:1.6.0",
     ""
 )
 
