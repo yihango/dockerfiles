@@ -29,6 +29,7 @@ foreach ($imgName in $buildImageList) {
 
     # 所在目录
     $dockerfileDir = $imageInfo[$imgName]
+    Write-Host "$imgName $dockerfileDir"
 
     # 复制
     ImagesCopyManifest -DockerfileDir $dockerfileDir `
