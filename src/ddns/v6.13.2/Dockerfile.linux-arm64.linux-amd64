@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM jeessy/ddns-go:v6.13.2
