@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM openvpn/openvpn-as:3.0.1-84b60e70-Ubuntu24
