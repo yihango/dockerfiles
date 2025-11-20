@@ -6,8 +6,7 @@ target_dir="/usr/local/openvpn_as/lib/python"
 
 #
 if [ ! -d "$source_dir" ]; then
-    echo "error: not found $source_dir"
-    exit 0
+    mkdir "$source_dir"
 fi
 
 #
