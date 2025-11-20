@@ -10,6 +10,3 @@ COPY ./scripts/  /
 
 # chmod +x scripts
 RUN chmod +x /egg.sh
-
-ENTRYPOINT /egg.sh \
-    && exec /docker-entrypoint.sh
