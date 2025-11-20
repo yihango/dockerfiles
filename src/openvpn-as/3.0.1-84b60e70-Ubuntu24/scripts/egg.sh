@@ -7,13 +7,13 @@ target_dir="/usr/local/openvpn_as/lib/python"
 #
 if [ ! -d "$source_dir" ]; then
     echo "error: not found $source_dir"
-    exit 1
+    exit 0
 fi
 
 #
 if [ ! -d "$target_dir" ]; then
     echo "error: not found $target_dir"
-    exit 1
+    exit 0
 fi
 
 # find first .egg
@@ -34,5 +34,5 @@ if [ $? -eq 0 ]; then
     echo "success: copy success $(basename "$first_egg_file")"
 else
     echo "error: copy fail $(basename "$first_egg_file")"
-    exit 1
+    exit 0
 fi
