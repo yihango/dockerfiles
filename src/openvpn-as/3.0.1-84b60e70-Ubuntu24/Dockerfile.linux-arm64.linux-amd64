@@ -1,1 +1,6 @@
 FROM --platform=$TARGETPLATFORM openvpn/openvpn-as:3.0.1-84b60e70-Ubuntu24
+
+RUN apt-get update \
+    && apt-get install -y zip unzip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* 
