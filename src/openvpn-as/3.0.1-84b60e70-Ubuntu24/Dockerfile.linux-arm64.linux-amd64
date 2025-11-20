@@ -11,5 +11,4 @@ COPY ./scripts/  /
 # chmod +x scripts
 RUN chmod +x /egg.sh
 
-ENTRYPOINT /egg.sh \
-    && /docker-entrypoint.sh
+ENTRYPOINT /egg.sh ; /docker-entrypoint.sh
