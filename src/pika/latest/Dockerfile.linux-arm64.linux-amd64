@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM dushixiang/pika:latest

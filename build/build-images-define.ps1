@@ -153,8 +153,9 @@ $buildImageList = @(
     # "guacd:1.6.0",
     # "ddns-go:v6.13.2",
     # "wg-easy:15.1.0",
-    "openvpn-as:3.0.1-84b60e70-Ubuntu24"
+    # "openvpn-as:3.0.1-84b60e70-Ubuntu24"
     # "python:3.12.12"
+    "pika:latest"
     ""
 )
 
