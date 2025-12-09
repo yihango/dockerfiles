@@ -155,7 +155,7 @@ $buildImageList = @(
     # "wg-easy:15.1.0",
     # "openvpn-as:3.0.1-84b60e70-Ubuntu24"
     # "python:3.12.12"
-    "pika:latest"
+    # "pika:latest"
     ""
 )
 
@@ -189,6 +189,14 @@ $syncSample = @(
     # "m1k1o/neko:google-chrome",
     # "m1k1o/neko:firefox",
     # "staneee/openai-token:latest",
+    "langgenius/dify-api:1.10.1-fix.1",
+    "langgenius/dify-web:1.10.1-fix.1",
+    "langgenius/dify-sandbox:0.2.12",
+    "langgenius/dify-plugin-daemon:0.4.1-local",
+    "langgenius/qdrant:v1.8.3",
+    "ubuntu/squid:5.2-22.04_beta",
+    "semitechnologies/weaviate:1.27.0",
+    "redis:6-alpine",
     ""
 )
 
