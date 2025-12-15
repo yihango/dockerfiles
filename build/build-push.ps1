@@ -12,7 +12,7 @@
     目标镜像仓库地址，例如：
     - "docker.io" (Docker Hub)
     - "registry.cn-hangzhou.aliyuncs.com" (阿里云)
-    - "registry.hk.aliyuncs.com" (阿里云香港)
+    - "registry.cn-hongkong.aliyuncs.com" (阿里云香港)
 
 .PARAMETER Namespace
     镜像命名空间，默认为 "ltm0203"

@@ -26,7 +26,7 @@
 
 - [架构文档](ARCHITECTURE.md) - 项目整体架构和技术细节
 - [使用说明](USAGE.md) - 如何使用和修改项目
-- [自定义 CI/CD](.github/workflows/custom-ci.yml) - 基于 ltm0203 命名空间的持续集成和部署流程
+- [CI/CD 工作流](.github/workflows/buildx.yml) - 基于 ltm0203 命名空间的持续集成和部署流程
 
 ## 镜像仓库
 
