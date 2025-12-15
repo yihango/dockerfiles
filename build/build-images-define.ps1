@@ -34,6 +34,7 @@ $buildImageList = @(
     # "node:18.12.0",
     # "node:20.10.0",
     # "node:22.3.0",
+    "node:22.12.0",
     # "powershell:lts-debian-10-focal",
     # "powershell:lts-debian-10-focal-node-14",
     # "powershell:lts-debian-10-focal-node-16",

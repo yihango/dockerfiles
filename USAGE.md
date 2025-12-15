@@ -9,16 +9,66 @@ git clone https://github.com/your-username/dockerfiles.git
 cd dockerfiles
 ```
 
-### 本地构建测试
+### 项目工作流程
 
-进入 [build](file:///c%3A/Code/github/dockerfiles/build/common.ps1#L24-L27) 目录并运行构建脚本：
+#### 📋 工作流程说明
 
-```powershell
-cd build
-./build-push.ps1
+本项目采用 **配置驱动 + CI/CD 自动化** 的工作模式：
+
+1. **本地配置**: 只进行代码和配置的修改
+2. **CI/CD 构建**: 所有镜像构建由 GitHub Actions 自动完成
+3. **自动推送**: 构建完成后自动推送到多个镜像仓库
+
+#### 🚀 如何添加新镜像
+
+**只需要两步**：
+
+1. **创建 Dockerfile**: 在 `src/[category]/[version]/Dockerfile.linux-arm64.linux-amd64`
+2. **注册镜像**: 在 `build/build-images-define.ps1` 中添加镜像名称
+
+剩下的构建、推送工作都由 GitHub Actions 自动完成！
+
+#### 📝 实际操作示例
+
+添加 Node.js 22.12.0 + pnpm 10.22 镜像：
+
+```bash
+# 1. 创建目录和 Dockerfile
+mkdir -p src/node/22.12.0
+cat > src/node/22.12.0/Dockerfile.linux-arm64.linux-amd64 << 'EOF'
+FROM --platform=$TARGETPLATFORM node:22.12.0
+
+RUN mkdir /root/.pnpm \
+    && npm install -g pnpm@10.22.0 \
+    && pnpm config set store-dir /root/.pnpm --global
+EOF
+
+# 2. 在 build-images-define.ps1 中注册
+# 编辑文件添加: "node:22.12.0",
+
+# 3. 提交代码，GitHub Actions 会自动构建
+git add .
+git commit -m "Add Node.js 22.12.0 + pnpm 10.22 image"
+git push origin master
 ```
 
-默认情况下，这将在本地构建所有在 [build-images-define.ps1](file:///c%3A/Code/github/dockerfiles/build/build-images-define.ps1) 中定义的镜像。
+#### 🧪 测试构建的镜像
+
+构建完成后，可以拉取和测试镜像：
+
+```bash
+# 拉取镜像
+docker pull ltm0203/node:22.12.0
+
+# 测试 Node.js
+docker run -it --rm ltm0203/node:22.12.0 node --version
+
+# 测试 pnpm
+docker run -it --rm ltm0203/node:22.12.0 pnpm --version
+
+# 在项目中使用
+docker run -it --rm -v $(pwd):/app -w /app ltm0203/node:22.12.0 pnpm install
+```
 
 ## 修改项目
 
@@ -38,76 +88,11 @@ $buildImageList = @(
 
 ### 添加新镜像
 
-1. 在 [src/](file:///c%3A/Code/github/dockerfiles/src/acme.sh) 目录下创建一个新的镜像类别目录（如果尚不存在）
-2. 在类别目录下创建特定标签的子目录
-3. 在该目录中添加 Dockerfile 和相关构建文件
-4. 创建 README.md 文档说明镜像用途和使用方法
-5. （可选）创建 build.ps1 脚本用于独立构建测试
+1. 在 `src/[category]/[version]/` 目录下创建 `Dockerfile.linux-arm64.linux-amd64` 文件
+2. 在 `build/build-images-define.ps1` 中添加镜像名称
+3. 提交代码，GitHub Actions 会自动构建
 
-例如，添加一个名为 `myapp:1.0` 的镜像：
-
-```
-src/
-└── myapp/
-    └── 1.0/
-        ├── Dockerfile
-        ├── README.md
-        └── build.ps1
-```
-
-[src/myapp/1.0/Dockerfile](file:///c%3A/Code/github/dockerfiles/src/myapp/1.0/Dockerfile) 示例：
-
-```dockerfile
-FROM alpine:latest
-RUN apk add --no-cache curl
-CMD ["curl", "--help"]
-```
-
-[src/myapp/1.0/README.md](file:///c%3A/Code/github/dockerfiles/src/api-service/el-login-encrypt/README.md) 示例：
-
-````markdown
-# My Application
-
-简要描述你的镜像用途。
-
-## 使用方法
-
-```bash
-docker run ltm0203/myapp:1.0
-```
-````
-
-````
-
-[src/myapp/1.0/build.ps1](file:///c%3A/Code/github/dockerfiles/src/powershell/lts-debian-10-focal-node-22-pnpm/build.ps1) 示例：
-```powershell
-#!/usr/bin/env pwsh
-
-param(
-    [string]$ImageName = "ltm0203/myapp:1.0"
-)
-
-Write-Host "Building image: $ImageName"
-
-docker build -t $ImageName .
-
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "Successfully built $ImageName" -ForegroundColor Green
-} else {
-    Write-Host "Failed to build $ImageName" -ForegroundColor Red
-    exit 1
-}
-````
-
-最后在 [build/build-images-define.ps1](file:///c%3A/Code/github/dockerfiles/build/build-images-define.ps1) 中添加：
-
-```powershell
-$buildImageList = @(
-    # ...现有镜像...
-    "myapp:1.0",
-    ""
-)
-```
+**注意**: 不需要创建 `build.ps1` 文件，所有构建都由 CI/CD 完成。
 
 ### 修改 CI/CD 配置
 
@@ -124,14 +109,20 @@ $buildImageList = @(
 ### Secrets:
 
 - `DOCKERHUB_TOKEN`: Docker Hub 访问令牌
-- `ALIYUN_DOCKERHUB_TOKEN`: 阿里云访问令牌
+- `ALIYUN_PASSWORD`: 阿里云访问密码
 
 ### Variables:
 
 - `DOCKERHUB_USERNAME`: Docker Hub 用户名
-- `ALIYUN_DOCKERHUB`: 阿里云镜像仓库地址
-- `ALIYUN_DOCKERHUB_USERNAME`: 阿里云用户名
-- `ALIYUN_HK_DOCKERHUB`: 阿里云海外镜像仓库地址
+- `ALIYUN_USERNAME`: 阿里云用户名
+
+### 环境变量说明
+
+GitHub Actions 工作流中使用的环境变量：
+
+- `ALIYUN_REGISTRY`: `registry.cn-chengdu.aliyuncs.com` (阿里云成都仓库地址)
+- `ALIYUN_HK_REGISTRY`: `registry.cn-hongkong.aliyuncs.com` (阿里云香港仓库地址)
+- `ALIYUN_NAMESPACE`: `yoyosoft` (阿里云命名空间)
 
 ## 构建策略
 
