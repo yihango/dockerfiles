@@ -15,10 +15,11 @@ on:
 env:
   DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-  ALIYUN_DOCKERHUB: ${{ vars.ALIYUN_DOCKERHUB }}
-  ALIYUN_DOCKERHUB_USERNAME: ${{ vars.ALIYUN_DOCKERHUB_USERNAME }}
-  ALIYUN_DOCKERHUB_TOKEN: ${{ secrets.ALIYUN_DOCKERHUB_TOKEN }}
-  ALIYUN_HK_DOCKERHUB: ${{ vars.ALIYUN_HK_DOCKERHUB }}
+  ALIYUN_REGISTRY: registry.cn-chengdu.aliyuncs.com
+  ALIYUN_HK_REGISTRY: registry.cn-hongkong.aliyuncs.com
+  ALIYUN_NAMESPACE: yoyosoft
+  ALIYUN_USERNAME: ${{ vars.ALIYUN_USERNAME }}
+  ALIYUN_PASSWORD: ${{ secrets.ALIYUN_PASSWORD }}
 
 jobs:
   # ----------------------------------- build -----------------------------------
@@ -73,17 +74,17 @@ jobs:
 
       # login aliyun chengdu
       - name: Login to Aliyun Chengdu
-        uses: azure/docker-login@v1
+        uses: docker/login-action@v1
         with:
-          login-server: ${{env.ALIYUN_DOCKERHUB}}
-          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
-          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+          registry: ${{env.ALIYUN_REGISTRY}}
+          username: ${{env.ALIYUN_USERNAME}}
+          password: ${{env.ALIYUN_PASSWORD}}
 
       # build
       - name: build 1
         shell: pwsh
         working-directory: ./build
-        run: ./build-sync-manifest.ps1 -Registry "docker.io" -Namespace "ltm0203" -TargetRegistry $env:ALIYUN_DOCKERHUB
+        run: ./build-sync-manifest.ps1 -Registry "docker.io" -Namespace "ltm0203" -TargetRegistry "${{env.ALIYUN_REGISTRY}}/${{env.ALIYUN_NAMESPACE}}"
 
   build-aliyun-linux:
     runs-on: ubuntu-22.04
@@ -97,15 +98,15 @@ jobs:
       - name: Login to Aliyun Chengdu
         uses: docker/login-action@v1
         with:
-          registry: ${{env.ALIYUN_DOCKERHUB}}
-          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
-          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+          registry: ${{env.ALIYUN_REGISTRY}}
+          username: ${{env.ALIYUN_USERNAME}}
+          password: ${{env.ALIYUN_PASSWORD}}
 
       # build
       - name: build 1
         shell: pwsh
         working-directory: ./build
-        run: ./build-sync-manifest.ps1 -Registry "docker.io" -Namespace "ltm0203" -TargetRegistry $env:ALIYUN_DOCKERHUB
+        run: ./build-sync-manifest.ps1 -Registry "docker.io" -Namespace "ltm0203" -TargetRegistry "${{env.ALIYUN_REGISTRY}}/${{env.ALIYUN_NAMESPACE}}"
 
   build-aliyun-hk-windows:
     runs-on: windows-latest
@@ -115,19 +116,19 @@ jobs:
       # checkout source code
       - uses: actions/checkout@v2
 
-      # login docker hub
-      - name: Login to Aliyun
-        uses: azure/docker-login@v1
+      # login aliyun hk
+      - name: Login to Aliyun HK
+        uses: docker/login-action@v1
         with:
-          login-server: ${{env.ALIYUN_HK_DOCKERHUB}}
-          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
-          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+          registry: ${{env.ALIYUN_HK_REGISTRY}}
+          username: ${{env.ALIYUN_USERNAME}}
+          password: ${{env.ALIYUN_PASSWORD}}
 
       # build
       - name: build 1
         shell: pwsh
         working-directory: ./build
-        run: ./build-sync-manifest.ps1 -Registry "docker.io" -Namespace "ltm0203" -TargetRegistry $env:ALIYUN_HK_DOCKERHUB
+        run: ./build-sync-manifest.ps1 -Registry "docker.io" -Namespace "ltm0203" -TargetRegistry "${{env.ALIYUN_HK_REGISTRY}}/${{env.ALIYUN_NAMESPACE}}"
 
   build-aliyun-hk-linux:
     runs-on: ubuntu-22.04
@@ -137,19 +138,19 @@ jobs:
       # checkout source code
       - uses: actions/checkout@v2
 
-      # login docker hub
+      # login aliyun hk
       - name: Login to Aliyun HK
         uses: docker/login-action@v1
         with:
-          registry: ${{env.ALIYUN_HK_DOCKERHUB}}
-          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
-          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+          registry: ${{env.ALIYUN_HK_REGISTRY}}
+          username: ${{env.ALIYUN_USERNAME}}
+          password: ${{env.ALIYUN_PASSWORD}}
 
       # build
       - name: build 1
         shell: pwsh
         working-directory: ./build
-        run: ./build-sync-manifest.ps1 -Registry "docker.io" -Namespace "ltm0203" -TargetRegistry $env:ALIYUN_HK_DOCKERHUB
+        run: ./build-sync-manifest.ps1 -Registry "docker.io" -Namespace "ltm0203" -TargetRegistry "${{env.ALIYUN_HK_REGISTRY}}/${{env.ALIYUN_NAMESPACE}}"
 
   # ----------------------------------- sync -----------------------------------
 
@@ -184,15 +185,15 @@ jobs:
       - name: Login to Aliyun Chengdu
         uses: docker/login-action@v1
         with:
-          registry: ${{env.ALIYUN_DOCKERHUB}}
-          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
-          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+          registry: ${{env.ALIYUN_REGISTRY}}
+          username: ${{env.ALIYUN_USERNAME}}
+          password: ${{env.ALIYUN_PASSWORD}}
 
       # build
       - name: build
         shell: pwsh
         working-directory: ./build
-        run: ./build-sync.ps1 -TargetRegistry $env:ALIYUN_DOCKERHUB -TargetNamespace "yoyosoft"
+        run: ./build-sync.ps1 -TargetRegistry "${{env.ALIYUN_REGISTRY}}/${{env.ALIYUN_NAMESPACE}}" -TargetNamespace ""
 
   sync-aliyun-hk:
     runs-on: ubuntu-22.04
@@ -205,12 +206,12 @@ jobs:
       - name: Login to Aliyun HK
         uses: docker/login-action@v1
         with:
-          registry: ${{env.ALIYUN_HK_DOCKERHUB}}
-          username: ${{env.ALIYUN_DOCKERHUB_USERNAME}}
-          password: ${{env.ALIYUN_DOCKERHUB_TOKEN}}
+          registry: ${{env.ALIYUN_HK_REGISTRY}}
+          username: ${{env.ALIYUN_USERNAME}}
+          password: ${{env.ALIYUN_PASSWORD}}
 
       # build
       - name: build
         shell: pwsh
         working-directory: ./build
-        run: ./build-sync.ps1 -TargetRegistry $env:ALIYUN_HK_DOCKERHUB -TargetNamespace "yoyosoft"
+        run: ./build-sync.ps1 -TargetRegistry "${{env.ALIYUN_HK_REGISTRY}}/${{env.ALIYUN_NAMESPACE}}" -TargetNamespace ""
