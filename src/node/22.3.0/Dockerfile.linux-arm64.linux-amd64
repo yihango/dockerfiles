@@ -1,1 +1,4 @@
 FROM --platform=$TARGETPLATFORM node:22.3.0
+RUN mkdir /root/.pnpm \
+    && npm install -g pnpm@10.22.0 \
+    && pnpm config set store-dir /root/.pnpm --global
