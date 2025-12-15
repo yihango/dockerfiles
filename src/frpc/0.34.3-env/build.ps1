@@ -1,5 +1,5 @@
-docker build . --force-rm -t staneee/frpc:0.34.3  -f ./Dockerfile
-docker push staneee/frpc:0.34.3
+docker build . --force-rm -t ltm0203/frpc:0.34.3  -f ./Dockerfile
+docker push ltm0203/frpc:0.34.3
 
 # 测试脚本
 
@@ -19,11 +19,11 @@ docker rm -f test1
 ## 运行容器
 docker run -d \
 -e "FRPC_INI=$FRPC_INI"  \
---name=test1 staneee/frpc:0.34.3
+--name=test1 ltm0203/frpc:0.34.3
 
 docker run -rm \
 -e "FRPC_INI=$FRPC_INI"  \
---name=test1 staneee/frpc:0.34.3
+--name=test1 ltm0203/frpc:0.34.3
 
 ## 进入查看
 docker exec -it test1 /bin/bash

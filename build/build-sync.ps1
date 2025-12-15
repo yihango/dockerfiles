@@ -2,7 +2,7 @@ param(
     # image registry
     [string]$TargetRegistry,
     # image namespace
-    [string]$TargetNamespace = "staneee"
+    [string]$TargetNamespace = "ltm0203"
 )
 
 

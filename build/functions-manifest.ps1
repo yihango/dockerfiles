@@ -18,10 +18,10 @@
 
 .EXAMPLE
     # 构建多平台镜像
-    ImagesBuildManifest -DockerfileDir "src/nginx/1.19.6" -Registry "docker.io" -Namespace "staneee"
-    
+    ImagesBuildManifest -DockerfileDir "src/nginx/1.19.6" -Registry "docker.io" -Namespace "ltm0203"
+
     # 复制镜像到其他仓库
-    ImagesCopyManifest -DockerfileDir "src/nginx/1.19.6" -Registry "docker.io" -Namespace "staneee" -TargetRegistry "registry.cn-hangzhou.aliyuncs.com/company"
+    ImagesCopyManifest -DockerfileDir "src/nginx/1.19.6" -Registry "docker.io" -Namespace "ltm0203" -TargetRegistry "registry.cn-chengdu.aliyuncs.com/yoyosoft"
 
 .NOTES
     作者: Dockerfiles 项目团队

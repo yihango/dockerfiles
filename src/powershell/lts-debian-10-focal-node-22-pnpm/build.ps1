@@ -4,7 +4,7 @@
 # 构建 PowerShell + Node.js 22 + pnpm 镜像
 
 param(
-    [string]$ImageName = "staneee/powershell:lts-debian-10-focal-node-22-pnpm",
+    [string]$ImageName = "ltm0203/powershell:lts-debian-10-focal-node-22-pnpm",
     [string]$Dockerfile = "Dockerfile.linux-arm64.linux-amd64"
 )
 
