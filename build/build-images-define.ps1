@@ -97,6 +97,7 @@ $buildImageList = @(
     # "aspnet:2.1-bionic-fontconfig",
     # "dotnet:8-jammy",
     # "aspnet:8-jammy",
+    "aspnet:8-jammy-steamcmd",
     # "emqx:5.7.0",
     # "postgres:12",
     # "postgres:12.19",
@@ -198,7 +199,7 @@ $syncSample = @(
     # "ubuntu/squid:5.2-22.04_beta",
     # "semitechnologies/weaviate:1.27.0",
     # "redis:6-alpine",
-    "steamcmd/steamcmd:ubuntu-22",
+    # "steamcmd/steamcmd:ubuntu-22",
     ""
 )
 
