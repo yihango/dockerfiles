@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM staneee/aspnet:8.0-jammy AS base
+FROM --platform=$TARGETPLATFORM staneee/aspnet:8-jammy AS base
 
 # https://github.com/steamcmd/docker/blob/master/dockerfiles/ubuntu-22/Dockerfile
 # Set environment variables
