@@ -152,13 +152,13 @@ $buildImageList = @(
     # "nextcloud:31-apache",
     # "nextcloud:31-fpm",
     # "next-terminal:v2.6.5",
-    "next-terminal:v2.7.0",
+    # "next-terminal:v2.7.0",
     # "guacd:1.6.0",
     # "ddns-go:v6.13.2",
     # "wg-easy:15.1.0",
     # "openvpn-as:3.0.1-84b60e70-Ubuntu24"
     # "python:3.12.12"
-    # "pika:latest"
+    "pika:latest"
     ""
 )
 
