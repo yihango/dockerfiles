@@ -157,8 +157,8 @@ $buildImageList = @(
     # "ddns-go:v6.13.2",
     # "wg-easy:15.1.0",
     # "openvpn-as:3.0.1-84b60e70-Ubuntu24"
-    # "python:3.12.12"
-    "pika:latest"
+    # "python:3.12.12",
+    # "pika:latest",
     ""
 )
 
@@ -201,6 +201,7 @@ $syncSample = @(
     # "semitechnologies/weaviate:1.27.0",
     # "redis:6-alpine",
     # "steamcmd/steamcmd:ubuntu-22",
+    "privoce/vocechat-server:v0.5.8",
     ""
 )
 
