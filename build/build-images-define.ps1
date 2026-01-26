@@ -159,6 +159,8 @@ $buildImageList = @(
     # "openvpn-as:3.0.1-84b60e70-Ubuntu24"
     # "python:3.12.12",
     # "pika:latest",
+    "php:7.3-fpm-buster",
+    "php:7.3-zts-buster",
     ""
 )
 
@@ -201,7 +203,7 @@ $syncSample = @(
     # "semitechnologies/weaviate:1.27.0",
     # "redis:6-alpine",
     # "steamcmd/steamcmd:ubuntu-22",
-    "privoce/vocechat-server:v0.5.8",
+    # "privoce/vocechat-server:v0.5.8",
     ""
 )
 
