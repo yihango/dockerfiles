@@ -145,7 +145,7 @@ $buildImageList = @(
     # "busybox:latest",
     # "beszel:0.10",
     # "beszel-agent:0.10",
-    # "playwright:v1.53.0-jammy",
+    "playwright:v1.53.0-jammy",
     # "playwright:v1.54.0-jammy",
     # "nextcloud:30-apache",
     # "nextcloud:30-fpm",
@@ -159,8 +159,8 @@ $buildImageList = @(
     # "openvpn-as:3.0.1-84b60e70-Ubuntu24"
     # "python:3.12.12",
     # "pika:latest",
-    "php:7.3-fpm-buster",
-    "php:7.3-zts-buster",
+    # "php:7.3-fpm-buster",
+    # "php:7.3-zts-buster",
     ""
 )
 

@@ -1,1 +1,7 @@
 FROM --platform=$TARGETPLATFORM mcr.microsoft.com/playwright:v1.54.0-jammy
+
+WORKDIR /app
+
+RUN npm install -g playwright@1.54.0
+
+CMD ["playwright", "run-server", "--port=8005", "--host=0.0.0.0"]
