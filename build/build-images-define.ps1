@@ -163,7 +163,8 @@ $buildImageList = @(
     # "php:7.3-zts-buster",
     # "php:7.3-fpm-bullseye",
     # "webdav-server:2.2.1",
-    "webdav-server:baksili",
+    # "webdav-server:baksili",
+    "webdav-server:wsgidav",
     # "new-api:v0.11.5",
     ""
 )
