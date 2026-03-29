@@ -1,0 +1,49 @@
+FROM --platform=$TARGETPLATFORM php:7.3-fpm-bullseye
+
+# 安装基础依赖
+RUN set -eux \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    gnupg2 \
+    apt-transport-https \
+    gettext-base \
+    git \
+    unzip \
+    supervisor \
+    libzip-dev \
+    zlib1g-dev \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libxml2-dev \
+    libonig-dev \
+    lsb-release \
+    software-properties-common \
+    && rm -rf /var/lib/apt/lists/*
+
+# 安装NGINX
+RUN set -eux \
+    && echo "deb http://nginx.org/packages/debian/ bullseye nginx" \
+    > /etc/apt/sources.list.d/nginx.list \
+    && curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add -
+RUN set -eux \
+    && apt-get update \
+    && apt-get install -y nginx=1.24.0-1~bullseye \
+    && rm -rf /var/lib/apt/lists/*
+
+# 安装PHP扩展
+RUN set -eux \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install -j"$(nproc)" pdo_mysql mbstring bcmath gd zip opcache \
+    && rm -rf /var/lib/apt/lists/*
+
+# 安装并启用PECL扩展
+RUN set -eux \
+    && pecl install redis-5.3.7 \
+    && docker-php-ext-enable redis
+
+# 安装composer
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+
