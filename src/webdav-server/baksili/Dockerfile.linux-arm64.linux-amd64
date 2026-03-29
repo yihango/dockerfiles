@@ -1,0 +1,3 @@
+FROM --platform=$TARGETPLATFORM baksili/webdav-server:382a0a555b4f47dc292cf9a9374fc3394ad25dfe
+
+# https://hub.docker.com/r/baksili/webdav-server

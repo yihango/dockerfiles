@@ -161,8 +161,9 @@ $buildImageList = @(
     # "pika:latest",
     # "php:7.3-fpm-buster",
     # "php:7.3-zts-buster",
-    "php:7.3-fpm-bullseye",
-    "webdav-server:2.2.1",
+    # "php:7.3-fpm-bullseye",
+    # "webdav-server:2.2.1",
+    "webdav-server:baksili",
     # "new-api:v0.11.5",
     ""
 )
