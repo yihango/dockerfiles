@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM filebrowser/filebrowser:v2-s6

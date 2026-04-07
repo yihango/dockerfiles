@@ -1,0 +1,2 @@
+FROM --platform=$TARGETPLATFORM plantuml/plantuml-server:v1.2026.2
+

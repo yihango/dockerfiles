@@ -164,8 +164,10 @@ $buildImageList = @(
     # "php:7.3-fpm-bullseye",
     # "webdav-server:2.2.1",
     # "webdav-server:baksili",
-    "webdav-server:wsgidav",
+    # "webdav-server:wsgidav",
+    # "filebrowser:v2-s6",
     # "new-api:v0.11.5",
+    "plantuml-server:v1.2026.2",
     ""
 )
 
