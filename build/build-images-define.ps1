@@ -161,6 +161,7 @@ $buildImageList = @(
     # "python:3.12.12",
     # "pika:latest",
     # "pika:0.1",
+    "pika-agent:0.1",
     # "php:7.3-fpm-buster",
     # "php:7.3-zts-buster",
     # "php:7.3-fpm-bullseye",
