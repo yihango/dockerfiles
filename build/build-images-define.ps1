@@ -153,6 +153,7 @@ $buildImageList = @(
     # "nextcloud:31-fpm",
     # "next-terminal:v2.6.5",
     # "next-terminal:v2.7.0",
+    "next-terminal:v3.1.1",
     # "guacd:1.6.0",
     # "ddns-go:v6.13.2",
     # "wg-easy:15.1.0",
@@ -211,7 +212,7 @@ $syncSample = @(
     # "redis:6-alpine",
     # "steamcmd/steamcmd:ubuntu-22",
     # "privoce/vocechat-server:v0.5.8",
-    "privoce/vocechat-server:v0.5.16",
+    # "privoce/vocechat-server:v0.5.16",
     ""
 )
 
