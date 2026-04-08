@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM victoriametrics/victoria-metrics:v1.131.0
