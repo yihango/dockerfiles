@@ -167,7 +167,7 @@ $buildImageList = @(
     # "webdav-server:wsgidav",
     # "filebrowser:v2-s6",
     # "new-api:v0.11.5",
-    "plantuml-server:v1.2026.2",
+    # "plantuml-server:v1.2026.2",
     ""
 )
 
@@ -211,6 +211,7 @@ $syncSample = @(
     # "redis:6-alpine",
     # "steamcmd/steamcmd:ubuntu-22",
     # "privoce/vocechat-server:v0.5.8",
+    "privoce/vocechat-server:v0.5.16",
     ""
 )
 
