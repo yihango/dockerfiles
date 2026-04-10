@@ -145,7 +145,7 @@ $buildImageList = @(
     # "busybox:latest",
     # "beszel:0.10",
     # "beszel-agent:0.10",
-    # "playwright:v1.53.0-jammy",
+    "playwright:v1.53.0-jammy",
     # "playwright:v1.54.0-jammy",
     # "nextcloud:30-apache",
     # "nextcloud:30-fpm",
@@ -161,7 +161,7 @@ $buildImageList = @(
     # "python:3.12.12",
     # "pika:latest",
     # "pika:0.1",
-    "pika-agent:0.1",
+    # "pika-agent:0.1",
     # "php:7.3-fpm-buster",
     # "php:7.3-zts-buster",
     # "php:7.3-fpm-bullseye",
@@ -171,7 +171,7 @@ $buildImageList = @(
     # "filebrowser:v2-s6",
     # "new-api:v0.11.5",
     # "plantuml-server:v1.2026.2",
-    "victoria-metrics:v1.131.0",
+    # "victoria-metrics:v1.131.0",
     ""
 )
 

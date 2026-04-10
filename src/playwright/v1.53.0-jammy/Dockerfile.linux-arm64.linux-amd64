@@ -1,3 +1,7 @@
 FROM --platform=$TARGETPLATFORM mcr.microsoft.com/playwright:v1.53.0-jammy
 
-RUN npx -y playwright@1.53.0 install --with-deps
+RUN npm install -g playwright@1.53.0
+
+RUN playwright install --with-deps
+
+## RUN npx -y playwright@1.53.0 install --with-deps
